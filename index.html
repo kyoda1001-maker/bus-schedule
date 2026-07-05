@@ -365,7 +365,7 @@
   <h3>表示する期間</h3>
   <ul>
     <li><span class="k">過去1週間〜2週間先</span>を表示します。</li>
-    <li>開いた直後は「今日」が先頭。過去1週間は「過去1週間の予定」ボタンで表示します。</li>
+    <li>開いた直後は「今日」が先頭。過去1週間は「過去の予定を表示」ボタンで表示します。</li>
     <li>予定が入っていない日は「<span class="k">未定</span>」と表示します。</li>
   </ul>
 
@@ -553,7 +553,7 @@ function renderList(items){
   if(!upcoming.length){ upcoming = items; past = []; }
   const pastBox = past.length
     ? `<div class="pastbox">
-         <button type="button" class="pastbtn">過去1週間の予定 ▼</button>
+         <button type="button" class="pastbtn">過去の予定を表示 ▼</button>
          <div class="pastlist" hidden>${past.map(renderItem).join("")}</div>
        </div>` : "";
   list.innerHTML = pastBox + upcoming.map(renderItem).join("");
@@ -562,8 +562,8 @@ function renderList(items){
   if(pb){
     pb.onclick = ()=>{
       const pl = list.querySelector(".pastlist");
-      if(pl.hasAttribute("hidden")){ pl.removeAttribute("hidden"); pb.textContent="過去1週間の予定 ▲"; applyCollapsible(); }
-      else { pl.setAttribute("hidden",""); pb.textContent="過去1週間の予定 ▼"; }
+      if(pl.hasAttribute("hidden")){ pl.removeAttribute("hidden"); pb.textContent="過去の予定を表示 ▲"; applyCollapsible(); }
+      else { pl.setAttribute("hidden",""); pb.textContent="過去の予定を表示 ▼"; }
     };
   }
   window.scrollTo(0,0);
