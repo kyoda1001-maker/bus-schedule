@@ -623,7 +623,7 @@ async function doLogin(id, password, fromSaved){
   if(!e){ if(!fromSaved) $("#loginmsg").textContent = "ログインIDが見つかりません。"; return false; }
   try{
     const data = await decryptEntry(e, password, SECURE.iters);
-    sessionStorage.setItem("auth", JSON.stringify({id, password}));
+    localStorage.setItem("auth", JSON.stringify({id, password}));
     showApp(data);
     return true;
   }catch(err){
@@ -649,7 +649,7 @@ async function init(){
   const qid = new URLSearchParams(location.search).get("id");
   if(qid) $("#lid").value = qid;
   // セッション保存があれば自動ログイン
-  const saved = sessionStorage.getItem("auth");
+  const saved = localStorage.getItem("auth");
   if(saved){
     try{ const a = JSON.parse(saved); if(await doLogin(a.id, a.password, true)) return; }catch(e){}
   }
@@ -658,7 +658,7 @@ async function init(){
 
 $("#loginbtn").addEventListener("click", ()=> doLogin($("#lid").value.trim(), $("#lpw").value));
 $("#lpw").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin($("#lid").value.trim(), $("#lpw").value); });
-$("#logout").addEventListener("click", ()=>{ sessionStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
+$("#logout").addEventListener("click", ()=>{ localStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
 $("#viewtoggle").addEventListener("click", ()=>{ VIEW = VIEW==="calendar" ? "list" : "calendar"; draw(); });
 
 /* ---- 管理者：今すぐ更新（クラウド実行を起動）---- */
