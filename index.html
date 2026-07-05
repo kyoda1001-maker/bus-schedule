@@ -395,8 +395,8 @@ function renderItem(it){
     </div>`;
 }
 
-/* ---- 表示モード（リスト / カレンダー）---- */
-let VIEW = "list";
+/* ---- 表示モード（リスト / カレンダー）---- 既定はカレンダー */
+let VIEW = "calendar";
 let CURRENT_ITEMS = [];
 let CAL_Y, CAL_M;
 const TYPE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調", 有休:"有"};
