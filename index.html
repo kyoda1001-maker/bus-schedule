@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1f628e">
-<title>運行予定確認 | プラチナキャビン</title>
+<title>マイ✦プラチナ | 運行予定確認</title>
 <link rel="icon" type="image/png" href="logo-icon.png">
 <link rel="apple-touch-icon" href="logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +14,7 @@
     --bg:#eef4f8; --card:#fff; --ink:#26333d; --sub:#5b6672;
     --line:#dbe6ee; --brand:#1f628e; --brand2:#17557c; --brand-ink:#fff; --tint:#ebf5fc;
     --unko:#1f628e; --taiki:#c07800; --nikkin:#529b71; --kyu:#8a8f96; --chosei:#7a5af0; --yukyu:#0d9488;
+    --star:#d1a94f;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0}
@@ -46,8 +47,12 @@
     margin-top:7px; display:flex; align-items:baseline; gap:10px;
     border-top:1px solid rgba(255,255,255,.22); padding-top:6px;
   }
-  header #hname{font-size:15px; font-weight:700; letter-spacing:.02em}
-  header .updated{font-size:11px; opacity:.85}
+  header .toolname{font-size:15px; font-weight:700; letter-spacing:.04em}
+  header .toolname .star{color:var(--star); margin:0 1px}
+  header #hname{font-size:13px; font-weight:500; opacity:.92}
+  header #hname:not(:empty){padding-left:10px; margin-left:2px; border-left:1px solid rgba(255,255,255,.35)}
+  header.hdr-light #hname:not(:empty){border-left-color:var(--line)}
+  header .updated{font-size:11px; opacity:.85; margin-left:auto}
   header .logout{
     flex:none; font-size:12px; color:#fff; background:rgba(255,255,255,.18);
     border:1px solid rgba(255,255,255,.4); border-radius:8px; padding:6px 12px; cursor:pointer;
@@ -99,6 +104,15 @@
     display:block; width:230px; max-width:70%; height:auto; margin:0 auto 18px;
   }
   .login h2{font-size:18px; margin:0 0 4px; text-align:center; color:var(--brand)}
+  .login .toolname-lg{
+    font-size:26px; font-weight:700; letter-spacing:.06em; color:var(--brand);
+    text-align:center; margin:0 0 2px;
+  }
+  .login .toolname-lg .star{color:var(--star); margin:0 3px}
+  .login .subname{
+    text-align:center; font-size:13px; font-weight:500; color:var(--sub);
+    letter-spacing:.08em; margin:0 0 16px;
+  }
   .login p{font-size:13px; color:var(--sub); margin:0 0 20px; text-align:center}
   .login label{display:block; font-size:12px; color:var(--sub); margin:14px 2px 6px}
   .login input{
@@ -260,13 +274,18 @@
     <img class="brandlogo logo-blue" src="logo-h-blue.png" alt="プラチナキャビン">
     <button class="logout" id="logout" hidden>ログアウト</button>
   </div>
-  <div class="hsub"><span id="hname">運行予定確認</span><span class="updated" id="updated"></span></div>
+  <div class="hsub">
+    <span class="toolname">マイ<span class="star">✦</span>プラチナ</span>
+    <span id="hname"></span>
+    <span class="updated" id="updated"></span>
+  </div>
 </header>
 
 <!-- ログイン画面 -->
 <div class="login" id="login">
   <img class="loginlogo" src="logo-login.png" alt="プラチナキャビン">
-  <h2>運行予定確認</h2>
+  <h2 class="toolname-lg">マイ<span class="star">✦</span>プラチナ</h2>
+  <p class="subname">運行予定確認ツール</p>
   <p>配布されたログインID・パスワードを入力してください。</p>
   <label for="lid">ログインID</label>
   <input id="lid" type="text" inputmode="text" autocapitalize="off" autocomplete="username" placeholder="例: m2xd6">
@@ -571,7 +590,7 @@ function showLogin(msg){
   $("#login").hidden = false;
   $("#app").hidden = true;
   $("#logout").hidden = true;
-  $("#hname").textContent = "運行予定確認";
+  $("#hname").textContent = "";
   $("#updated").textContent = "";
   if(msg) $("#loginmsg").textContent = msg;
 }
