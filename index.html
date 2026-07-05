@@ -89,6 +89,23 @@
   }
   #tokenform a{font-size:12px; color:var(--brand)}
 
+  /* 今日の名言 */
+  .quotecard{
+    background:linear-gradient(135deg, var(--tint), #fff);
+    border:1px solid var(--line); border-radius:16px; padding:14px 16px 12px;
+    margin-bottom:14px; box-shadow:0 2px 12px rgba(31,98,142,.08);
+  }
+  .quotecard .qlabel{
+    font-size:11px; font-weight:700; color:var(--brand); letter-spacing:.1em;
+  }
+  .quotecard .qlabel .star{color:var(--star)}
+  .quotecard .qtext{
+    font-size:16px; font-weight:500; line-height:1.8; color:var(--ink);
+    margin:9px 0 10px; padding-left:14px; border-left:3px solid var(--star);
+  }
+  .quotecard .qauthor{font-size:12.5px; color:var(--sub); text-align:right}
+  .quotecard .qauthor b{color:var(--brand); font-weight:700}
+
   .pick{margin-bottom:6px}
   .pick label{font-size:12px; color:var(--sub); display:block; margin:0 2px 6px}
   .pick select{
@@ -299,6 +316,11 @@
 
 <!-- 予定表示 -->
 <div class="wrap" id="app" hidden>
+  <div class="quotecard" id="quotecard">
+    <div class="qlabel">今日の名言 <span class="star">✦</span></div>
+    <div class="qtext" id="qtext">感謝の心が高まれば、それに正比例して幸福感が高まっていく。</div>
+    <div class="qauthor" id="qauthor">— <b>松下 幸之助</b>（1894–1989 ／ 経営者・パナソニック創業者）</div>
+  </div>
   <div id="admbar" hidden>
     <div class="admrow">
       <button type="button" id="updatenow">🔄 今すぐ更新</button>
@@ -698,6 +720,22 @@ function closeInfo(){ $("#info").hidden = true; }
 document.querySelectorAll(".infolink").forEach(b=> b.addEventListener("click", openInfo));
 $("#infoclose").addEventListener("click", closeInfo);
 $("#infoclose2").addEventListener("click", closeInfo);
+
+/* ---- 今日の名言（quotes.json から日付で日替わり表示）---- */
+function showTodayQuote(list){
+  if(!Array.isArray(list) || !list.length) return;
+  const d = new Date();
+  const dayNum = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  const q = list[((dayNum % list.length) + list.length) % list.length];
+  if($("#qtext")) $("#qtext").textContent = q.q;
+  if($("#qauthor")) $("#qauthor").innerHTML =
+    "— <b>" + escapeHtml(q.a) + "</b>（" + escapeHtml(q.e) +
+    (q.n ? " ／ " + escapeHtml(q.n) : "") + "）";
+}
+fetch("quotes.json?_=" + Date.now())
+  .then(r => r.ok ? r.json() : null)
+  .then(showTodayQuote)
+  .catch(()=>{});
 
 init();
 </script>
