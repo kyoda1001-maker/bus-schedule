@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b5cad">
+<title>運行予定確認</title>
+<style>
+  :root{
+    --bg:#f2f4f7; --card:#fff; --ink:#1a1f26; --sub:#5b6672;
+    --line:#e3e7ec; --brand:#0b5cad; --brand-ink:#fff;
+    --unko:#0b5cad; --taiki:#c07800; --nikkin:#1f8f4e; --kyu:#8a8f96; --chosei:#7a5af0;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.6;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  header{
+    position:sticky; top:0; z-index:10; background:var(--brand); color:var(--brand-ink);
+    padding:calc(env(safe-area-inset-top) + 12px) 16px 12px;
+    box-shadow:0 1px 6px rgba(0,0,0,.15);
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  header .htxt h1{margin:0; font-size:17px; font-weight:700; letter-spacing:.02em}
+  header .updated{font-size:11px; opacity:.85; margin-top:2px}
+  header .logout{
+    flex:none; font-size:12px; color:#fff; background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35); border-radius:8px; padding:6px 10px; cursor:pointer;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:14px 12px 40px}
+
+  /* ログイン画面 */
+  .login{max-width:400px; margin:8vh auto 0; padding:24px 18px}
+  .login h2{font-size:18px; margin:0 0 4px}
+  .login p{font-size:13px; color:var(--sub); margin:0 0 20px}
+  .login label{display:block; font-size:12px; color:var(--sub); margin:14px 2px 6px}
+  .login input{
+    width:100%; font-size:16px; padding:12px 14px; border:1px solid var(--line);
+    border-radius:12px; background:var(--card); color:var(--ink);
+  }
+  .login button.primary{
+    width:100%; margin-top:22px; padding:14px; font-size:16px; font-weight:700;
+    color:#fff; background:var(--brand); border:0; border-radius:12px; cursor:pointer;
+  }
+  .login button.primary:active{opacity:.9}
+  .login .msg{margin-top:14px; font-size:13px; color:#b42318; min-height:18px; text-align:center}
+  .login .hint{margin-top:18px; font-size:11px; color:var(--sub); text-align:center}
+
+  .day{margin-top:18px}
+  .day > .dhead{
+    font-size:13px; font-weight:700; color:var(--sub);
+    padding:0 4px 6px; display:flex; align-items:baseline; gap:8px;
+  }
+  .dhead .wd{font-weight:400}
+  .dhead .wd.sat{color:#1f6fd6}
+  .dhead .wd.sun{color:#d63f3f}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:14px; box-shadow:0 1px 3px rgba(16,24,40,.04); margin-bottom:10px;
+    border-left:5px solid var(--kyu);
+  }
+  .card.t-運行{border-left-color:var(--unko)}
+  .card.t-待機{border-left-color:var(--taiki)}
+  .card.t-日勤{border-left-color:var(--nikkin)}
+  .card.t-公休,.card.t-休み{border-left-color:var(--kyu)}
+  .card.t-調整{border-left-color:var(--chosei)}
+  .card.t-未定{
+    border-left-color:#d5d9de; border-style:dashed; background:#fafbfc; padding:10px 14px;
+  }
+  .card.t-未定 .mitei{color:#9aa1a9; font-size:14px; font-weight:600}
+
+  .badge{
+    display:inline-block; font-size:11px; font-weight:700; padding:2px 9px;
+    border-radius:999px; color:#fff; background:var(--kyu); margin-bottom:6px;
+  }
+  .t-運行 .badge{background:var(--unko)}
+  .t-待機 .badge{background:var(--taiki)}
+  .t-日勤 .badge{background:var(--nikkin)}
+  .t-調整 .badge{background:var(--chosei)}
+  .card .ttl{font-size:16px; font-weight:700; margin:2px 0 0}
+  .card .detail{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line)}
+  .card .content{
+    white-space:pre-wrap; font-size:14px; color:var(--ink); font-variant-numeric:tabular-nums;
+  }
+  .card .content.collapsible{position:relative; overflow:hidden; transition:max-height .25s ease}
+  .card .content.collapsible::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:42px;
+    background:linear-gradient(rgba(255,255,255,0), var(--card));
+    pointer-events:none; transition:opacity .2s;
+  }
+  .card .content.collapsible.open::after{opacity:0}
+  .card .toggle{
+    display:block; width:100%; margin-top:8px; padding:9px 12px;
+    font-size:13px; font-weight:700; color:var(--brand);
+    background:#f2f6fb; border:1px solid var(--line); border-radius:10px; cursor:pointer;
+  }
+  .card .toggle:active{background:#e6eef8}
+  .card .upd{font-size:11px; color:var(--sub); margin-top:8px}
+
+  .todaytag{
+    margin-left:8px; font-size:11px; font-weight:700; color:#fff;
+    background:var(--brand); border-radius:999px; padding:1px 9px; vertical-align:1px;
+  }
+  .pastbox{margin:6px 0 4px}
+  .pastbtn{
+    display:block; width:100%; padding:12px; font-size:14px; font-weight:700;
+    color:var(--brand); background:#eef3fa; border:1px solid var(--line);
+    border-radius:12px; cursor:pointer;
+  }
+  .pastbtn:active{background:#e2ebf7}
+  .pastlist{margin-top:10px; padding-top:4px; border-top:1px dashed var(--line)}
+  .empty{text-align:center; color:var(--sub); font-size:14px; padding:48px 16px}
+  footer{text-align:center; color:var(--sub); font-size:11px; padding:24px 0 8px}
+</style>
+</head>
+<body>
+<header>
+  <div class="htxt">
+    <h1 id="hname">運行予定確認</h1>
+    <div class="updated" id="updated"></div>
+  </div>
+  <button class="logout" id="logout" hidden>ログアウト</button>
+</header>
+
+<!-- ログイン画面 -->
+<div class="login" id="login">
+  <h2>運行予定確認</h2>
+  <p>配布されたログインID・パスワードを入力してください。</p>
+  <label for="lid">ログインID</label>
+  <input id="lid" type="text" inputmode="text" autocapitalize="off" autocomplete="username" placeholder="例: m2xd6">
+  <label for="lpw">パスワード</label>
+  <input id="lpw" type="password" autocomplete="current-password" placeholder="パスワード">
+  <button class="primary" id="loginbtn">ログイン</button>
+  <div class="msg" id="loginmsg"></div>
+  <div class="hint">自分の運行予定・行程を確認できます。</div>
+</div>
+
+<!-- 予定表示 -->
+<div class="wrap" id="app" hidden>
+  <div id="list"></div>
+  <footer>データ元：バスキング運行台帳</footer>
+</div>
+
+<script>
+const WD = ["日","月","火","水","木","金","土"];
+const $ = s => document.querySelector(s);
+let SECURE = null;
+
+const TODAY = (()=>{
+  const t = new Date(); const p = n => String(n).padStart(2,"0");
+  return `${t.getFullYear()}-${p(t.getMonth()+1)}-${p(t.getDate())}`;
+})();
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+}
+function fmtDate(iso){
+  const d = new Date(iso + "T00:00:00"); const wd = d.getDay();
+  const cls = wd===0 ? "sun" : wd===6 ? "sat" : "";
+  return { label:`${d.getMonth()+1}月${d.getDate()}日`, wd:`(${WD[wd]})`, cls };
+}
+
+/* ---- 復号 ---- */
+const b64 = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
+const hex = s => new Uint8Array(s.match(/../g).map(h=>parseInt(h,16)));
+async function decryptEntry(e, password, iters){
+  const km = await crypto.subtle.importKey("raw",
+    new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    {name:"PBKDF2", salt:hex(e.salt), iterations:iters, hash:"SHA-256"},
+    km, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(e.iv)}, key, b64(e.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+/* ---- 描画 ---- */
+function renderItem(it){
+  const d = fmtDate(it.date);
+  const tag = it.date === TODAY ? `<span class="todaytag">今日</span>` : "";
+  const head = `<div class="dhead">${d.label}<span class="wd ${d.cls}">${d.wd}</span>${tag}</div>`;
+  if(it.type === "未定"){
+    return `<div class="day">${head}<div class="card t-未定"><span class="mitei">未定</span></div></div>`;
+  }
+  const content = it.content
+    ? `<div class="detail">
+         <div class="content collapsible">${escapeHtml(it.content)}</div>
+         <button type="button" class="toggle">詳細を開く ▼</button>
+       </div>` : "";
+  const upd = it.updatedAt ? `<div class="upd">更新：${escapeHtml(it.updatedAt)}</div>` : "";
+  return `
+    <div class="day">${head}
+      <div class="card t-${it.type}">
+        <span class="badge">${escapeHtml(it.type)}</span>
+        <div class="ttl">${escapeHtml(it.title || it.type)}</div>
+        ${content}
+        ${upd}
+      </div>
+    </div>`;
+}
+
+function render(items){
+  const list = $("#list");
+  items = (items||[]).slice().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
+  if(!items.length){ list.innerHTML = `<div class="empty">予定は登録されていません。</div>`; return; }
+  let past = items.filter(it=> it.date < TODAY);
+  let upcoming = items.filter(it=> it.date >= TODAY);
+  if(!upcoming.length){ upcoming = items; past = []; }
+  const pastBox = past.length
+    ? `<div class="pastbox">
+         <button type="button" class="pastbtn">過去1週間の予定 ▼</button>
+         <div class="pastlist" hidden>${past.map(renderItem).join("")}</div>
+       </div>` : "";
+  list.innerHTML = pastBox + upcoming.map(renderItem).join("");
+  applyCollapsible();
+  const pb = list.querySelector(".pastbtn");
+  if(pb){
+    pb.onclick = ()=>{
+      const pl = list.querySelector(".pastlist");
+      if(pl.hasAttribute("hidden")){ pl.removeAttribute("hidden"); pb.textContent="過去1週間の予定 ▲"; applyCollapsible(); }
+      else { pl.setAttribute("hidden",""); pb.textContent="過去1週間の予定 ▼"; }
+    };
+  }
+  window.scrollTo(0,0);
+}
+
+function applyCollapsible(){
+  document.querySelectorAll(".detail").forEach(det=>{
+    if(det.dataset.ready) return;
+    const c = det.querySelector(".content");
+    if(!c.offsetParent) return;
+    det.dataset.ready = "1";
+    const btn = det.querySelector(".toggle");
+    const full = c.scrollHeight;
+    const collapsed = Math.max(64, Math.round(full/3));
+    if(full - collapsed < 24){ c.classList.remove("collapsible"); c.style.maxHeight="none"; btn.style.display="none"; return; }
+    c.style.maxHeight = collapsed + "px";
+    btn.onclick = ()=>{
+      const open = c.classList.toggle("open");
+      c.style.maxHeight = open ? (c.scrollHeight+"px") : (collapsed+"px");
+      btn.textContent = open ? "閉じる ▲" : "詳細を開く ▼";
+    };
+  });
+}
+
+/* ---- ログイン制御 ---- */
+function showApp(data){
+  $("#hname").textContent = data.name;
+  $("#updated").textContent = "最終更新：" + (SECURE.meta?.generatedAt || "-");
+  $("#login").hidden = true;
+  $("#app").hidden = false;
+  $("#logout").hidden = false;
+  render(data.schedules);
+}
+function showLogin(msg){
+  $("#login").hidden = false;
+  $("#app").hidden = true;
+  $("#logout").hidden = true;
+  $("#hname").textContent = "運行予定確認";
+  $("#updated").textContent = "";
+  if(msg) $("#loginmsg").textContent = msg;
+}
+
+async function doLogin(id, password, fromSaved){
+  $("#loginmsg").textContent = "";
+  const e = SECURE && SECURE.entries[id];
+  if(!e){ if(!fromSaved) $("#loginmsg").textContent = "ログインIDが見つかりません。"; return false; }
+  try{
+    const data = await decryptEntry(e, password, SECURE.iters);
+    sessionStorage.setItem("auth", JSON.stringify({id, password}));
+    showApp(data);
+    return true;
+  }catch(err){
+    if(!fromSaved) $("#loginmsg").textContent = "パスワードが違います。";
+    return false;
+  }
+}
+
+async function init(){
+  if(!(window.crypto && crypto.subtle)){
+    showLogin("この環境では暗号化に対応していません（https または localhost で開いてください）。");
+    return;
+  }
+  try{
+    const r = await fetch("secure.json?_=" + Date.now());
+    if(!r.ok) throw new Error(r.status);
+    SECURE = await r.json();
+  }catch(err){
+    showLogin("データを読み込めませんでした（secure.json）。");
+    return;
+  }
+  // URLの ?id= を反映
+  const qid = new URLSearchParams(location.search).get("id");
+  if(qid) $("#lid").value = qid;
+  // セッション保存があれば自動ログイン
+  const saved = sessionStorage.getItem("auth");
+  if(saved){
+    try{ const a = JSON.parse(saved); if(await doLogin(a.id, a.password, true)) return; }catch(e){}
+  }
+  if(qid) $("#lpw").focus();
+}
+
+$("#loginbtn").addEventListener("click", ()=> doLogin($("#lid").value.trim(), $("#lpw").value));
+$("#lpw").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin($("#lid").value.trim(), $("#lpw").value); });
+$("#logout").addEventListener("click", ()=>{ sessionStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
+
+init();
+</script>
+</body>
+</html>
