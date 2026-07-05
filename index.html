@@ -163,6 +163,35 @@
   .cmore{font-size:10px; color:var(--sub); font-weight:700}
   #calday{margin-top:16px}
   #calday .day:first-child{margin-top:0}
+
+  /* ルール・設定リンク / 情報パネル */
+  .infolink{
+    display:inline-block; margin-top:10px; font-size:12px; color:var(--brand);
+    background:none; border:0; cursor:pointer; text-decoration:underline;
+  }
+  .info{
+    position:fixed; inset:0; z-index:50; background:var(--bg); overflow:auto;
+    padding:calc(env(safe-area-inset-top) + 14px) 16px 40px;
+  }
+  .info .inwrap{max-width:640px; margin:0 auto}
+  .info h2{font-size:18px; margin:4px 0 2px}
+  .info .lead{font-size:13px; color:var(--sub); margin:0 0 16px}
+  .info h3{
+    font-size:14px; margin:20px 0 8px; padding-left:9px;
+    border-left:4px solid var(--brand);
+  }
+  .info p, .info li{font-size:13.5px; line-height:1.7}
+  .info ul{margin:6px 0; padding-left:20px}
+  .info .k{font-weight:700}
+  .info .closebtn{
+    position:sticky; top:0; float:right; font-size:14px; font-weight:700;
+    color:#fff; background:var(--brand); border:0; border-radius:10px;
+    padding:8px 16px; cursor:pointer;
+  }
+  .info .tag{
+    display:inline-block; font-size:11px; font-weight:700; color:#fff;
+    border-radius:999px; padding:1px 8px; margin-right:2px;
+  }
 </style>
 </head>
 <body>
@@ -185,6 +214,7 @@
   <button class="primary" id="loginbtn">ログイン</button>
   <div class="msg" id="loginmsg"></div>
   <div class="hint">自分の運行予定・行程を確認できます。</div>
+  <div style="text-align:center"><button type="button" class="infolink">このツールの設定およびルールについて</button></div>
 </div>
 
 <!-- 予定表示 -->
@@ -195,8 +225,72 @@
   </div>
   <div class="viewbar"><button type="button" id="viewtoggle">📅 カレンダー表示</button></div>
   <div id="list"></div>
-  <footer>データ元：バスキング運行台帳</footer>
+  <footer>
+    <button type="button" class="infolink">このツールの設定およびルールについて</button><br>
+    データ元：バスキング運行台帳
+  </footer>
 </div>
+
+<!-- 設定・ルール説明 -->
+<div class="info" id="info" hidden><div class="inwrap">
+  <button type="button" class="closebtn" id="infoclose">閉じる ✕</button>
+  <h2>このツールの設定およびルールについて</h2>
+  <p class="lead">バスキングの運行台帳の内容を自動で取り込み、各ドライバーが自分の運行予定・行程を確認できるサイトです。以下の設定・ルールで表示しています。</p>
+
+  <h3>更新のタイミング</h3>
+  <ul>
+    <li><span class="k">毎日18:30</span>にバスキング台帳から自動で取り込み・更新します。</li>
+    <li>バスキング側は原則<span class="k">運行前日の18:00まで</span>に最新情報が反映されます。直前まで車両・コース・ホテル等が変わる場合があるので、こまめに確認してください。</li>
+    <li>各予定の「更新：日時」は、このツールが取り込んだ日時です。</li>
+  </ul>
+
+  <h3>表示する期間</h3>
+  <ul>
+    <li><span class="k">過去1週間〜2週間先</span>を表示します。</li>
+    <li>開いた直後は「今日」が先頭。過去1週間は「過去1週間の予定」ボタンで表示します。</li>
+    <li>予定が入っていない日は「<span class="k">未定</span>」と表示します。</li>
+  </ul>
+
+  <h3>予定の種別</h3>
+  <ul>
+    <li><span class="tag" style="background:#0b5cad">運行</span>運行あり。団体名・人数・行程などを表示（カードをタップで詳細を展開）。</li>
+    <li><span class="tag" style="background:#0b5cad">運行Final</span>予約が「<span class="k">確定</span>」した運行。</li>
+    <li><span class="tag" style="background:#c07800">待機</span>待機（自宅待機など）。</li>
+    <li><span class="tag" style="background:#1f8f4e">日勤</span>日勤・出勤。</li>
+    <li><span class="tag" style="background:#8a8f96">公休</span>会社が割り当てた休み。<span class="tag" style="background:#8a8f96">★公休</span>は本人の希望休。</li>
+    <li><span class="tag" style="background:#0d9488">有休</span>有給休暇。</li>
+    <li><span class="tag" style="background:#7a5af0">調整</span>調整中（未確定）。</li>
+    <li><span class="tag" style="background:#9aa1a9">未定</span>まだ予定が入っていない日。</li>
+  </ul>
+
+  <h3>公休・希望休・有休のルール</h3>
+  <ul>
+    <li>通常の公休は「<span class="k">翌日から6日先まで</span>」が確定として表示されます。</li>
+    <li>それ以降の日付は、バスキング上で公休でも変更の可能性があるため「<span class="k">調整</span>」と表示します。</li>
+    <li>ただし<span class="k">★公休（希望休）と有休</span>は、6日より先でもそのまま表示します。</li>
+  </ul>
+
+  <h3>運行の詳細に含まれる情報</h3>
+  <ul>
+    <li>出社時刻（＝<span class="k">出庫時刻の30分前</span>）、乗車日、団体名（人数）、予約ID-運行ID、車両（割り当て済みの場合のみ）、運転士、担当スタッフ、代理店、添乗員、出庫/帰庫、行程、注意事項、備考。</li>
+    <li>タイトルは団体名（人数）で表示します。</li>
+  </ul>
+
+  <h3>カレンダー表示</h3>
+  <ul>
+    <li>「📅 カレンダー表示」で月間カレンダーに切り替わります（<span class="k">週の始まりは月曜</span>）。日付をタップするとその日の詳細が表示されます。</li>
+  </ul>
+
+  <h3>ログイン・閲覧範囲</h3>
+  <ul>
+    <li>各自のID・パスワードでログインし、<span class="k">自分の予定のみ</span>を閲覧できます。</li>
+    <li>データは本人のパスワードで暗号化されており、他人の予定は見られません。</li>
+    <li>管理者は全ドライバーの予定を閲覧できます。</li>
+  </ul>
+
+  <p class="lead" style="margin-top:20px">※ 表示はバスキング台帳の入力内容に基づきます。内容の誤りや不明点は運行管理者に確認してください。</p>
+  <div style="text-align:center;margin-top:10px"><button type="button" class="closebtn" id="infoclose2" style="float:none">閉じる</button></div>
+</div></div>
 
 <script>
 const WD = ["日","月","火","水","木","金","土"];
@@ -447,6 +541,13 @@ $("#loginbtn").addEventListener("click", ()=> doLogin($("#lid").value.trim(), $(
 $("#lpw").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin($("#lid").value.trim(), $("#lpw").value); });
 $("#logout").addEventListener("click", ()=>{ sessionStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
 $("#viewtoggle").addEventListener("click", ()=>{ VIEW = VIEW==="calendar" ? "list" : "calendar"; draw(); });
+
+// 設定・ルール説明パネル
+function openInfo(){ $("#info").hidden = false; $("#info").scrollTop = 0; }
+function closeInfo(){ $("#info").hidden = true; }
+document.querySelectorAll(".infolink").forEach(b=> b.addEventListener("click", openInfo));
+$("#infoclose").addEventListener("click", closeInfo);
+$("#infoclose2").addEventListener("click", closeInfo);
 
 init();
 </script>
