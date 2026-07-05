@@ -9,7 +9,7 @@
   :root{
     --bg:#f2f4f7; --card:#fff; --ink:#1a1f26; --sub:#5b6672;
     --line:#e3e7ec; --brand:#0b5cad; --brand-ink:#fff;
-    --unko:#0b5cad; --taiki:#c07800; --nikkin:#1f8f4e; --kyu:#8a8f96; --chosei:#7a5af0;
+    --unko:#0b5cad; --taiki:#c07800; --nikkin:#1f8f4e; --kyu:#8a8f96; --chosei:#7a5af0; --yukyu:#0d9488;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0}
@@ -77,6 +77,7 @@
   .card.t-日勤{border-left-color:var(--nikkin)}
   .card.t-公休,.card.t-休み{border-left-color:var(--kyu)}
   .card.t-調整{border-left-color:var(--chosei)}
+  .card.t-有休{border-left-color:var(--yukyu)}
   .card.t-未定{
     border-left-color:#d5d9de; border-style:dashed; background:#fafbfc; padding:10px 14px;
   }
@@ -90,6 +91,7 @@
   .t-待機 .badge{background:var(--taiki)}
   .t-日勤 .badge{background:var(--nikkin)}
   .t-調整 .badge{background:var(--chosei)}
+  .t-有休 .badge{background:var(--yukyu)}
   .card .ttl{font-size:16px; font-weight:700; margin:2px 0 0}
   .card .detail{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line)}
   .card .content{
@@ -157,7 +159,7 @@
   .cchip{font-size:10px; font-weight:700; color:#fff; border-radius:4px; padding:0 4px; line-height:1.5}
   .cchip.t-運行{background:var(--unko)} .cchip.t-待機{background:var(--taiki)}
   .cchip.t-日勤{background:var(--nikkin)} .cchip.t-公休,.cchip.t-休み{background:var(--kyu)}
-  .cchip.t-調整{background:var(--chosei)}
+  .cchip.t-調整{background:var(--chosei)} .cchip.t-有休{background:var(--yukyu)}
   .cmore{font-size:10px; color:var(--sub); font-weight:700}
   #calday{margin-top:16px}
   #calday .day:first-child{margin-top:0}
@@ -258,7 +260,7 @@ function renderItem(it){
 let VIEW = "list";
 let CURRENT_ITEMS = [];
 let CAL_Y, CAL_M;
-const TYPE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調"};
+const TYPE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調", 有休:"有"};
 
 function setItems(items){
   CURRENT_ITEMS = (items||[]).slice().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
