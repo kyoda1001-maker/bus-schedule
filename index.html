@@ -124,6 +124,43 @@
   .pastlist{margin-top:10px; padding-top:4px; border-top:1px dashed var(--line)}
   .empty{text-align:center; color:var(--sub); font-size:14px; padding:48px 16px}
   footer{text-align:center; color:var(--sub); font-size:11px; padding:24px 0 8px}
+
+  /* 表示切替ボタン */
+  .viewbar{margin:2px 0 10px}
+  #viewtoggle{
+    display:block; width:100%; padding:12px; font-size:14px; font-weight:700;
+    color:var(--brand); background:#eef3fa; border:1px solid var(--line);
+    border-radius:12px; cursor:pointer;
+  }
+  #viewtoggle:active{background:#e2ebf7}
+
+  /* 月間カレンダー */
+  .calbar{display:flex; align-items:center; justify-content:space-between; margin:4px 0 10px}
+  .caltitle{font-size:16px; font-weight:700}
+  .calnav{
+    font-size:18px; line-height:1; padding:8px 18px; border:1px solid var(--line);
+    background:var(--card); border-radius:10px; cursor:pointer; color:var(--brand); font-weight:700;
+  }
+  .calgrid{display:grid; grid-template-columns:repeat(7,1fr); gap:3px}
+  .calwh{text-align:center; font-size:11px; font-weight:700; color:var(--sub); padding:2px 0}
+  .calwh.sat{color:#1f6fd6} .calwh.sun{color:#d63f3f}
+  .calcell{
+    min-height:54px; background:var(--card); border:1px solid var(--line);
+    border-radius:8px; padding:3px; cursor:pointer; overflow:hidden;
+  }
+  .calcell.empty{background:transparent; border:0; cursor:default}
+  .calcell.today{border-color:var(--brand); box-shadow:0 0 0 1px var(--brand) inset}
+  .calcell.sel{background:#eaf2fb; border-color:var(--brand)}
+  .cnum{font-size:12px; font-weight:700; color:var(--ink); line-height:1.2}
+  .cnum.sat{color:#1f6fd6} .cnum.sun{color:#d63f3f}
+  .cchips{display:flex; flex-wrap:wrap; gap:2px; margin-top:2px}
+  .cchip{font-size:10px; font-weight:700; color:#fff; border-radius:4px; padding:0 4px; line-height:1.5}
+  .cchip.t-運行{background:var(--unko)} .cchip.t-待機{background:var(--taiki)}
+  .cchip.t-日勤{background:var(--nikkin)} .cchip.t-公休,.cchip.t-休み{background:var(--kyu)}
+  .cchip.t-調整{background:var(--chosei)}
+  .cmore{font-size:10px; color:var(--sub); font-weight:700}
+  #calday{margin-top:16px}
+  #calday .day:first-child{margin-top:0}
 </style>
 </head>
 <body>
@@ -154,6 +191,7 @@
     <label for="driver">ドライバーを選択</label>
     <select id="driver"></select>
   </div>
+  <div class="viewbar"><button type="button" id="viewtoggle">📅 カレンダー表示</button></div>
   <div id="list"></div>
   <footer>データ元：バスキング運行台帳</footer>
 </div>
@@ -216,7 +254,82 @@ function renderItem(it){
     </div>`;
 }
 
-function render(items){
+/* ---- 表示モード（リスト / カレンダー）---- */
+let VIEW = "list";
+let CURRENT_ITEMS = [];
+let CAL_Y, CAL_M;
+const TYPE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調"};
+
+function setItems(items){
+  CURRENT_ITEMS = (items||[]).slice().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
+  if(CAL_Y === undefined){ const t = new Date(TODAY); CAL_Y = t.getFullYear(); CAL_M = t.getMonth(); }
+  draw();
+}
+function draw(){
+  if(VIEW === "calendar") renderCalendar(); else renderList(CURRENT_ITEMS);
+  const b = $("#viewtoggle");
+  if(b) b.textContent = VIEW === "calendar" ? "≡ リスト表示" : "📅 カレンダー表示";
+}
+
+function renderCalendar(){
+  const list = $("#list");
+  const byDate = {};
+  CURRENT_ITEMS.forEach(it=>{ (byDate[it.date] = byDate[it.date] || []).push(it); });
+  const p = n => String(n).padStart(2,"0");
+  const ymd = d => `${CAL_Y}-${p(CAL_M+1)}-${p(d)}`;
+  const first = new Date(CAL_Y, CAL_M, 1);
+  const daysIn = new Date(CAL_Y, CAL_M+1, 0).getDate();
+  const lead = (first.getDay()+6) % 7;            // 月曜始まり
+  const cells = [];
+  for(let i=0;i<lead;i++) cells.push(0);
+  for(let d=1;d<=daysIn;d++) cells.push(d);
+  while(cells.length % 7) cells.push(0);
+  const wdh = ["月","火","水","木","金","土","日"];
+
+  let html = `<div class="calbar">
+      <button type="button" class="calnav" id="calprev">‹</button>
+      <div class="caltitle">${CAL_Y}年${CAL_M+1}月</div>
+      <button type="button" class="calnav" id="calnext">›</button>
+    </div><div class="calgrid">`;
+  wdh.forEach((w,i)=> html += `<div class="calwh ${i===5?"sat":i===6?"sun":""}">${w}</div>`);
+  cells.forEach(d=>{
+    if(!d){ html += `<div class="calcell empty"></div>`; return; }
+    const key = ymd(d);
+    const items = (byDate[key]||[]).filter(it=> it.type !== "未定");
+    const wd = new Date(key+"T00:00:00").getDay();
+    const dcls = wd===0?"sun":wd===6?"sat":"";
+    const chips = items.slice(0,3).map(it=>
+      `<span class="cchip t-${it.type}">${TYPE_ABBR[it.type]||"・"}</span>`).join("");
+    const more = items.length>3 ? `<span class="cmore">+${items.length-3}</span>` : "";
+    html += `<div class="calcell${key===TODAY?" today":""}" data-date="${key}">
+       <div class="cnum ${dcls}">${d}</div><div class="cchips">${chips}${more}</div></div>`;
+  });
+  html += `</div><div id="calday"></div>`;
+  list.innerHTML = html;
+
+  $("#calprev").onclick = ()=>{ if(--CAL_M<0){CAL_M=11;CAL_Y--;} renderCalendar(); };
+  $("#calnext").onclick = ()=>{ if(++CAL_M>11){CAL_M=0;CAL_Y++;} renderCalendar(); };
+  list.querySelectorAll(".calcell[data-date]").forEach(c=>{
+    c.onclick = ()=> selectDay(c.dataset.date);
+  });
+  const td = new Date(TODAY);
+  const todayHere = (td.getFullYear()===CAL_Y && td.getMonth()===CAL_M);
+  selectDay(todayHere ? TODAY : null);
+  window.scrollTo(0,0);
+}
+
+function selectDay(date){
+  document.querySelectorAll(".calcell.sel").forEach(c=> c.classList.remove("sel"));
+  const cd = $("#calday");
+  if(!date){ cd.innerHTML = ""; return; }
+  const cell = document.querySelector(`.calcell[data-date="${date}"]`);
+  if(cell) cell.classList.add("sel");
+  const items = CURRENT_ITEMS.filter(it=> it.date === date);
+  cd.innerHTML = items.length ? items.map(renderItem).join("") : `<div class="empty">予定なし</div>`;
+  applyCollapsible();
+}
+
+function renderList(items){
   const list = $("#list");
   items = (items||[]).slice().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
   if(!items.length){ list.innerHTML = `<div class="empty">予定は登録されていません。</div>`; return; }
@@ -272,11 +385,11 @@ function showApp(data){
     // 管理者：全ドライバーを選択して閲覧
     pick.hidden = false;
     sel.innerHTML = data.drivers.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
-    sel.onchange = ()=> render(data.schedules[sel.value] || []);
-    render(data.schedules[sel.value] || []);
+    sel.onchange = ()=> setItems(data.schedules[sel.value] || []);
+    setItems(data.schedules[sel.value] || []);
   }else{
     pick.hidden = true;
-    render(data.schedules);
+    setItems(data.schedules);
   }
 }
 function showLogin(msg){
@@ -330,6 +443,7 @@ async function init(){
 $("#loginbtn").addEventListener("click", ()=> doLogin($("#lid").value.trim(), $("#lpw").value));
 $("#lpw").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin($("#lid").value.trim(), $("#lpw").value); });
 $("#logout").addEventListener("click", ()=>{ sessionStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
+$("#viewtoggle").addEventListener("click", ()=>{ VIEW = VIEW==="calendar" ? "list" : "calendar"; draw(); });
 
 init();
 </script>
