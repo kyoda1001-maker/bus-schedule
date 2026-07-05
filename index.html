@@ -32,6 +32,35 @@
   }
   .wrap{max-width:640px; margin:0 auto; padding:14px 12px 40px}
 
+  /* 管理者バー（今すぐ更新） */
+  #admbar{
+    background:#eef3fa; border:1px solid var(--line); border-radius:12px;
+    padding:10px 12px; margin-bottom:12px;
+  }
+  #admbar .admrow{display:flex; gap:8px; align-items:center}
+  #updatenow{
+    flex:1; padding:11px; font-size:14px; font-weight:700; color:#fff;
+    background:var(--brand); border:0; border-radius:10px; cursor:pointer;
+  }
+  #updatenow:disabled{opacity:.6}
+  #tokencfg{
+    padding:10px 12px; font-size:15px; background:var(--card);
+    border:1px solid var(--line); border-radius:10px; cursor:pointer;
+  }
+  #updatestatus{font-size:12px; color:var(--sub); margin-top:8px; min-height:0}
+  #tokenform{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line)}
+  #tokenform p{font-size:12px; color:var(--sub); margin:0 0 8px}
+  #tokeninput{
+    width:100%; font-size:14px; padding:10px 12px; border:1px solid var(--line);
+    border-radius:10px; background:var(--card);
+  }
+  #tokenform .tfrow{display:flex; align-items:center; gap:12px; margin-top:8px}
+  #tokensave{
+    font-size:13px; font-weight:700; color:#fff; background:var(--nikkin);
+    border:0; border-radius:9px; padding:9px 16px; cursor:pointer;
+  }
+  #tokenform a{font-size:12px; color:var(--brand)}
+
   .pick{margin-bottom:6px}
   .pick label{font-size:12px; color:var(--sub); display:block; margin:0 2px 6px}
   .pick select{
@@ -219,6 +248,21 @@
 
 <!-- 予定表示 -->
 <div class="wrap" id="app" hidden>
+  <div id="admbar" hidden>
+    <div class="admrow">
+      <button type="button" id="updatenow">🔄 今すぐ更新</button>
+      <button type="button" id="tokencfg" title="更新トークンの設定">⚙</button>
+    </div>
+    <div id="updatestatus"></div>
+    <div id="tokenform" hidden>
+      <p>「今すぐ更新」に使うGitHubトークンを、このブラウザにのみ保存します（サイトには保存されません）。</p>
+      <input id="tokeninput" type="password" placeholder="github_pat_... を貼り付け" autocomplete="off">
+      <div class="tfrow">
+        <button type="button" id="tokensave">保存</button>
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">トークンを作成 ↗</a>
+      </div>
+    </div>
+  </div>
   <div class="pick" id="pick" hidden>
     <label for="driver">ドライバーを選択</label>
     <select id="driver"></select>
@@ -478,6 +522,7 @@ function showApp(data){
   $("#app").hidden = false;
   $("#logout").hidden = false;
   const pick = $("#pick"), sel = $("#driver");
+  $("#admbar").hidden = !data.admin;   // 「今すぐ更新」は管理者のみ
   if(data.admin){
     // 管理者：全ドライバーを選択して閲覧
     pick.hidden = false;
@@ -541,6 +586,59 @@ $("#loginbtn").addEventListener("click", ()=> doLogin($("#lid").value.trim(), $(
 $("#lpw").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin($("#lid").value.trim(), $("#lpw").value); });
 $("#logout").addEventListener("click", ()=>{ sessionStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
 $("#viewtoggle").addEventListener("click", ()=>{ VIEW = VIEW==="calendar" ? "list" : "calendar"; draw(); });
+
+/* ---- 管理者：今すぐ更新（クラウド実行を起動）---- */
+const TRIG_REPO = "kyoda1001-maker/bus-cloud";
+const TRIG_WF = "daily-update.yml";
+const TKEY = "busupd_token";
+const getTok = ()=> localStorage.getItem(TKEY) || "";
+function setStatus(t){ $("#updatestatus").textContent = t; }
+
+async function triggerUpdate(){
+  const tok = getTok();
+  if(!tok){ $("#tokenform").hidden = false; setStatus("先に更新トークンを設定してください（⚙）。"); return; }
+  const btn = $("#updatenow"); btn.disabled = true;
+  setStatus("更新を開始しています…");
+  try{
+    const r = await fetch(`https://api.github.com/repos/${TRIG_REPO}/actions/workflows/${TRIG_WF}/dispatches`, {
+      method:"POST",
+      headers:{ "Authorization":`Bearer ${tok}`, "Accept":"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28" },
+      body: JSON.stringify({ ref:"main" }),
+    });
+    if(r.status === 204){ setStatus("✅ 更新を開始しました。反映まで数分お待ちください。"); pollRun(); }
+    else if(r.status === 401 || r.status === 403){ setStatus("❌ トークンが無効です。⚙から設定し直してください。"); $("#tokenform").hidden = false; }
+    else { const t = await r.text().catch(()=> ""); setStatus(`❌ 起動に失敗しました（${r.status}）。${t.slice(0,80)}`); }
+  }catch(e){ setStatus("❌ 通信エラー: " + e.message); }
+  finally{ btn.disabled = false; }
+}
+
+async function pollRun(){
+  const tok = getTok(); if(!tok) return;
+  for(let i=0;i<40;i++){
+    await new Promise(r=>setTimeout(r,15000));
+    try{
+      const r = await fetch(`https://api.github.com/repos/${TRIG_REPO}/actions/runs?per_page=1`, {
+        headers:{ "Authorization":`Bearer ${tok}`, "Accept":"application/vnd.github+json" } });
+      const j = await r.json();
+      const run = j.workflow_runs && j.workflow_runs[0];
+      if(run){
+        if(run.status === "completed"){
+          setStatus(run.conclusion === "success"
+            ? "✅ 更新が完了しました（サイト反映まで1〜2分）。" : "⚠️ 実行に失敗しました。GitHubのActionsを確認してください。");
+          return;
+        }
+        setStatus("⏳ 更新中です…しばらくお待ちください。");
+      }
+    }catch(e){}
+  }
+}
+
+$("#updatenow").addEventListener("click", triggerUpdate);
+$("#tokencfg").addEventListener("click", ()=>{ const f=$("#tokenform"); f.hidden=!f.hidden; if(!f.hidden) $("#tokeninput").value=""; });
+$("#tokensave").addEventListener("click", ()=>{
+  const v = $("#tokeninput").value.trim();
+  if(v){ localStorage.setItem(TKEY, v); $("#tokenform").hidden=true; $("#tokeninput").value=""; setStatus("トークンを保存しました。「今すぐ更新」を押せます。"); }
+});
 
 // 設定・ルール説明パネル
 function openInfo(){ $("#info").hidden = false; $("#info").scrollTop = 0; }
