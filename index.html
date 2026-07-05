@@ -245,10 +245,11 @@ function renderItem(it){
          <button type="button" class="toggle">詳細を開く ▼</button>
        </div>` : "";
   const upd = it.updatedAt ? `<div class="upd">更新：${escapeHtml(it.updatedAt)}</div>` : "";
+  const badgeLabel = it.final ? "運行Final" : it.type;
   return `
     <div class="day">${head}
-      <div class="card t-${it.type}">
-        <span class="badge">${escapeHtml(it.type)}</span>
+      <div class="card t-${it.type}${it.final ? " final" : ""}">
+        <span class="badge">${escapeHtml(badgeLabel)}</span>
         <div class="ttl">${escapeHtml(it.title || it.type)}</div>
         ${content}
         ${upd}
