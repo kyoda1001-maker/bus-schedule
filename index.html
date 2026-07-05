@@ -32,6 +32,15 @@
   }
   .wrap{max-width:640px; margin:0 auto; padding:14px 12px 40px}
 
+  .pick{margin-bottom:6px}
+  .pick label{font-size:12px; color:var(--sub); display:block; margin:0 2px 6px}
+  .pick select{
+    width:100%; font-size:16px; padding:12px 14px; border:1px solid var(--line);
+    border-radius:12px; background:var(--card); color:var(--ink); appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235b6672' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 16px center;
+  }
+
   /* ログイン画面 */
   .login{max-width:400px; margin:8vh auto 0; padding:24px 18px}
   .login h2{font-size:18px; margin:0 0 4px}
@@ -141,6 +150,10 @@
 
 <!-- 予定表示 -->
 <div class="wrap" id="app" hidden>
+  <div class="pick" id="pick" hidden>
+    <label for="driver">ドライバーを選択</label>
+    <select id="driver"></select>
+  </div>
   <div id="list"></div>
   <footer>データ元：バスキング運行台帳</footer>
 </div>
@@ -249,12 +262,22 @@ function applyCollapsible(){
 
 /* ---- ログイン制御 ---- */
 function showApp(data){
-  $("#hname").textContent = data.name;
+  $("#hname").textContent = data.name || "運行予定確認";
   $("#updated").textContent = "最終更新：" + (SECURE.meta?.generatedAt || "-");
   $("#login").hidden = true;
   $("#app").hidden = false;
   $("#logout").hidden = false;
-  render(data.schedules);
+  const pick = $("#pick"), sel = $("#driver");
+  if(data.admin){
+    // 管理者：全ドライバーを選択して閲覧
+    pick.hidden = false;
+    sel.innerHTML = data.drivers.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
+    sel.onchange = ()=> render(data.schedules[sel.value] || []);
+    render(data.schedules[sel.value] || []);
+  }else{
+    pick.hidden = true;
+    render(data.schedules);
+  }
 }
 function showLogin(msg){
   $("#login").hidden = false;
