@@ -728,9 +728,10 @@ function showTodayQuote(list){
   const dayNum = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
   const q = list[((dayNum % list.length) + list.length) % list.length];
   if($("#qtext")) $("#qtext").textContent = q.q;
-  if($("#qauthor")) $("#qauthor").innerHTML =
-    "— <b>" + escapeHtml(q.a) + "</b>（" + escapeHtml(q.e) +
-    (q.n ? " ／ " + escapeHtml(q.n) : "") + "）";
+  if($("#qauthor")){
+    const meta = [q.e, q.n].filter(Boolean).map(escapeHtml).join(" ／ ");
+    $("#qauthor").innerHTML = "— <b>" + escapeHtml(q.a) + "</b>" + (meta ? "（" + meta + "）" : "");
+  }
 }
 fetch("quotes.json?_=" + Date.now())
   .then(r => r.ok ? r.json() : null)
