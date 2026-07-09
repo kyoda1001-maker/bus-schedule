@@ -371,7 +371,7 @@
 
   <h3>予定の種別</h3>
   <ul>
-    <li><span class="tag" style="background:#0b5cad">運行</span>運行あり。団体名・人数・行程などを表示（カードをタップで詳細を展開）。</li>
+    <li><span class="tag" style="background:#0b5cad">運行</span>運行あり。団体名・人数・行程などをすべて表示します。</li>
     <li><span class="tag" style="background:#0b5cad">運行Final</span>予約が「<span class="k">確定</span>」した運行。</li>
     <li><span class="tag" style="background:#c07800">待機</span>待機（自宅待機など）。</li>
     <li><span class="tag" style="background:#1f8f4e">日勤</span>日勤・出勤。</li>
@@ -453,8 +453,7 @@ function renderItem(it){
   }
   const content = it.content
     ? `<div class="detail">
-         <div class="content collapsible">${escapeHtml(it.content)}</div>
-         <button type="button" class="toggle">詳細を開く ▼</button>
+         <div class="content">${escapeHtml(it.content)}</div>
        </div>` : "";
   const upd = it.updatedAt ? `<div class="upd">更新：${escapeHtml(it.updatedAt)}</div>` : "";
   const badgeLabel = it.final ? "運行Final" : it.type;
@@ -569,24 +568,7 @@ function renderList(items){
   window.scrollTo(0,0);
 }
 
-function applyCollapsible(){
-  document.querySelectorAll(".detail").forEach(det=>{
-    if(det.dataset.ready) return;
-    const c = det.querySelector(".content");
-    if(!c.offsetParent) return;
-    det.dataset.ready = "1";
-    const btn = det.querySelector(".toggle");
-    const full = c.scrollHeight;
-    const collapsed = Math.max(64, Math.round(full/3));
-    if(full - collapsed < 24){ c.classList.remove("collapsible"); c.style.maxHeight="none"; btn.style.display="none"; return; }
-    c.style.maxHeight = collapsed + "px";
-    btn.onclick = ()=>{
-      const open = c.classList.toggle("open");
-      c.style.maxHeight = open ? (c.scrollHeight+"px") : (collapsed+"px");
-      btn.textContent = open ? "閉じる ▲" : "詳細を開く ▼";
-    };
-  });
-}
+function applyCollapsible(){ /* 折り畳みは廃止（運行内容は常に全文表示） */ }
 
 /* ---- ログイン制御 ---- */
 function showApp(data){
