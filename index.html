@@ -253,6 +253,22 @@
   .cmore{font-size:10px; color:var(--sub); font-weight:700}
   #calday{margin-top:16px}
   #calday .day:first-child{margin-top:0}
+  /* 日別ナビ（前の予定／次の予定・左右スワイプ） */
+  .daynav-bar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:2px 0 12px}
+  .daynav{
+    flex:0 0 auto; width:44px; height:44px; font-size:22px; line-height:1;
+    color:var(--brand); font-weight:700; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; cursor:pointer;
+  }
+  .daynav:active{background:#e2ebf7}
+  .daynav:disabled{opacity:.28; cursor:default}
+  .daynav-label{flex:1; text-align:center; font-size:16px; font-weight:700; color:var(--ink)}
+  .daynav-label .wd{margin-left:4px; font-size:13px}
+  .dayitems{touch-action:pan-y}
+  .dayitems.slide-l{animation:daySlideL .2s ease}
+  .dayitems.slide-r{animation:daySlideR .2s ease}
+  @keyframes daySlideL{from{opacity:.35; transform:translateX(26px)} to{opacity:1; transform:none}}
+  @keyframes daySlideR{from{opacity:.35; transform:translateX(-26px)} to{opacity:1; transform:none}}
 
   /* ルール・設定リンク / 情報パネル */
   .infolink{
@@ -471,7 +487,7 @@ function renderItem(it){
 /* ---- 表示モード（リスト / カレンダー）---- 既定はカレンダー */
 let VIEW = "calendar";
 let CURRENT_ITEMS = [];
-let CAL_Y, CAL_M;
+let CAL_Y, CAL_M, SEL_DATE=null, LAST_DIR=0;
 const TYPE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調", 有休:"有"};
 
 function setItems(items){
@@ -485,7 +501,7 @@ function draw(){
   if(b) b.textContent = VIEW === "calendar" ? "≡ リスト表示" : "📅 カレンダー表示";
 }
 
-function renderCalendar(){
+function renderCalendar(selDate){
   const list = $("#list");
   const byDate = {};
   CURRENT_ITEMS.forEach(it=>{ (byDate[it.date] = byDate[it.date] || []).push(it); });
@@ -526,21 +542,88 @@ function renderCalendar(){
   list.querySelectorAll(".calcell[data-date]").forEach(c=>{
     c.onclick = ()=> selectDay(c.dataset.date);
   });
-  const td = new Date(TODAY);
-  const todayHere = (td.getFullYear()===CAL_Y && td.getMonth()===CAL_M);
-  selectDay(todayHere ? TODAY : null);
+  if(selDate){
+    selectDay(selDate);
+  } else {
+    const td = new Date(TODAY);
+    const todayHere = (td.getFullYear()===CAL_Y && td.getMonth()===CAL_M);
+    selectDay(todayHere ? TODAY : null);
+  }
   window.scrollTo(0,0);
+}
+
+/* 予定のある日付（未定を除く）を昇順で返す */
+function scheduleDates(){
+  const set = new Set();
+  CURRENT_ITEMS.forEach(it=>{ if(it.type !== "未定") set.add(it.date); });
+  return Array.from(set).sort();
+}
+/* 選択日から dir(+1/-1) 方向の「予定のある日」へ移動 */
+function navDay(dir){
+  const dates = scheduleDates();
+  if(!dates.length || !SEL_DATE) return;
+  let ni;
+  const idx = dates.indexOf(SEL_DATE);
+  if(idx >= 0){ ni = idx + dir; }
+  else if(dir > 0){ ni = dates.findIndex(d=> d > SEL_DATE); }
+  else { ni = -1; for(let i=dates.length-1;i>=0;i--){ if(dates[i] < SEL_DATE){ ni=i; break; } } }
+  if(ni < 0 || ni >= dates.length) return;
+  LAST_DIR = dir;
+  goToDate(dates[ni]);
+}
+/* 指定日へ（月をまたぐ場合はその月を再描画） */
+function goToDate(date){
+  const dt = new Date(date + "T00:00:00");
+  if(dt.getFullYear()!==CAL_Y || dt.getMonth()!==CAL_M){
+    CAL_Y = dt.getFullYear(); CAL_M = dt.getMonth();
+    renderCalendar(date);
+  } else {
+    selectDay(date);
+  }
 }
 
 function selectDay(date){
   document.querySelectorAll(".calcell.sel").forEach(c=> c.classList.remove("sel"));
   const cd = $("#calday");
+  SEL_DATE = date || null;
   if(!date){ cd.innerHTML = ""; return; }
   const cell = document.querySelector(`.calcell[data-date="${date}"]`);
   if(cell) cell.classList.add("sel");
+
+  const dates = scheduleDates();
+  const idx = dates.indexOf(date);
+  const hasPrev = idx >= 0 ? idx > 0 : dates.some(d=> d < date);
+  const hasNext = idx >= 0 ? idx < dates.length-1 : dates.some(d=> d > date);
+  const f = fmtDate(date);
+  const nav = `<div class="daynav-bar">
+      <button type="button" class="daynav" id="dayprev"${hasPrev?"":" disabled"} aria-label="前の予定">‹</button>
+      <div class="daynav-label">${f.label}<span class="wd ${f.cls}">${f.wd}</span></div>
+      <button type="button" class="daynav" id="daynext"${hasNext?"":" disabled"} aria-label="次の予定">›</button>
+    </div>`;
+
   const items = CURRENT_ITEMS.filter(it=> it.date === date);
-  cd.innerHTML = items.length ? items.map(renderItem).join("") : `<div class="empty">予定なし</div>`;
+  const body = items.length ? items.map(renderItem).join("") : `<div class="empty">予定なし</div>`;
+  const anim = LAST_DIR>0 ? " slide-l" : LAST_DIR<0 ? " slide-r" : "";
+  cd.innerHTML = nav + `<div class="dayitems${anim}">${body}</div>`;
+  LAST_DIR = 0;
+
+  const pv = $("#dayprev"), nx = $("#daynext");
+  if(pv) pv.onclick = ()=> navDay(-1);
+  if(nx) nx.onclick = ()=> navDay(1);
+  attachSwipe(cd);
   applyCollapsible();
+}
+
+/* 左右スワイプで前後の予定へ（縦スクロールは妨げない） */
+function attachSwipe(el){
+  let x0=null, y0=null;
+  el.ontouchstart = e=>{ const t=e.changedTouches[0]; x0=t.clientX; y0=t.clientY; };
+  el.ontouchend = e=>{
+    if(x0===null) return;
+    const t=e.changedTouches[0]; const dx=t.clientX-x0, dy=t.clientY-y0;
+    x0=y0=null;
+    if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)*1.5){ navDay(dx<0 ? 1 : -1); }
+  };
 }
 
 function renderList(items){
