@@ -106,6 +106,23 @@
   .quotecard .qauthor{font-size:12.5px; color:var(--sub); text-align:right}
   .quotecard .qauthor b{color:var(--brand); font-weight:700}
 
+  /* 今日の天気予報 */
+  .wxcard{background:var(--card); border:1px solid var(--line); border-radius:14px; margin:0 0 14px; overflow:hidden}
+  .wxhead{display:flex; align-items:center; justify-content:space-between; padding:10px 13px; border-bottom:1px solid #eef2f6}
+  .wxttl{font-size:13.5px; font-weight:700; color:var(--ink)}
+  .wxloc{font-size:11.5px; color:var(--brand); font-weight:700; white-space:nowrap}
+  .wxscroll{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch}
+  .wxtable{border-collapse:collapse; font-size:11px}
+  .wxtable th{
+    position:sticky; left:0; z-index:3; background:var(--card); box-shadow:1px 0 0 var(--line);
+    font-weight:700; color:var(--sub); white-space:nowrap; padding:0 9px; text-align:left; font-size:10px;
+  }
+  .wxtable td{width:46px; min-width:46px; border-left:1px solid #f0f3f7; text-align:center; padding:3px 0}
+  .wxtable td.now{background:var(--tint)}
+  .wxnote{display:flex; align-items:center; gap:5px; padding:6px 13px; border-top:1px solid #eef2f6; color:#9aa6b4; font-size:10px}
+  .wxleg{display:flex; flex-wrap:wrap; gap:5px 10px; justify-content:center; padding:8px 10px; border-top:1px solid #eef2f6}
+  .wxleg span{display:inline-flex; align-items:center; gap:3px; font-size:10px; color:var(--sub)}
+
   .pick{margin-bottom:6px}
   .pick label{font-size:12px; color:var(--sub); display:block; margin:0 2px 6px}
   .pick select{
@@ -337,6 +354,7 @@
     <div class="qtext" id="qtext">感謝の心が高まれば、それに正比例して幸福感が高まっていく。</div>
     <div class="qauthor" id="qauthor">— <b>松下 幸之助</b>（1894–1989 ／ 経営者・パナソニック創業者）</div>
   </div>
+  <div class="wxcard" id="wxcard" hidden></div>
   <div id="admbar" hidden>
     <div class="admrow">
       <button type="button" id="updatenow">🔄 今すぐ更新</button>
@@ -494,6 +512,171 @@ function setItems(items){
   CURRENT_ITEMS = (items||[]).slice().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
   if(CAL_Y === undefined){ const t = new Date(TODAY); CAL_Y = t.getFullYear(); CAL_M = t.getMonth(); }
   draw();
+  renderWeather();
+}
+
+/* ================= 今日の天気予報（Open-Meteo） ================= */
+/* 市町村の代表座標 */
+const WX_MUNI = {
+  "本部町":[26.66,127.88], "今帰仁村":[26.68,127.99], "名護市":[26.591,127.977],
+  "恩納村":[26.498,127.855], "宜野座村":[26.488,127.968], "金武町":[26.456,127.925],
+  "うるま市":[26.379,127.86], "沖縄市":[26.334,127.805], "読谷村":[26.397,127.744],
+  "嘉手納町":[26.36,127.75], "北谷町":[26.316,127.759], "北中城村":[26.30,127.79],
+  "宜野湾市":[26.281,127.778], "浦添市":[26.246,127.721], "西原町":[26.22,127.76],
+  "那覇市":[26.212,127.681], "南風原町":[26.19,127.73], "豊見城市":[26.177,127.665],
+  "南城市":[26.15,127.79], "八重瀬町":[26.12,127.74], "糸満市":[26.123,127.669]
+};
+/* 行程のランドマーク／地名 → 市町村・重み。観光地は重10、市名だけの弱い一致は重2。
+   （送迎ホテルは那覇が多く、市名一致だけだと北部観光でも那覇に偏るため重みで目的地を優先） */
+const WX_KW = [
+  // 観光地・施設（重み10）
+  ["美ら海","本部町",10],["もとぶ","本部町",10],["備瀬","本部町",10],["古宇利","今帰仁村",10],
+  ["パイナップルパーク","名護市",10],["名護パイナップル","名護市",10],["ブセナ","名護市",10],["喜瀬","名護市",10],
+  ["リゾネックス","名護市",10],["DINO恐竜PARK","名護市",10],["DINO恐竜パーク","名護市",10],["やんばる","名護市",10],
+  ["かりゆしビーチ","名護市",10],["お菓子御殿名護","名護市",10],["御菓子御殿名護","名護市",10],["お菓子御殿(名護","名護市",10],
+  ["万座毛","恩納村",10],["ハレクラニ","恩納村",10],["ムーンビーチ","恩納村",10],["リザン","恩納村",10],
+  ["ルネッサンス","恩納村",10],["カラカウア","恩納村",10],
+  ["キャンプハンセン","金武町",10],
+  ["伊計島","うるま市",10],["宮城島","うるま市",10],["浜比嘉","うるま市",10],["海中道路","うるま市",10],["勝連","うるま市",10],
+  ["ライカム","北中城村",10],["知花","沖縄市",10],["コザ","沖縄市",10],["こどもの国","沖縄市",10],["残波","読谷村",10],
+  ["アメリカンビレッジ","北谷町",10],["キンザー","浦添市",10],["パルコ","浦添市",10],["PARCO","浦添市",10],
+  ["コンベンション","宜野湾市",10],["トロピカルビーチ","宜野湾市",10],
+  ["おきなわワールド","南城市",10],["玉泉洞","南城市",10],["知念","南城市",10],["奥武島","南城市",10],
+  ["新原","南城市",10],["ニライカナイ","南城市",10],["あざまサンサン","南城市",10],
+  ["お魚センター","糸満市",10],["サザンリンクス","糸満市",10],["パームヒルズ","糸満市",10],["ひめゆり","糸満市",10],["摩文仁","糸満市",10],
+  ["あしびなー","豊見城市",10],["瀬長島","豊見城市",10],["ウミカジ","豊見城市",10],["豊崎","豊見城市",10],
+  ["国際通り","那覇市",10],["首里","那覇市",10],["おもろまち","那覇市",10],["波の上","那覇市",10],
+  ["波之上","那覇市",10],["牧志","那覇市",10],["久茂地","那覇市",10],["メインプレイス","那覇市",10],["DFS","那覇市",10],["Tギャラリア","那覇市",10],
+  // 市町村名だけの弱い一致（重み2）
+  ["本部","本部町",2],["今帰仁","今帰仁村",2],["名護","名護市",2],["恩納","恩納村",2],["宜野座","宜野座村",2],
+  ["金武","金武町",2],["うるま","うるま市",2],["沖縄市","沖縄市",2],["読谷","読谷村",2],["嘉手納","嘉手納町",2],
+  ["ちゃたん","北谷町",2],["北谷","北谷町",2],["浦添","浦添市",2],["宜野湾","宜野湾市",2],["南城","南城市",2],
+  ["糸満","糸満市",2],["豊見城","豊見城市",2],["県庁前","那覇市",2],["那覇","那覇市",2]
+];
+const WX_DEFAULT = {name:"豊見城市", lat:26.177, lon:127.665, fallback:true};
+const WX_EMOJI = {晴れ:"☀️", やや晴れ:"🌤️", 曇り:"☁️", 風:"🌬️", 雨:"🌧️", 大雨:"⛈️", 台風:"🌀"};
+
+/* 運行内容の〈行程〉から立ち寄りスポット名を抽出（本社の出庫・帰庫は除外） */
+function extractItinSpots(content){
+  const i = content.indexOf("〈行程〉");
+  if(i < 0) return null;
+  let seg = content.slice(i + 4);
+  const e = seg.indexOf("---------------------");
+  if(e >= 0) seg = seg.slice(0, e);
+  const spots = [];
+  seg.split("\n").forEach(ln=>{
+    let s = ln.trim();
+    if(!s || s.indexOf("本社") >= 0) return;                 // 出庫・帰庫を除外
+    s = s.replace(/^[\d:：\s着発　]+/, "").replace(/（出庫）|（帰庫）/g, "").trim();
+    if(s) spots.push(s);
+  });
+  return spots;
+}
+
+/* 当日の運行行程から市町村を推定（先頭＝送迎ピックアップは除外し、重み付きで目的地を優先） */
+function detectMuni(items){
+  const today = (items||[]).filter(it=> it.date===TODAY && it.type==="運行");
+  if(!today.length) return WX_DEFAULT;
+  let spots = [], hadItin = false;
+  today.forEach(it=>{
+    const sp = extractItinSpots(it.content||"");
+    if(sp && sp.length){
+      hadItin = true;
+      spots = spots.concat(sp.length >= 2 ? sp.slice(1) : sp);   // 先頭（送迎）を除外
+    }
+  });
+  const text = (hadItin && spots.length) ? spots.join("\n") : today.map(it=> it.content||"").join("\n");
+  const score = {}, firstIdx = {};
+  for(const [kw,mu,w] of WX_KW){
+    let pos = text.indexOf(kw);
+    if(pos < 0) continue;
+    let n = 0, p = pos;
+    while(p >= 0){ n++; p = text.indexOf(kw, p+kw.length); }
+    score[mu] = (score[mu]||0) + n*w;
+    if(!(mu in firstIdx)) firstIdx[mu] = pos;
+  }
+  const keys = Object.keys(score);
+  if(!keys.length) return WX_DEFAULT;
+  keys.sort((a,b)=> score[b]-score[a] || firstIdx[a]-firstIdx[b]);
+  const name = keys[0], c = WX_MUNI[name];
+  return {name, lat:c[0], lon:c[1], fallback:false};
+}
+
+/* WMO天気コード＋風速 → 7区分 */
+function wxCat(code, wind){
+  let c;
+  if(code===0) c="晴れ";
+  else if(code===1 || code===2) c="やや晴れ";
+  else if(code===3 || code===45 || code===48) c="曇り";
+  else if(code===65 || code===82 || code===95 || code===96 || code===99) c="大雨";
+  else if(code>=51) c="雨";
+  else c="曇り";
+  if(wind >= 55) return "台風";
+  if(wind >= 35 && (c==="晴れ" || c==="やや晴れ" || c==="曇り")) return "風";
+  return c;
+}
+
+const WX_CACHE = {};
+async function fetchWx(lat, lon){
+  const k = lat+","+lon;
+  if(WX_CACHE[k] && WX_CACHE[k].day===TODAY) return WX_CACHE[k].data;
+  const url = "https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lon
+    + "&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m"
+    + "&timezone=Asia%2FTokyo&forecast_days=2";
+  const r = await fetch(url);
+  if(!r.ok) throw new Error("wx "+r.status);
+  const j = await r.json();
+  WX_CACHE[k] = {day:TODAY, data:j};
+  return j;
+}
+
+let WX_TOKEN = 0;
+async function renderWeather(){
+  const card = document.getElementById("wxcard");
+  if(!card) return;
+  const my = ++WX_TOKEN;                         // 連続切替時に古い結果で上書きしない
+  try{
+    const m = detectMuni(CURRENT_ITEMS);
+    const j = await fetchWx(m.lat, m.lon);
+    if(my !== WX_TOKEN) return;
+    const H = j.hourly;
+    const N = Math.min(25, (H.time||[]).length);
+    // 天気データはJST基準。現在時刻もJSTで求めて列を一致させる（端末TZに依存しない）
+    let nowH = parseInt(new Intl.DateTimeFormat('en-US',
+      {timeZone:'Asia/Tokyo', hour:'numeric', hour12:false}).format(new Date()), 10) % 24;
+    if(isNaN(nowH)) nowH = new Date().getHours();
+    const mon = parseInt(TODAY.slice(5,7),10), day = parseInt(TODAY.slice(8,10),10);
+    let r1='<tr><th>時刻</th>', r2='<tr><th>天気</th>', r3='<tr><th>気温</th>', r4='<tr><th>降水</th>';
+    for(let i=0;i<N;i++){
+      const cur = (i===nowH);
+      const cls = cur ? ' class="now"' : '';
+      const hl = (i===24) ? '翌0' : String(i);
+      r1 += '<td'+cls+'>'+(cur?'<span style="font-size:9px;color:var(--brand);font-weight:700">現在 </span>':'')
+          + '<span style="'+(cur?'color:var(--brand);font-weight:700':'')+'">'+hl+'</span></td>';
+      const cat = wxCat(H.weather_code[i], H.wind_speed_10m ? (H.wind_speed_10m[i]||0) : 0);
+      r2 += '<td'+cls+'><div style="font-size:17px;line-height:1.15">'+WX_EMOJI[cat]+'</div>'
+          + '<div style="font-size:9px;color:var(--sub)">'+cat+'</div></td>';
+      const t = (H.temperature_2m[i]==null) ? '-' : Math.round(H.temperature_2m[i]);
+      r3 += '<td'+cls+'><span style="font-size:12px;'+(cur?'font-weight:700':'')+'">'+t
+          + '</span><span style="font-size:9px;color:#9aa6b4">℃</span></td>';
+      const p = H.precipitation_probability ? H.precipitation_probability[i] : null;
+      const heavy = (p!=null && p>=50);
+      r4 += '<td'+cls+'><span style="font-size:11px;'+(heavy?'color:#14417a;font-weight:700':'color:var(--sub)')+'">'
+          + (p==null?'-':p)+'</span><span style="font-size:9px;color:#9aa6b4">%</span></td>';
+    }
+    const legend = Object.keys(WX_EMOJI).map(k=> '<span>'+WX_EMOJI[k]+k+'</span>').join('');
+    card.innerHTML =
+      '<div class="wxhead"><div class="wxttl">🌤️ 今日の天気予報</div>'
+      + '<div class="wxloc">📍'+m.name+' '+mon+'/'+day+(m.fallback?'（既定）':'')+'</div></div>'
+      + '<div class="wxscroll"><table class="wxtable">'+r1+'</tr>'+r2+'</tr>'+r3+'</tr>'+r4+'</tr></table></div>'
+      + '<div class="wxnote">↔ 左右にスワイプして時間を移動（左端の項目名は固定）</div>'
+      + '<div class="wxleg">'+legend+'</div>';
+    card.hidden = false;
+    const sc = card.querySelector('.wxscroll');
+    if(sc) sc.scrollLeft = Math.max(0, (nowH-1)*46 - 6);
+  }catch(e){
+    if(my === WX_TOKEN) card.hidden = true;      // 取得失敗時は欄を出さない
+  }
 }
 function draw(){
   if(VIEW === "calendar") renderCalendar(); else renderList(CURRENT_ITEMS);
