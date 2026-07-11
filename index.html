@@ -189,6 +189,57 @@
   .wxleg{display:flex; flex-wrap:wrap; gap:5px 10px; justify-content:center; padding:8px 10px; border-top:1px solid #eef2f6}
   .wxleg span{display:inline-flex; align-items:center; gap:3px; font-size:10px; color:var(--sub)}
 
+  /* 今日のプラチナ星座占い（コンパクト・やわらかめ） */
+  .horocard{
+    background:#fff; border:1px solid #e7dcf3; border-radius:16px; margin-bottom:14px;
+    overflow:hidden; box-shadow:0 2px 12px rgba(150,110,190,.09);
+  }
+  .horohead{
+    background:linear-gradient(135deg,#efe3fb,#fbe9f1); padding:9px 13px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .horohead .htitle2{font-size:13.5px; font-weight:700; color:#7b4ba3}
+  .horohead .hdate{margin-left:auto; font-size:10px; color:#a888c4}
+  .horobody{padding:8px 11px 11px}
+  .horo-item{border-radius:12px}
+  .horo-row{
+    width:100%; display:flex; align-items:center; gap:9px; cursor:pointer;
+    background:none; border:0; text-align:left; font:inherit;
+  }
+  .horo-top .horo-row{background:linear-gradient(135deg,#fdf4dc,#fbeaf1); border:1.5px solid #ecd39a; border-radius:12px; padding:11px 12px}
+  .horo-bottom .horo-row{background:linear-gradient(135deg,#eee7f8,#f3ecfa); border:1.5px solid #d6c6ea; border-radius:12px; padding:11px 12px}
+  .horo-mark{font-size:19px}
+  .horo-badge{font-size:11.5px; font-weight:700; border-radius:999px; padding:2px 10px; white-space:nowrap}
+  .horo-top .horo-badge{color:#b07d16; background:#f7e7bd}
+  .horo-bottom .horo-badge{color:#7b4ba3; background:#e5d8f4}
+  .horo-name{font-size:15px; font-weight:700}
+  .horo-top .horo-name{color:#5c4326}
+  .horo-bottom .horo-name{color:#4a3a5c}
+  .horo-sym{color:#b39ad0; font-weight:400}
+  .horo-caret{margin-left:auto; font-size:12px; color:#c9a94f}
+  .horo-bottom .horo-caret{color:#b39ad0}
+  .horo-detail{padding:11px 13px 4px}
+  .horo-comment{font-size:13px; line-height:1.75; color:#463a45}
+  .horo-lucky{display:flex; flex-direction:column; gap:5px; margin-top:9px}
+  .horo-lucky span{font-size:11.5px; color:#7b4ba3}
+  .horo-lucky b{color:#a06a1a}
+  .horo-bottom .horo-lucky b, .horo-rest .horo-lucky b{color:#8a5bb0}
+  .horomore{
+    width:100%; margin-top:10px; padding:10px; font-size:12.5px; font-weight:700;
+    color:#7b4ba3; background:#f0e7fa; border:1px solid #e0d2f2; border-radius:11px; cursor:pointer;
+  }
+  .horo-rest .horo-item{border-bottom:1px solid #f1eaf8}
+  .horo-rest .horo-row{padding:10px 4px}
+  .horo-rest .horo-rank{flex:0 0 24px; font-size:13px; font-weight:700; color:#b39ad0; text-align:center}
+  .horo-rest .horo-name{font-size:13.5px; color:#5c4a70}
+  .horo-rest .horo-detail{padding:0 4px 11px 37px}
+  .horo-rest .horo-comment{font-size:12px; color:#5a5060; line-height:1.7}
+  .horo-rest .horo-sub{font-size:10.5px; color:#8a5bb0; line-height:1.8; margin-top:3px}
+  .horonote{
+    margin-top:10px; padding-top:8px; border-top:1px solid #efe6f6;
+    font-size:10px; color:#a894bd; text-align:center;
+  }
+
   .pick{margin-bottom:6px}
   .pick label{font-size:12px; color:var(--sub); display:block; margin:0 2px 6px}
   .pick select{
@@ -433,6 +484,7 @@
   </div>
   <div class="healthcard" id="healthcard" hidden></div>
   <div class="wxcard" id="wxcard" hidden></div>
+  <div class="horocard" id="horocard" hidden></div>
   <div id="admbar" hidden>
     <div class="admrow">
       <button type="button" id="updatenow">🔄 今すぐ予定を更新</button>
@@ -1193,6 +1245,109 @@ function showTodayHealth(list){
 fetch("health_tips.json?_=" + Date.now())
   .then(r => r.ok ? r.json() : null)
   .then(showTodayHealth)
+  .catch(()=>{});
+
+/* ---- 今日のプラチナ星座占い（オリジナル・日付シャッフル）---- */
+const HORO_SIGNS = [
+  ["おひつじ座","♈"],["おうし座","♉"],["ふたご座","♊"],["かに座","♋"],
+  ["しし座","♌"],["おとめ座","♍"],["てんびん座","♎"],["さそり座","♏"],
+  ["いて座","♐"],["やぎ座","♑"],["みずがめ座","♒"],["うお座","♓"]
+];
+function horoRng(seed){                       // 決定的な擬似乱数（mulberry32）
+  let t = seed >>> 0;
+  return function(){
+    t += 0x6D2B79F5;
+    let x = Math.imul(t ^ (t >>> 15), 1 | t);
+    x ^= x + Math.imul(x ^ (x >>> 7), 61 | x);
+    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function horoPick(arr, dayNum, salt){
+  if(!arr || !arr.length) return "";
+  return arr[(((dayNum * 97 + salt * 131) % arr.length) + arr.length) % arr.length];
+}
+function showTodayHoroscope(data){
+  const card = document.getElementById("horocard");
+  if(!card || !data) return;
+  const d = new Date();
+  const dayNum = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  // 当日の順位（12星座をシャッフル）
+  const order = HORO_SIGNS.map((s,i)=>i);
+  const rnd = horoRng(dayNum + 1);
+  for(let i=order.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [order[i],order[j]]=[order[j],order[i]]; }
+  const tier = rank => rank<=4 ? "high" : rank<=8 ? "mid" : "low";
+  const entry = (rank)=>{
+    const si = order[rank-1], sign = HORO_SIGNS[si];
+    return {
+      rank, name: sign[0], sym: sign[1],
+      comment: horoPick(data.comments[tier(rank)], dayNum, rank*7 + si),
+      action:  horoPick(data.action, dayNum, rank*11 + si),
+      point:   horoPick(data.point,  dayNum, rank*13 + si),
+      person:  horoPick(data.person, dayNum, rank*17 + si),
+      color:   horoPick(data.color,  dayNum, rank*19 + si),
+      menu:    horoPick(data.menu,   dayNum, rank*23 + si),
+    };
+  };
+  const md = (d.getMonth()+1) + "/" + d.getDate();
+  const luckyFull = (e, actLabel)=>
+      `<div class="horo-lucky">
+         <span><b>${actLabel}</b>：${escapeHtml(e.action)}</span>
+         <span><b>ラッキーポイント</b>：${escapeHtml(e.point)}</span>
+         <span><b>ラッキーパーソン</b>：${escapeHtml(e.person)}</span>
+         <span><b>ラッキーカラー</b>：${escapeHtml(e.color)}</span>
+         <span><b>ラッキーメニュー</b>：${escapeHtml(e.menu)}</span>
+       </div>`;
+  const topRow = (e, cls, mark, badge, actLabel)=>
+      `<div class="horo-item ${cls}">
+         <button type="button" class="horo-row">
+           <span class="horo-mark">${mark}</span>
+           <span class="horo-badge">${badge}</span>
+           <span class="horo-name">${escapeHtml(e.name)} <span class="horo-sym">${e.sym}</span></span>
+           <span class="horo-caret">▼</span>
+         </button>
+         <div class="horo-detail" hidden>
+           <div class="horo-comment">${escapeHtml(e.comment)}</div>
+           ${luckyFull(e, actLabel)}
+         </div>
+       </div>`;
+  const first = entry(1), last = entry(12);
+  let restHtml = "";
+  for(let r=2;r<=11;r++){
+    const e = entry(r);
+    restHtml += `<div class="horo-item">
+        <button type="button" class="horo-row">
+          <span class="horo-rank">${r}</span>
+          <span class="horo-name">${escapeHtml(e.name)} <span class="horo-sym">${e.sym}</span></span>
+          <span class="horo-caret">▼</span>
+        </button>
+        <div class="horo-detail" hidden>
+          <div class="horo-comment">${escapeHtml(e.comment)}</div>
+          <div class="horo-sub">おまじない：${escapeHtml(e.action)}　／　ラッキーポイント：${escapeHtml(e.point)}</div>
+        </div>
+      </div>`;
+  }
+  card.innerHTML =
+    `<div class="horohead"><span class="htitle2">🔮 今日のプラチナ星座占い</span><span class="hdate">${md}</span></div>
+     <div class="horobody">
+       ${topRow(first, "horo-top", "👑", "1位", "おまじない")}
+       <div style="height:8px"></div>
+       ${topRow(last, "horo-bottom", "🌙", "12位", "アドバイス")}
+       <button type="button" class="horomore" id="horomore">2〜11位を見る ▼</button>
+       <div class="horo-rest" id="hororest" hidden>${restHtml}</div>
+       <div class="horonote">🔮 お楽しみ企画（オリジナル占い）</div>
+     </div>`;
+  card.hidden = false;
+  // アコーディオン（各星座の詳細開閉）
+  card.querySelectorAll(".horo-item").forEach(it=>{
+    const row = it.querySelector(".horo-row"), det = it.querySelector(".horo-detail"), car = it.querySelector(".horo-caret");
+    row.onclick = ()=>{ const open = !det.hidden; det.hidden = open; car.textContent = open ? "▼" : "▲"; };
+  });
+  const more = card.querySelector("#horomore"), rest = card.querySelector("#hororest");
+  more.onclick = ()=>{ const open = !rest.hidden; rest.hidden = open; more.textContent = open ? "2〜11位を見る ▼" : "閉じる ▲"; };
+}
+fetch("horoscope.json?_=" + Date.now())
+  .then(r => r.ok ? r.json() : null)
+  .then(showTodayHoroscope)
   .catch(()=>{});
 
 init();
