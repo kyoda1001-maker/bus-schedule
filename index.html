@@ -14,6 +14,7 @@
     --bg:#eef4f8; --card:#fff; --ink:#26333d; --sub:#5b6672;
     --line:#dbe6ee; --brand:#1f628e; --brand2:#17557c; --brand-ink:#fff; --tint:#ebf5fc;
     --unko:#1f628e; --taiki:#c07800; --nikkin:#529b71; --kyu:#8a8f96; --chosei:#7a5af0; --yukyu:#0d9488;
+    --bday:#d1568a;
     --star:#d1a94f;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -306,6 +307,7 @@
   .card.t-公休,.card.t-休み{border-left-color:var(--kyu)}
   .card.t-調整{border-left-color:var(--chosei)}
   .card.t-有休{border-left-color:var(--yukyu)}
+  .card.t-誕生日{border-left-color:var(--bday); background:linear-gradient(135deg,#fbeff4,#fff)}
   .card.t-未定{
     border-left-color:#d5d9de; border-style:dashed; background:#fafbfc; padding:10px 14px;
   }
@@ -320,6 +322,7 @@
   .t-日勤 .badge{background:var(--nikkin)}
   .t-調整 .badge{background:var(--chosei)}
   .t-有休 .badge{background:var(--yukyu)}
+  .t-誕生日 .badge{background:var(--bday)}
   .card .ttl{font-size:16px; font-weight:700; margin:2px 0 0}
   .card .detail{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line)}
   .card .content{
@@ -392,6 +395,7 @@
   .cchip.t-運行{background:var(--unko)} .cchip.t-待機{background:var(--taiki)}
   .cchip.t-日勤{background:var(--nikkin)} .cchip.t-公休,.cchip.t-休み{background:var(--kyu)}
   .cchip.t-調整{background:var(--chosei)} .cchip.t-有休{background:var(--yukyu)}
+  .cchip.t-誕生日{background:var(--bday)}
   .cmore{font-size:10px; color:var(--sub); font-weight:700}
   #calday{margin-top:16px}
   #calday .day:first-child{margin-top:0}
@@ -637,7 +641,7 @@ function renderItem(it){
 let VIEW = "calendar";
 let CURRENT_ITEMS = [];
 let CAL_Y, CAL_M, SEL_DATE=null, LAST_DIR=0;
-const TYPE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調", 有休:"有"};
+const TYPE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調", 有休:"有", 誕生日:"🎂"};
 
 function setItems(items){
   CURRENT_ITEMS = (items||[]).slice().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
@@ -645,6 +649,38 @@ function setItems(items){
   draw();
   renderWeather();
 }
+
+/* ---- スタッフ誕生日（birthdays.json：毎年繰り返し。削除アカウントは含まれない）---- */
+let BIRTHDAYS = null;
+function birthdayMessage(name, year){
+  const msgs = (BIRTHDAYS && BIRTHDAYS.messages) || [];
+  if(!msgs.length) return "";
+  let h = 0; const s = name + "-" + year;
+  for(let i=0;i<s.length;i++) h = (h*31 + s.charCodeAt(i)) >>> 0;
+  return msgs[h % msgs.length];
+}
+function birthdayItemsForDate(dateISO){
+  if(!BIRTHDAYS || !BIRTHDAYS.people) return [];
+  const md = dateISO.slice(5), year = dateISO.slice(0,4);
+  return BIRTHDAYS.people.filter(p=> p.md === md).map(p=>
+    ({date:dateISO, type:"誕生日", title:p.name+"さん誕生日", content:birthdayMessage(p.name, year)}));
+}
+function birthdayItemsInRange(startISO, endISO){
+  if(!BIRTHDAYS || !BIRTHDAYS.people || !startISO || !endISO) return [];
+  const y0 = +startISO.slice(0,4), y1 = +endISO.slice(0,4), out = [];
+  BIRTHDAYS.people.forEach(p=>{
+    for(let y=y0;y<=y1;y++){
+      const dateISO = y + "-" + p.md;
+      if(dateISO >= startISO && dateISO <= endISO)
+        out.push({date:dateISO, type:"誕生日", title:p.name+"さん誕生日", content:birthdayMessage(p.name, ""+y)});
+    }
+  });
+  return out;
+}
+fetch("birthdays.json?_=" + Date.now())
+  .then(r => r.ok ? r.json() : null)
+  .then(b => { BIRTHDAYS = b; const app = document.getElementById("app"); if(app && !app.hidden) draw(); })
+  .catch(()=>{});
 
 /* ================= 今日の天気予報（Open-Meteo） ================= */
 /* 市町村の代表座標 */
@@ -834,6 +870,16 @@ function renderCalendar(selDate){
   CURRENT_ITEMS.forEach(it=>{ (byDate[it.date] = byDate[it.date] || []).push(it); });
   const p = n => String(n).padStart(2,"0");
   const ymd = d => `${CAL_Y}-${p(CAL_M+1)}-${p(d)}`;
+  // 表示中の月の誕生日を毎年追加（永久に繰り返し表示）
+  if(BIRTHDAYS && BIRTHDAYS.people){
+    BIRTHDAYS.people.forEach(pp=>{
+      if(+pp.md.slice(0,2) === CAL_M+1){
+        const key = `${CAL_Y}-${p(CAL_M+1)}-${pp.md.slice(3)}`;
+        (byDate[key] = byDate[key] || []).push({date:key, type:"誕生日",
+          title:pp.name+"さん誕生日", content:birthdayMessage(pp.name, ""+CAL_Y)});
+      }
+    });
+  }
   const first = new Date(CAL_Y, CAL_M, 1);
   const daysIn = new Date(CAL_Y, CAL_M+1, 0).getDate();
   const lead = (first.getDay()+6) % 7;            // 月曜始まり
@@ -928,7 +974,7 @@ function selectDay(date){
       <button type="button" class="daynav" id="daynext"${hasNext?"":" disabled"} aria-label="次の予定">›</button>
     </div>`;
 
-  const items = CURRENT_ITEMS.filter(it=> it.date === date);
+  const items = CURRENT_ITEMS.filter(it=> it.date === date).concat(birthdayItemsForDate(date));
   const body = items.length ? items.map(renderItem).join("") : `<div class="empty">予定なし</div>`;
   const anim = LAST_DIR>0 ? " slide-l" : LAST_DIR<0 ? " slide-r" : "";
   cd.innerHTML = nav + `<div class="dayitems${anim}">${body}</div>`;
@@ -955,7 +1001,12 @@ function attachSwipe(el){
 
 function renderList(items){
   const list = $("#list");
-  items = (items||[]).slice().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
+  items = (items||[]).slice();
+  if(BIRTHDAYS && BIRTHDAYS.people && items.length){
+    const ds = items.map(i=>i.date).sort();
+    items = items.concat(birthdayItemsInRange(ds[0], ds[ds.length-1]));
+  }
+  items.sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:0);
   if(!items.length){ list.innerHTML = `<div class="empty">予定は登録されていません。</div>`; return; }
   let past = items.filter(it=> it.date < TODAY);
   let upcoming = items.filter(it=> it.date >= TODAY);
