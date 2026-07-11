@@ -168,7 +168,15 @@
   .wxcard{background:var(--card); border:1px solid var(--line); border-radius:14px; margin:0 0 14px; overflow:hidden}
   .wxhead{display:flex; align-items:center; justify-content:space-between; padding:10px 13px; border-bottom:1px solid #eef2f6}
   .wxttl{font-size:13.5px; font-weight:700; color:var(--ink)}
+  .wxright{display:flex; align-items:center; gap:6px}
   .wxloc{font-size:11.5px; color:var(--brand); font-weight:700; white-space:nowrap}
+  .wxrefresh{
+    background:none; border:0; cursor:pointer; font-size:15px; line-height:1;
+    padding:2px 3px; color:var(--brand);
+  }
+  .wxrefresh:active{opacity:.5}
+  .wxrefresh.spin{animation:wxspin .8s linear infinite}
+  @keyframes wxspin{from{transform:rotate(0)} to{transform:rotate(360deg)}}
   .wxscroll{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch}
   .wxtable{border-collapse:collapse; font-size:11px}
   .wxtable th{
@@ -743,7 +751,8 @@ async function renderWeather(){
     const legend = Object.keys(WX_EMOJI).map(k=> '<span>'+WX_EMOJI[k]+k+'</span>').join('');
     card.innerHTML =
       '<div class="wxhead"><div class="wxttl">🌤️ 天気予報（心はいつも晴れ）</div>'
-      + '<div class="wxloc">📍'+m.name+' '+mon+'/'+day+(m.fallback?'（既定）':'')+'</div></div>'
+      + '<div class="wxright"><span class="wxloc">📍'+m.name+' '+mon+'/'+day+(m.fallback?'（既定）':'')+'</span>'
+      + '<button type="button" class="wxrefresh" id="wxrefresh" aria-label="天気を更新" title="天気を更新">🔄</button></div></div>'
       + '<div class="wxscroll"><table class="wxtable">'+r1+'</tr>'+r2+'</tr>'+r3+'</tr>'+r4+'</tr></table></div>'
       + '<div class="wxnote"><span>↔ 左右にスワイプして時間を移動（左端の項目名は固定）</span>'
       + '<span style="margin-left:auto;white-space:nowrap">更新：'+cw.at+'</span></div>'
@@ -751,6 +760,12 @@ async function renderWeather(){
     card.hidden = false;
     const sc = card.querySelector('.wxscroll');
     if(sc) sc.scrollLeft = Math.max(0, (nowH-1)*46 - 6);
+    const rb = card.querySelector('#wxrefresh');
+    if(rb) rb.onclick = ()=>{
+      rb.classList.add('spin');
+      for(const key in WX_CACHE) delete WX_CACHE[key];   // キャッシュを消して再取得
+      renderWeather();
+    };
   }catch(e){
     if(my === WX_TOKEN) card.hidden = true;      // 取得失敗時は欄を出さない
   }
