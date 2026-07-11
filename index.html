@@ -910,8 +910,10 @@ function renderCalendar(selDate){
   html += `</div><div id="calday"></div>`;
   list.innerHTML = html;
 
-  $("#calprev").onclick = ()=>{ if(--CAL_M<0){CAL_M=11;CAL_Y--;} renderCalendar(); };
-  $("#calnext").onclick = ()=>{ if(++CAL_M>11){CAL_M=0;CAL_Y++;} renderCalendar(); };
+  $("#calprev").onclick = ()=> changeMonth(-1);
+  $("#calnext").onclick = ()=> changeMonth(1);
+  const grid = list.querySelector(".calgrid");
+  if(grid) attachMonthSwipe(grid);
   list.querySelectorAll(".calcell[data-date]").forEach(c=>{
     c.onclick = ()=> selectDay(c.dataset.date);
   });
@@ -923,6 +925,28 @@ function renderCalendar(selDate){
     selectDay(todayHere ? TODAY : null);
   }
   window.scrollTo(0,0);
+}
+
+/* 月を dir(+1/-1) 方向へ切り替え */
+function changeMonth(dir){
+  CAL_M += dir;
+  if(CAL_M < 0){ CAL_M = 11; CAL_Y--; }
+  else if(CAL_M > 11){ CAL_M = 0; CAL_Y++; }
+  renderCalendar();
+}
+/* カレンダーのグリッドを左右スワイプで月切り替え（縦スクロールは妨げない） */
+function attachMonthSwipe(el){
+  let x0=null, y0=null;
+  el.addEventListener("touchstart", e=>{ const t=e.changedTouches[0]; x0=t.clientX; y0=t.clientY; }, {passive:true});
+  el.addEventListener("touchend", e=>{
+    if(x0===null) return;
+    const t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+    x0=y0=null;
+    if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)*1.5){
+      e.preventDefault();          // スワイプ時は日付タップ（selectDay）を抑止
+      changeMonth(dx<0 ? 1 : -1);  // 左スワイプ＝翌月、右スワイプ＝前月
+    }
+  }, {passive:false});
 }
 
 /* 予定のある日付（未定を除く）を昇順で返す */
