@@ -864,7 +864,7 @@ function draw(){
   if(b) b.textContent = VIEW === "calendar" ? "≡ 予定をリスト表示" : "📅 予定をカレンダー表示";
 }
 
-function renderCalendar(selDate){
+function renderCalendar(selDate, keepScroll){
   const list = $("#list");
   const byDate = {};
   CURRENT_ITEMS.forEach(it=>{ (byDate[it.date] = byDate[it.date] || []).push(it); });
@@ -924,15 +924,15 @@ function renderCalendar(selDate){
     const todayHere = (td.getFullYear()===CAL_Y && td.getMonth()===CAL_M);
     selectDay(todayHere ? TODAY : null);
   }
-  window.scrollTo(0,0);
+  if(!keepScroll) window.scrollTo(0,0);   // 月切替時はスクロール位置を維持
 }
 
-/* 月を dir(+1/-1) 方向へ切り替え */
+/* 月を dir(+1/-1) 方向へ切り替え（スクロール位置は維持） */
 function changeMonth(dir){
   CAL_M += dir;
   if(CAL_M < 0){ CAL_M = 11; CAL_Y--; }
   else if(CAL_M > 11){ CAL_M = 0; CAL_Y++; }
-  renderCalendar();
+  renderCalendar(undefined, true);
 }
 /* カレンダーのグリッドを左右スワイプで月切り替え（縦スクロールは妨げない） */
 function attachMonthSwipe(el){
@@ -973,7 +973,7 @@ function goToDate(date){
   const dt = new Date(date + "T00:00:00");
   if(dt.getFullYear()!==CAL_Y || dt.getMonth()!==CAL_M){
     CAL_Y = dt.getFullYear(); CAL_M = dt.getMonth();
-    renderCalendar(date);
+    renderCalendar(date, true);
   } else {
     selectDay(date);
   }
