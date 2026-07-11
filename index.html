@@ -191,16 +191,16 @@
 
   /* 今日のプラチナ星座占い（コンパクト・やわらかめ） */
   .horocard{
-    background:#fff; border:1px solid #e7dcf3; border-radius:16px; margin-bottom:14px;
-    overflow:hidden; box-shadow:0 2px 12px rgba(150,110,190,.09);
+    background:linear-gradient(135deg, #f1e6fb, #fff); border:1px solid #e7dcf3;
+    border-radius:16px; margin-bottom:14px; overflow:hidden;
+    box-shadow:0 2px 12px rgba(150,110,190,.09);
   }
   .horohead{
-    background:linear-gradient(135deg,#efe3fb,#fbe9f1); padding:6px 13px;
-    display:flex; align-items:center; gap:6px;
+    padding:9px 13px 4px; display:flex; align-items:center; gap:6px;
   }
   .horohead .htitle2{font-size:13px; font-weight:700; color:#7b4ba3}
   .horohead .hdate{margin-left:auto; font-size:10px; color:#a888c4}
-  .horobody{padding:7px 11px 8px}
+  .horobody{padding:2px 11px 9px}
   .horo-item{border-radius:11px}
   .horo-row{
     width:100%; display:flex; align-items:center; gap:9px; cursor:pointer;
@@ -1340,6 +1340,7 @@ function showTodayHoroscope(data){
   // アコーディオン（各星座の詳細開閉）
   card.querySelectorAll(".horo-item").forEach(it=>{
     const row = it.querySelector(".horo-row"), det = it.querySelector(".horo-detail"), car = it.querySelector(".horo-caret");
+    det.hidden = true; if(car) car.textContent = "▼";   // 既定は必ず閉じた状態にする
     row.onclick = ()=>{ const open = !det.hidden; det.hidden = open; car.textContent = open ? "▼" : "▲"; };
   });
   const more = card.querySelector("#horomore"), rest = card.querySelector("#hororest");
