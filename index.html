@@ -189,6 +189,28 @@
   .wxnote{display:flex; align-items:center; gap:5px; padding:6px 13px; border-top:1px solid #eef2f6; color:#9aa6b4; font-size:10px}
   .wxleg{display:flex; flex-wrap:wrap; gap:5px 10px; justify-content:center; padding:8px 10px; border-top:1px solid #eef2f6}
   .wxleg span{display:inline-flex; align-items:center; gap:3px; font-size:10px; color:var(--sub)}
+  /* 週間予報（折りたたみ） */
+  .wxweekbtn{
+    display:block; width:calc(100% - 22px); margin:8px 11px 3px; padding:9px;
+    font-size:12.5px; font-weight:700; color:var(--brand); background:#eef3fa;
+    border:1px solid var(--line); border-radius:10px; cursor:pointer;
+  }
+  .wxweekbtn:active{background:#e2ebf7}
+  .wxweek{padding:4px 13px 6px}
+  .wxwrow{
+    display:flex; align-items:center; gap:8px; padding:6px 2px;
+    border-bottom:1px solid #f0f3f7; font-size:12px;
+  }
+  .wxwrow:last-child{border-bottom:0}
+  .wxwrow.today{background:var(--tint); border-radius:8px; padding-left:6px; padding-right:6px}
+  .wxwd{flex:0 0 84px; font-weight:700; color:var(--ink); white-space:nowrap; font-size:11.5px}
+  .wxwd.sat{color:#1f6fd6} .wxwd.sun{color:#d63f3f}
+  .wxwic{flex:1; display:inline-flex; align-items:center; gap:5px; font-size:15px}
+  .wxwcat{font-size:10.5px; color:var(--sub); white-space:nowrap}
+  .wxwt{flex:0 0 auto; font-size:11.5px; color:var(--sub); white-space:nowrap; font-variant-numeric:tabular-nums}
+  .wxwt b{color:#c0392b; font-size:12.5px}
+  .wxwp{flex:0 0 40px; text-align:right; font-size:11.5px; color:var(--sub); font-variant-numeric:tabular-nums}
+  .wxwp.heavy{color:#14417a; font-weight:700}
 
   /* 今日のプラチナ星占い（コンパクト・くすみローズ） */
   .horocard{
@@ -791,7 +813,8 @@ async function fetchWx(lat, lon){
   if(WX_CACHE[k] && WX_CACHE[k].day===TODAY) return WX_CACHE[k];
   const url = "https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lon
     + "&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m"
-    + "&timezone=Asia%2FTokyo&forecast_days=2";
+    + "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max"
+    + "&timezone=Asia%2FTokyo&forecast_days=7";
   const r = await fetch(url);
   if(!r.ok) throw new Error("wx "+r.status);
   const j = await r.json();
@@ -836,6 +859,30 @@ async function renderWeather(){
       r4 += '<td'+cls+'><span style="font-size:11px;'+(heavy?'color:#14417a;font-weight:700':'color:var(--sub)')+'">'
           + (p==null?'-':p)+'</span><span style="font-size:9px;color:#9aa6b4">%</span></td>';
     }
+    // 週間予報（今日から7日分・折りたたみ）
+    const D = j.daily || {};
+    let week = "";
+    const ND = Math.min(7, (D.time||[]).length);
+    for(let i=0;i<ND;i++){
+      const dt = new Date(D.time[i]+"T00:00:00");
+      const w = dt.getDay();
+      const wcls = w===0?"sun":w===6?"sat":"";
+      const cat = wxCat(D.weather_code[i], D.wind_speed_10m_max ? (D.wind_speed_10m_max[i]||0) : 0);
+      const tmax = (D.temperature_2m_max && D.temperature_2m_max[i]!=null) ? Math.round(D.temperature_2m_max[i]) : "-";
+      const tmin = (D.temperature_2m_min && D.temperature_2m_min[i]!=null) ? Math.round(D.temperature_2m_min[i]) : "-";
+      const pp = (D.precipitation_probability_max && D.precipitation_probability_max[i]!=null) ? D.precipitation_probability_max[i] : null;
+      const heavy = (pp!=null && pp>=50);
+      week += '<div class="wxwrow'+(i===0?' today':'')+'">'
+        + '<span class="wxwd '+wcls+'">'+(dt.getMonth()+1)+'/'+dt.getDate()+'('+WD[dt.getDay()]+')'+(i===0?' 今日':'')+'</span>'
+        + '<span class="wxwic">'+WX_EMOJI[cat]+'<span class="wxwcat">'+(WX_SHORT[cat]||cat)+'</span></span>'
+        + '<span class="wxwt"><b>'+tmax+'</b>℃／'+tmin+'℃</span>'
+        + '<span class="wxwp'+(heavy?' heavy':'')+'">'+(pp==null?'-':pp)+'%</span>'
+        + '</div>';
+    }
+    const weekBlock = week
+      ? '<button type="button" class="wxweekbtn" id="wxweekbtn">📅 今日から1週間の天気を見る ▼</button>'
+        + '<div class="wxweek" id="wxweek" hidden>'+week+'</div>'
+      : "";
     const legend = Object.keys(WX_EMOJI).map(k=> '<span>'+WX_EMOJI[k]+k+'</span>').join('');
     card.innerHTML =
       '<div class="wxhead"><div class="wxttl">🌤️ 天気予報（心はいつも晴れ）</div>'
@@ -844,6 +891,7 @@ async function renderWeather(){
       + '<div class="wxscroll"><table class="wxtable">'+r1+'</tr>'+r2+'</tr>'+r3+'</tr>'+r4+'</tr></table></div>'
       + '<div class="wxnote"><span>↔ 左右にスワイプして時間を移動（左端の項目名は固定）</span>'
       + '<span style="margin-left:auto;white-space:nowrap">更新：'+cw.at+'</span></div>'
+      + weekBlock
       + '<div class="wxleg">'+legend+'</div>';
     card.hidden = false;
     const sc = card.querySelector('.wxscroll');
@@ -853,6 +901,12 @@ async function renderWeather(){
       rb.classList.add('spin');
       for(const key in WX_CACHE) delete WX_CACHE[key];   // キャッシュを消して再取得
       renderWeather();
+    };
+    const wb = card.querySelector('#wxweekbtn'), wk = card.querySelector('#wxweek');
+    if(wb && wk) wb.onclick = ()=>{
+      const open = !wk.hidden;
+      wk.hidden = open;
+      wb.textContent = open ? "📅 今日から1週間の天気を見る ▼" : "📅 1週間の天気を閉じる ▲";
     };
   }catch(e){
     if(my === WX_TOKEN) card.hidden = true;      // 取得失敗時は欄を出さない
