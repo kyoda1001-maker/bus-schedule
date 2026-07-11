@@ -190,7 +190,7 @@
   .wxleg{display:flex; flex-wrap:wrap; gap:5px 10px; justify-content:center; padding:8px 10px; border-top:1px solid #eef2f6}
   .wxleg span{display:inline-flex; align-items:center; gap:3px; font-size:10px; color:var(--sub)}
 
-  /* 今日のプラチナ星座占い（コンパクト・くすみローズ） */
+  /* 今日のプラチナ星占い（コンパクト・くすみローズ） */
   .horocard{
     background:linear-gradient(135deg, #f9e7ec, #fff); border:1px solid #ecd7dd;
     border-radius:16px; margin-bottom:14px; overflow:hidden;
@@ -1298,7 +1298,7 @@ fetch("health_tips.json?_=" + Date.now())
   .then(showTodayHealth)
   .catch(()=>{});
 
-/* ---- 今日のプラチナ星座占い（オリジナル・日付シャッフル）---- */
+/* ---- 今日のプラチナ星占い（オリジナル・日付シャッフル）---- */
 const HORO_SIGNS = [
   ["おひつじ座","♈"],["おうし座","♉"],["ふたご座","♊"],["かに座","♋"],
   ["しし座","♌"],["おとめ座","♍"],["てんびん座","♎"],["さそり座","♏"],
@@ -1378,7 +1378,7 @@ function showTodayHoroscope(data){
       </div>`;
   }
   card.innerHTML =
-    `<div class="horohead"><span class="htitle2">🔮 今日のプラチナ星座占い</span><span class="hdate">${md}</span></div>
+    `<div class="horohead"><span class="htitle2">🔮 今日のプラチナ星占い</span><span class="hdate">${md}</span></div>
      <div class="horobody">
        ${topRow(first, "horo-top", "👑", "1位", "おまじない")}
        <div style="height:6px"></div>
