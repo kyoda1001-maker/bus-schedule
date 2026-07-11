@@ -211,6 +211,14 @@
     width:100%; font-size:16px; padding:12px 14px; border:1px solid var(--line);
     border-radius:12px; background:var(--card); color:var(--ink);
   }
+  .pwwrap{position:relative}
+  .pwwrap input{padding-right:64px}
+  .pwtoggle{
+    position:absolute; top:0; right:4px; height:100%;
+    background:none; border:0; cursor:pointer;
+    color:var(--brand); font-size:13px; font-weight:700; padding:0 10px;
+  }
+  .pwtoggle:active{opacity:.6}
   .login button.primary{
     width:100%; margin-top:22px; padding:14px; font-size:16px; font-weight:700;
     color:#fff; background:var(--brand); border:0; border-radius:12px; cursor:pointer;
@@ -398,7 +406,10 @@
   <label for="lid">ログインID</label>
   <input id="lid" type="text" inputmode="text" autocapitalize="off" autocomplete="username" placeholder="例: m2xd6">
   <label for="lpw">パスワード</label>
-  <input id="lpw" type="password" autocomplete="current-password" placeholder="パスワード">
+  <div class="pwwrap">
+    <input id="lpw" type="password" autocomplete="current-password" placeholder="パスワード">
+    <button type="button" id="pwtoggle" class="pwtoggle" aria-label="パスワードを表示">表示</button>
+  </div>
   <button class="primary" id="loginbtn">ログイン</button>
   <div class="msg" id="loginmsg"></div>
   <div class="hint">自分の運行予定・行程を確認できます。</div>
@@ -976,6 +987,14 @@ async function init(){
   if(qid) $("#lpw").focus();
 }
 
+$("#pwtoggle").addEventListener("click", ()=>{
+  const p = $("#lpw"), b = $("#pwtoggle");
+  const show = p.type === "password";
+  p.type = show ? "text" : "password";
+  b.textContent = show ? "隠す" : "表示";
+  b.setAttribute("aria-label", show ? "パスワードを隠す" : "パスワードを表示");
+  p.focus();
+});
 $("#loginbtn").addEventListener("click", ()=> doLogin($("#lid").value.trim(), $("#lpw").value));
 $("#lpw").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin($("#lid").value.trim(), $("#lpw").value); });
 $("#logout").addEventListener("click", ()=>{ localStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
