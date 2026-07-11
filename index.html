@@ -505,7 +505,7 @@
     <label for="driver">ドライバーを選択</label>
     <select id="driver"></select>
   </div>
-  <div class="viewbar"><button type="button" id="viewtoggle">📅 カレンダー表示</button></div>
+  <div class="viewbar"><button type="button" id="viewtoggle">📅 予定をカレンダー表示</button></div>
   <div id="list"></div>
   <footer>
     <button type="button" class="infolink">このツールの設定およびルールについて</button>
@@ -561,7 +561,7 @@
 
   <h3>カレンダー表示</h3>
   <ul>
-    <li>「📅 カレンダー表示」で月間カレンダーに切り替わります（<span class="k">週の始まりは月曜</span>）。日付をタップするとその日の詳細が表示されます。</li>
+    <li>「📅 予定をカレンダー表示」で月間カレンダーに切り替わります（<span class="k">週の始まりは月曜</span>）。日付をタップするとその日の詳細が表示されます。</li>
   </ul>
 
   <h3>ログイン・閲覧範囲</h3>
@@ -825,7 +825,7 @@ async function renderWeather(){
 function draw(){
   if(VIEW === "calendar") renderCalendar(); else renderList(CURRENT_ITEMS);
   const b = $("#viewtoggle");
-  if(b) b.textContent = VIEW === "calendar" ? "≡ リスト表示" : "📅 カレンダー表示";
+  if(b) b.textContent = VIEW === "calendar" ? "≡ 予定をリスト表示" : "📅 予定をカレンダー表示";
 }
 
 function renderCalendar(selDate){
