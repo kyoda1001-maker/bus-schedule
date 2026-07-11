@@ -371,7 +371,7 @@
 <!-- 予定表示 -->
 <div class="wrap" id="app" hidden>
   <div class="quotecard" id="quotecard">
-    <div class="qlabel">今日の名言 <span class="star">✦</span></div>
+    <div class="qlabel">今日のプラチナ名言 <span class="star">✦</span></div>
     <div class="qtext" id="qtext">感謝の心が高まれば、それに正比例して幸福感が高まっていく。</div>
     <div class="qauthor" id="qauthor">— <b>松下 幸之助</b>（1894–1989 ／ 経営者・パナソニック創業者）</div>
   </div>
@@ -691,7 +691,7 @@ async function renderWeather(){
     }
     const legend = Object.keys(WX_EMOJI).map(k=> '<span>'+WX_EMOJI[k]+k+'</span>').join('');
     card.innerHTML =
-      '<div class="wxhead"><div class="wxttl">🌤️ 今日の天気予報</div>'
+      '<div class="wxhead"><div class="wxttl">🌤️ 今日の天気予報（心はいつも晴れ）</div>'
       + '<div class="wxloc">📍'+m.name+' '+mon+'/'+day+(m.fallback?'（既定）':'')+'</div></div>'
       + '<div class="wxscroll"><table class="wxtable">'+r1+'</tr>'+r2+'</tr>'+r3+'</tr>'+r4+'</tr></table></div>'
       + '<div class="wxnote"><span>↔ 左右にスワイプして時間を移動（左端の項目名は固定）</span>'
@@ -1021,7 +1021,7 @@ function showTodayHealth(list){
   const dayNum = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
   const h = list[((dayNum % list.length) + list.length) % list.length];
   card.innerHTML =
-    '<div class="hlabel"><span>💪 今日の健康マメ知識</span><span class="htag">' + escapeHtml(h.tag||"") + '</span></div>'
+    '<div class="hlabel"><span>💪 今日のプラチナ健康マメ知識</span><span class="htag">' + escapeHtml(h.tag||"") + '</span></div>'
     + '<div class="htitle">' + escapeHtml(h.t||"") + '</div>'
     + '<div class="hbody">' + escapeHtml(h.b||"") + '</div>'
     + '<div class="hnote">※一般的な健康情報です。持病のある方・体調が気になる方は主治医にご相談ください。</div>';
