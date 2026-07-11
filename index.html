@@ -874,9 +874,14 @@ function showApp(data){
   const pick = $("#pick"), sel = $("#driver");
   $("#admbar").hidden = !data.admin;   // 「今すぐ更新」は管理者のみ
   if(data.admin){
-    // 管理者：全ドライバーを選択して閲覧
+    // 管理者：全ドライバー＋事務スタッフを選択して閲覧
     pick.hidden = false;
-    sel.innerHTML = data.drivers.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
+    const opt = n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`;
+    const drvOpts = (data.drivers||[]).map(opt).join("");
+    const stfOpts = (data.staff||[]).map(opt).join("");
+    sel.innerHTML = (stfOpts
+      ? `<optgroup label="ドライバー">${drvOpts}</optgroup><optgroup label="事務スタッフ">${stfOpts}</optgroup>`
+      : drvOpts);
     sel.onchange = ()=> setItems(data.schedules[sel.value] || []);
     setItems(data.schedules[sel.value] || []);
   }else{
