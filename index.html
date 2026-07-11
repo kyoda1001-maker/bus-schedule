@@ -691,7 +691,7 @@ async function renderWeather(){
     }
     const legend = Object.keys(WX_EMOJI).map(k=> '<span>'+WX_EMOJI[k]+k+'</span>').join('');
     card.innerHTML =
-      '<div class="wxhead"><div class="wxttl">🌤️ 今日の天気予報（心はいつも晴れ）</div>'
+      '<div class="wxhead"><div class="wxttl">🌤️ 天気予報（心はいつも晴れ）</div>'
       + '<div class="wxloc">📍'+m.name+' '+mon+'/'+day+(m.fallback?'（既定）':'')+'</div></div>'
       + '<div class="wxscroll"><table class="wxtable">'+r1+'</tr>'+r2+'</tr>'+r3+'</tr>'+r4+'</tr></table></div>'
       + '<div class="wxnote"><span>↔ 左右にスワイプして時間を移動（左端の項目名は固定）</span>'
