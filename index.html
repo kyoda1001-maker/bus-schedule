@@ -576,7 +576,9 @@ const WX_KW = [
   ["糸満","糸満市",2],["豊見城","豊見城市",2],["県庁前","那覇市",2],["那覇","那覇市",2]
 ];
 const WX_DEFAULT = {name:"豊見城市", lat:26.177, lon:127.665, fallback:true};
-const WX_EMOJI = {晴れ:"☀️", やや晴れ:"🌤️", 曇り:"☁️", 風:"🌬️", 雨:"🌧️", 大雨:"⛈️", 台風:"🌀"};
+const WX_EMOJI = {晴れ:"☀️", "晴れ時々くもり":"🌤️", 曇り:"☁️", 風:"🌬️", 雨:"🌧️", 大雨:"⛈️", 台風:"🌀"};
+/* 狭いセル内は短縮表記（凡例は上のフルネーム）。長い区分だけ1行に収める */
+const WX_SHORT = {"晴れ時々くもり":"晴時々曇"};
 
 /* 運行内容の〈行程〉から立ち寄りスポット名を抽出（本社の出庫・帰庫は除外） */
 function extractItinSpots(content){
@@ -628,13 +630,13 @@ function detectMuni(items){
 function wxCat(code, wind){
   let c;
   if(code===0) c="晴れ";
-  else if(code===1 || code===2) c="やや晴れ";
+  else if(code===1 || code===2) c="晴れ時々くもり";
   else if(code===3 || code===45 || code===48) c="曇り";
   else if(code===65 || code===82 || code===95 || code===96 || code===99) c="大雨";
   else if(code>=51) c="雨";
   else c="曇り";
   if(wind >= 55) return "台風";
-  if(wind >= 35 && (c==="晴れ" || c==="やや晴れ" || c==="曇り")) return "風";
+  if(wind >= 35 && (c==="晴れ" || c==="晴れ時々くもり" || c==="曇り")) return "風";
   return c;
 }
 
@@ -680,7 +682,7 @@ async function renderWeather(){
           + '<span style="'+(cur?'color:var(--brand);font-weight:700':'')+'">'+hl+'</span></td>';
       const cat = wxCat(H.weather_code[i], H.wind_speed_10m ? (H.wind_speed_10m[i]||0) : 0);
       r2 += '<td'+cls+'><div style="font-size:17px;line-height:1.15">'+WX_EMOJI[cat]+'</div>'
-          + '<div style="font-size:9px;color:var(--sub)">'+cat+'</div></td>';
+          + '<div style="font-size:9px;color:var(--sub);white-space:nowrap">'+(WX_SHORT[cat]||cat)+'</div></td>';
       const t = (H.temperature_2m[i]==null) ? '-' : Math.round(H.temperature_2m[i]);
       r3 += '<td'+cls+'><span style="font-size:12px;'+(cur?'font-weight:700':'')+'">'+t
           + '</span><span style="font-size:9px;color:#9aa6b4">℃</span></td>';
