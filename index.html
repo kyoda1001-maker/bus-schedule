@@ -427,12 +427,12 @@
   <div class="wxcard" id="wxcard" hidden></div>
   <div id="admbar" hidden>
     <div class="admrow">
-      <button type="button" id="updatenow">🔄 今すぐ更新</button>
+      <button type="button" id="updatenow">🔄 今すぐ予定を更新</button>
       <button type="button" id="tokencfg" title="更新トークンの設定">⚙</button>
     </div>
     <div id="updatestatus"></div>
     <div id="tokenform" hidden>
-      <p>「今すぐ更新」に使うGitHubトークンを、このブラウザにのみ保存します（サイトには保存されません）。</p>
+      <p>「今すぐ予定を更新」に使うGitHubトークンを、このブラウザにのみ保存します（サイトには保存されません）。</p>
       <input id="tokeninput" type="password" placeholder="github_pat_... を貼り付け" autocomplete="off">
       <div class="tfrow">
         <button type="button" id="tokensave">保存</button>
@@ -1052,7 +1052,7 @@ $("#updatenow").addEventListener("click", triggerUpdate);
 $("#tokencfg").addEventListener("click", ()=>{ const f=$("#tokenform"); f.hidden=!f.hidden; if(!f.hidden) $("#tokeninput").value=""; });
 $("#tokensave").addEventListener("click", ()=>{
   const v = $("#tokeninput").value.trim();
-  if(v){ localStorage.setItem(TKEY, v); $("#tokenform").hidden=true; $("#tokeninput").value=""; setStatus("トークンを保存しました。「今すぐ更新」を押せます。"); }
+  if(v){ localStorage.setItem(TKEY, v); $("#tokenform").hidden=true; $("#tokeninput").value=""; setStatus("トークンを保存しました。「今すぐ予定を更新」を押せます。"); }
 });
 
 /* ---- アカウント管理（管理者本人のみ：ログイン停止／解除／削除）---- */
@@ -1101,7 +1101,7 @@ async function triggerManage(op, name){
   const st = $("#mgstatus"); if(!st) return;
   const tok = getTok();
   if(!tok){ $("#admbar").hidden = false; $("#tokenform").hidden = false;
-    st.textContent = "先に「今すぐ更新」欄の⚙から更新トークンを設定してください。"; return; }
+    st.textContent = "先に「今すぐ予定を更新」欄の⚙から更新トークンを設定してください。"; return; }
   st.textContent = `「${name}」を処理中…（反映まで数分かかります）`;
   try{
     const r = await fetch(`https://api.github.com/repos/${TRIG_REPO}/actions/workflows/${TRIG_WF}/dispatches`, {
