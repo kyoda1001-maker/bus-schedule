@@ -932,6 +932,8 @@ function showApp(data){
     sel.innerHTML = (stfOpts
       ? `<optgroup label="ドライバー">${drvOpts}</optgroup><optgroup label="事務スタッフ">${stfOpts}</optgroup>`
       : drvOpts);
+    // 事務スタッフでログインした時は、最初に「自分」の予定を表示する
+    if(data.name && data.schedules[data.name]) sel.value = data.name;
     sel.onchange = ()=> setItems(data.schedules[sel.value] || []);
     setItems(data.schedules[sel.value] || []);
   }else{
