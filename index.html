@@ -143,6 +143,13 @@
   }
   .quotecard .qauthor{font-size:12.5px; color:var(--sub); text-align:right}
   .quotecard .qauthor b{color:var(--brand); font-weight:700}
+  .quotecard .qexplain{
+    font-size:12.5px; line-height:1.75; color:var(--sub);
+    margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);
+  }
+  .quotecard .qexplain::before{
+    content:"💡 "; font-size:12px;
+  }
 
   /* 今日の健康マメ知識 */
   .healthcard{
@@ -516,6 +523,7 @@
     <div class="qlabel">今日のプラチナ名言 <span class="star">✦</span></div>
     <div class="qtext" id="qtext">感謝の心が高まれば、それに正比例して幸福感が高まっていく。</div>
     <div class="qauthor" id="qauthor">— <b>松下 幸之助</b>（1894–1989 ／ 経営者・パナソニック創業者）</div>
+    <div class="qexplain" id="qexplain" hidden></div>
   </div>
   <div class="healthcard" id="healthcard" hidden></div>
   <div class="wxcard" id="wxcard" hidden></div>
@@ -1361,6 +1369,14 @@ function showTodayQuote(list){
   if($("#qauthor")){
     const meta = [q.e, q.n].filter(Boolean).map(escapeHtml).join(" ／ ");
     $("#qauthor").innerHTML = "— <b>" + escapeHtml(q.a) + "</b>" + (meta ? "（" + meta + "）" : "");
+  }
+  if($("#qexplain")){
+    if(q.d){
+      $("#qexplain").textContent = q.d;
+      $("#qexplain").hidden = false;
+    } else {
+      $("#qexplain").hidden = true;
+    }
   }
 }
 fetch("quotes.json?_=" + Date.now())
