@@ -279,6 +279,99 @@
     font-size:10px; color:#bd94a4; text-align:center;
   }
 
+  /* 今日の一言（台湾中国語・韓国語） */
+  .phrasecard{
+    --tw:#c14f47; --tw-tint:#fbeeec; --tw-ink:#8f322c;
+    --kr:#3f6bb0; --kr-tint:#eaf0fb; --kr-ink:#2f4f86;
+    --pgood:#3f8f6b;
+    margin-bottom:14px;
+  }
+  .phrasecard .plabel{
+    font-size:11px; font-weight:700; color:var(--brand); letter-spacing:.1em;
+    display:flex; align-items:center; gap:6px; margin:2px 2px 9px;
+  }
+  .phrasecard .plabel .pstar{color:var(--star)}
+  .phrasecard .plabel .psub{font-size:10.5px; font-weight:500; color:var(--sub); letter-spacing:0; margin-left:auto}
+  .plangs{display:flex; flex-direction:column; gap:12px}
+  .ph-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 2px 12px rgba(31,98,142,.08); overflow:hidden;
+  }
+  .ph-card .ph-accent{height:4px}
+  .ph-card.tw .ph-accent{background:linear-gradient(90deg,var(--tw),transparent)}
+  .ph-card.kr .ph-accent{background:linear-gradient(90deg,var(--kr),transparent)}
+  .ph-card .ph-body{padding:12px 15px 13px}
+  .ph-lbl{display:flex; align-items:center; gap:8px; margin-bottom:9px}
+  .ph-lbl .ph-flag{font-size:18px; line-height:1}
+  .ph-lbl .ph-name{font-size:12px; font-weight:800; letter-spacing:.08em}
+  .ph-card.tw .ph-lbl .ph-name{color:var(--tw)}
+  .ph-card.kr .ph-lbl .ph-name{color:var(--kr)}
+  .ph-lbl .ph-today{margin-left:auto; font-size:10px; font-weight:700; border-radius:999px; padding:2px 9px}
+  .ph-card.tw .ph-lbl .ph-today{color:var(--tw-ink); background:var(--tw-tint)}
+  .ph-card.kr .ph-lbl .ph-today{color:var(--kr-ink); background:var(--kr-tint)}
+  .ph-phrase{font-size:21px; font-weight:700; line-height:1.5; color:var(--ink); margin:2px 0 11px; word-break:break-word}
+  .ph-pron{border-radius:11px; padding:9px 12px; margin-bottom:10px}
+  .ph-card.tw .ph-pron{background:var(--tw-tint)}
+  .ph-card.kr .ph-pron{background:var(--kr-tint)}
+  .ph-kana{font-size:15px; font-weight:700; line-height:1.55}
+  .ph-card.tw .ph-kana{color:var(--tw-ink)}
+  .ph-card.kr .ph-kana{color:var(--kr-ink)}
+  .ph-roma{font-size:11px; color:var(--sub); margin-top:2px; font-style:italic}
+  .ph-mean{display:flex; gap:8px; align-items:baseline; margin-bottom:7px}
+  .ph-mean .ph-mk{flex:none; font-size:10px; font-weight:700; color:var(--sub); border:1px solid var(--line); border-radius:6px; padding:1px 6px}
+  .ph-mean .ph-mt{font-size:13.5px; color:var(--ink)}
+  .ph-tag{display:inline-block; font-size:11px; font-weight:700; border-radius:999px; padding:3px 11px}
+  .ph-tag.t-あいさつ{color:#2f6d8f; background:#e6f1f7}
+  .ph-tag.t-前向き{color:#2f7d55; background:#e4f2ea}
+  .ph-tag.t-やさしさ{color:#9a6a1f; background:#f7eede}
+  .ph-tag.t-ユーモア{color:#8a5a1f; background:#f6ecdc}
+  .ph-tag.t-ブラックユーモア{color:#6a4a86; background:#efe8f7}
+  .ph-btns{display:flex; gap:8px; margin-top:12px}
+  .ph-btn{
+    font-size:13px; font-weight:700; border-radius:11px; padding:11px 12px; cursor:pointer;
+    border:1px solid var(--line); background:var(--card); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; gap:6px; transition:transform .08s ease;
+  }
+  .ph-btn:active{transform:scale(.97)}
+  .ph-btn.play{flex:1; color:#fff; border:0}
+  .ph-card.tw .ph-btn.play{background:var(--tw)}
+  .ph-card.kr .ph-btn.play{background:var(--kr)}
+  .ph-btn.play.speaking{opacity:.7}
+  .ph-btn.save{flex:none; min-width:96px}
+  .ph-btn.save.on{color:#fff; border:0; background:var(--pgood)}
+  .ph-btn.shuf{flex:none; min-width:48px; font-size:15px}
+  .psaved{margin-top:13px}
+  .psaved .pstoggle{
+    width:100%; display:flex; align-items:center; gap:9px; cursor:pointer;
+    background:var(--card); border:1px solid var(--line); border-radius:13px;
+    padding:11px 13px; font-size:13px; font-weight:800; color:var(--ink);
+    box-shadow:0 2px 12px rgba(31,98,142,.06);
+  }
+  .psaved .pstoggle .pcnt{
+    margin-left:auto; font-size:11px; font-weight:800; color:#fff; background:var(--brand);
+    border-radius:999px; padding:2px 9px; min-width:22px; text-align:center;
+  }
+  .psaved .pstoggle .pchev{color:var(--sub); font-size:11px; transition:transform .2s}
+  .psaved.open .pstoggle .pchev{transform:rotate(180deg)}
+  .psbody{display:none; margin-top:9px; flex-direction:column; gap:8px}
+  .psaved.open .psbody{display:flex}
+  .psempty{font-size:12px; color:var(--sub); text-align:center; padding:12px; line-height:1.7}
+  .psrow{
+    background:var(--card); border:1px solid var(--line); border-left-width:4px;
+    border-radius:11px; padding:9px 11px; display:flex; align-items:center; gap:10px;
+  }
+  .psrow.tw{border-left-color:var(--tw)}
+  .psrow.kr{border-left-color:var(--kr)}
+  .psrow .pstext{flex:1; min-width:0}
+  .psrow .psp{font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.4; word-break:break-word}
+  .psrow .psk{font-size:11px; color:var(--sub); margin-top:1px}
+  .psrow .psm{font-size:11px; color:var(--sub); margin-top:2px}
+  .psrow .psbtn{
+    flex:none; width:36px; height:36px; border-radius:9px; border:1px solid var(--line);
+    background:var(--bg); font-size:15px; cursor:pointer; color:var(--ink);
+  }
+  .psrow .psbtn.rm{color:#b5453c}
+
   .pick{margin-bottom:6px}
   .pick label{font-size:12px; color:var(--sub); display:block; margin:0 2px 6px}
   .pick select{
@@ -528,6 +621,7 @@
   <div class="healthcard" id="healthcard" hidden></div>
   <div class="wxcard" id="wxcard" hidden></div>
   <div class="horocard" id="horocard" hidden></div>
+  <div class="phrasecard" id="phrasecard" hidden></div>
   <div id="admbar" hidden>
     <div class="admrow">
       <button type="button" id="updatenow">🔄 今すぐ予定を更新</button>
@@ -1132,6 +1226,7 @@ function applyCollapsible(){ /* 折り畳みは廃止（運行内容は常に全
 /* ---- ログイン制御 ---- */
 function showApp(data){
   $("#hname").textContent = data.name || "運行予定確認";
+  if(window.__phraseSetUser) window.__phraseSetUser(data.name || "");
   $("#updated").textContent = "最終更新：" + (SECURE.meta?.generatedAt || "-");
   $("#login").hidden = true;
   $("#app").hidden = false;
@@ -1507,6 +1602,146 @@ fetch("horoscope.json?_=" + Date.now())
   .then(r => r.ok ? r.json() : null)
   .then(showTodayHoroscope)
   .catch(()=>{});
+
+/* ---- 今日の一言（台湾中国語・韓国語）---- */
+(function(){
+  let DATA = null, USER = "", memStore = {};
+  const IDX = {tw:0, kr:0}, TODAY = {tw:true, kr:true};
+  const NAMES = {
+    tw:{flag:"🇹🇼", name:"今日の台湾中国語", lang:"zh-TW"},
+    kr:{flag:"🇰🇷", name:"今日の韓国語",     lang:"ko-KR"}
+  };
+  const sKey = ()=> "platinum_phrases::" + (USER || "guest");
+  function loadSaved(){ try{ const v = localStorage.getItem(sKey()); return v ? JSON.parse(v) : {}; }catch(e){ return memStore; } }
+  function persist(o){ memStore = o; try{ localStorage.setItem(sKey(), JSON.stringify(o)); }catch(e){} }
+  const keyOf = (lang, it)=> lang + "::" + it.p;
+
+  // 音声（端末の読み上げ機能：zh-TW / ko-KR）
+  if("speechSynthesis" in window){ try{ speechSynthesis.getVoices(); }catch(e){} }
+  function speak(text, lang, btn){
+    if(!("speechSynthesis" in window)){ toastPh("この端末では音声を使えません"); return; }
+    try{
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text); u.lang = lang; u.rate = 0.88;
+      const vs = speechSynthesis.getVoices(), base = lang.slice(0,2).toLowerCase();
+      const v = vs.find(x=> x.lang.replace("_","-").toLowerCase() === lang.toLowerCase())
+             || vs.find(x=> x.lang.replace("_","-").toLowerCase().indexOf(base) === 0);
+      if(v) u.voice = v;
+      if(btn){ btn.classList.add("speaking"); u.onend = u.onerror = ()=> btn.classList.remove("speaking"); }
+      speechSynthesis.speak(u);
+    }catch(e){ toastPh("音声の再生に失敗しました"); }
+  }
+
+  // トースト
+  let toastEl = null, toastT = null;
+  function toastPh(msg){
+    if(!toastEl){
+      toastEl = document.createElement("div");
+      toastEl.style.cssText = "position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#26333d;color:#fff;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:88%;text-align:center";
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = msg;
+    toastEl.style.opacity = "1"; toastEl.style.transform = "translateX(-50%) translateY(0)";
+    clearTimeout(toastT);
+    toastT = setTimeout(()=>{ toastEl.style.opacity = "0"; toastEl.style.transform = "translateX(-50%) translateY(20px)"; }, 1900);
+  }
+
+  function dayNum(){ const d = new Date(); return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000); }
+  function initIdx(){
+    const dn = dayNum();
+    IDX.tw = DATA.tw.length ? (((dn) % DATA.tw.length) + DATA.tw.length) % DATA.tw.length : 0;
+    IDX.kr = DATA.kr.length ? (((dn + 3) % DATA.kr.length) + DATA.kr.length) % DATA.kr.length : 0;
+    TODAY.tw = true; TODAY.kr = true;
+  }
+  const esc = s => escapeHtml(String(s));
+
+  function render(){
+    const card = document.getElementById("phrasecard");
+    if(!card || !DATA) return;
+    const saved = loadSaved();
+    let langsHtml = "";
+    ["tw","kr"].forEach(lang=>{
+      const items = DATA[lang] || []; if(!items.length) return;
+      const it = items[IDX[lang]], on = !!saved[keyOf(lang, it)], meta = NAMES[lang];
+      langsHtml +=
+        '<div class="ph-card '+lang+'" data-lang="'+lang+'">'
+        + '<div class="ph-accent"></div><div class="ph-body">'
+        +   '<div class="ph-lbl"><span class="ph-flag">'+meta.flag+'</span>'
+        +     '<span class="ph-name">'+meta.name+'</span>'
+        +     (TODAY[lang] ? '<span class="ph-today">今日の一言</span>' : '')
+        +   '</div>'
+        +   '<div class="ph-phrase">'+esc(it.p)+'</div>'
+        +   '<div class="ph-pron"><div class="ph-kana">'+esc(it.k)+'</div>'+(it.r?'<div class="ph-roma">'+esc(it.r)+'</div>':'')+'</div>'
+        +   '<div class="ph-mean"><span class="ph-mk">意味</span><span class="ph-mt">'+esc(it.m)+'</span></div>'
+        +   (it.t ? '<span class="ph-tag t-'+it.t+'">'+esc(it.t)+'</span>' : '')
+        +   '<div class="ph-btns">'
+        +     '<button type="button" class="ph-btn play" data-act="play">🔊 発音を聞く</button>'
+        +     '<button type="button" class="ph-btn save'+(on?' on':'')+'" data-act="save">'+(on?'♥ 保存済み':'♡ 保存')+'</button>'
+        +     '<button type="button" class="ph-btn shuf" data-act="shuf" title="別のフレーズを見る">🔀</button>'
+        +   '</div>'
+        + '</div></div>';
+    });
+    const keys = Object.keys(saved);
+    let savedRows = "";
+    if(!keys.length){
+      savedRows = '<div class="psempty">まだありません。<br>フレーズの「♡ 保存」を押すと、ここに集まります。</div>';
+    }else{
+      keys.forEach((k, i)=>{ const s = saved[k];
+        savedRows +=
+          '<div class="psrow '+s.lang+'" data-i="'+i+'">'
+          + '<div class="pstext"><div class="psp">'+esc(s.p)+'</div><div class="psk">'+esc(s.k)+'</div><div class="psm">'+esc(s.m)+'</div></div>'
+          + '<button type="button" class="psbtn play" title="発音">🔊</button>'
+          + '<button type="button" class="psbtn rm" title="削除">🗑</button>'
+          + '</div>';
+      });
+    }
+    const openCls = card.querySelector(".psaved.open") ? " open" : "";
+    card.innerHTML =
+      '<div class="plabel">🗣️ 今日の一言 <span class="pstar">✦</span><span class="psub">お客様・ガイドさんへ</span></div>'
+      + '<div class="plangs">'+langsHtml+'</div>'
+      + '<div class="psaved'+openCls+'">'
+      +   '<div class="pstoggle"><span>📚</span><span>保存した一言（勉強用）</span><span class="pcnt">'+keys.length+'</span><span class="pchev">▼</span></div>'
+      +   '<div class="psbody">'+savedRows+'</div>'
+      + '</div>';
+    card.hidden = false;
+
+    // フレーズカードの操作
+    card.querySelectorAll(".ph-card").forEach(el=>{
+      const lang = el.getAttribute("data-lang"), it = DATA[lang][IDX[lang]];
+      el.querySelector('[data-act=play]').addEventListener("click", e=> speak(it.p, NAMES[lang].lang, e.currentTarget));
+      el.querySelector('[data-act=save]').addEventListener("click", ()=>{
+        const s = loadSaved(), kk = keyOf(lang, it);
+        if(s[kk]){ delete s[kk]; toastPh("保存を取り消しました"); }
+        else{ s[kk] = {lang:lang, p:it.p, k:it.k, m:it.m, t:it.t}; toastPh("保存しました！下の「保存した一言」で確認できます"); }
+        persist(s); render();
+      });
+      el.querySelector('[data-act=shuf]').addEventListener("click", ()=>{
+        const n = DATA[lang].length; if(n < 2) return;
+        let nx = IDX[lang]; while(nx === IDX[lang]) nx = Math.floor(Math.random()*n);
+        IDX[lang] = nx; TODAY[lang] = false; render();
+      });
+    });
+    // 保存欄の開閉
+    const tog = card.querySelector(".pstoggle"), sv = card.querySelector(".psaved");
+    if(tog) tog.addEventListener("click", ()=> sv.classList.toggle("open"));
+    // 保存済みの再生・削除
+    const skeys = Object.keys(loadSaved());
+    card.querySelectorAll(".psrow").forEach(row=>{
+      const i = parseInt(row.getAttribute("data-i"), 10), k = skeys[i], s = loadSaved()[k];
+      if(!s) return;
+      row.querySelector(".play").addEventListener("click", e=> speak(s.p, NAMES[s.lang].lang, e.currentTarget));
+      row.querySelector(".rm").addEventListener("click", ()=>{ const ss = loadSaved(); delete ss[k]; persist(ss); render(); toastPh("削除しました"); });
+    });
+  }
+
+  // ログイン後にユーザー名を受け取り、保存を本人のものに切り替える
+  window.__phraseSetUser = function(name){ USER = name || ""; if(DATA) render(); };
+
+  fetch("phrases.json?_=" + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(d => { if(!d || !Array.isArray(d.tw) || !Array.isArray(d.kr)) return; DATA = d; initIdx(); render(); })
+    .catch(()=>{});
+})();
 
 init();
 </script>
