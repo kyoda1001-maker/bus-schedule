@@ -320,12 +320,6 @@
   .ph-mean{display:flex; gap:8px; align-items:baseline; margin-bottom:7px}
   .ph-mean .ph-mk{flex:none; font-size:10px; font-weight:700; color:var(--sub); border:1px solid var(--line); border-radius:6px; padding:1px 6px}
   .ph-mean .ph-mt{font-size:13.5px; color:var(--ink)}
-  .ph-tag{display:inline-block; font-size:11px; font-weight:700; border-radius:999px; padding:3px 11px}
-  .ph-tag.t-あいさつ{color:#2f6d8f; background:#e6f1f7}
-  .ph-tag.t-前向き{color:#2f7d55; background:#e4f2ea}
-  .ph-tag.t-やさしさ{color:#9a6a1f; background:#f7eede}
-  .ph-tag.t-ユーモア{color:#8a5a1f; background:#f6ecdc}
-  .ph-tag.t-ブラックユーモア{color:#6a4a86; background:#efe8f7}
   .ph-btns{display:flex; gap:8px; margin-top:12px}
   .ph-btn{
     font-size:13px; font-weight:700; border-radius:11px; padding:11px 12px; cursor:pointer;
@@ -1673,7 +1667,6 @@ fetch("horoscope.json?_=" + Date.now())
         +   '<div class="ph-phrase">'+esc(it.p)+'</div>'
         +   '<div class="ph-pron"><div class="ph-kana">'+esc(it.k)+'</div>'+(it.r?'<div class="ph-roma">'+esc(it.r)+'</div>':'')+'</div>'
         +   '<div class="ph-mean"><span class="ph-mk">意味</span><span class="ph-mt">'+esc(it.m)+'</span></div>'
-        +   (it.t ? '<span class="ph-tag t-'+it.t+'">'+esc(it.t)+'</span>' : '')
         +   '<div class="ph-btns">'
         +     '<button type="button" class="ph-btn play" data-act="play">🔊 発音を聞く</button>'
         +     '<button type="button" class="ph-btn save'+(on?' on':'')+'" data-act="save">'+(on?'♥ 保存済み':'♡ 保存')+'</button>'
@@ -1712,7 +1705,7 @@ fetch("horoscope.json?_=" + Date.now())
       el.querySelector('[data-act=save]').addEventListener("click", ()=>{
         const s = loadSaved(), kk = keyOf(lang, it);
         if(s[kk]){ delete s[kk]; toastPh("保存を取り消しました"); }
-        else{ s[kk] = {lang:lang, p:it.p, k:it.k, m:it.m, t:it.t}; toastPh("保存しました！下の「保存した一言」で確認できます"); }
+        else{ s[kk] = {lang:lang, p:it.p, k:it.k, m:it.m}; toastPh("保存しました！下の「保存した一言」で確認できます"); }
         persist(s); render();
       });
       el.querySelector('[data-act=shuf]').addEventListener("click", ()=>{
