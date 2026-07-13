@@ -287,10 +287,10 @@
     margin-bottom:14px;
   }
   .phrasecard .plabel{
-    font-size:11px; font-weight:700; color:var(--brand); letter-spacing:.1em;
-    display:flex; align-items:center; gap:6px; margin:2px 2px 8px;
+    font-size:11px; font-weight:700; color:var(--brand); letter-spacing:.08em;
+    display:flex; align-items:center; flex-wrap:wrap; gap:2px 6px; margin:2px 2px 8px;
   }
-  .phrasecard .plabel .pstar{color:var(--star)}
+  .phrasecard .plabel .pstar{color:var(--star); margin:0 1px}
   .phrasecard .plabel .psub{font-size:10.5px; font-weight:500; color:var(--sub); letter-spacing:0; margin-left:auto}
   .plangs{display:flex; flex-direction:column; gap:10px}
   .ph-card{
@@ -1690,7 +1690,7 @@ fetch("horoscope.json?_=" + Date.now())
     }
     const openCls = card.querySelector(".psaved.open") ? " open" : "";
     card.innerHTML =
-      '<div class="plabel">🗣️ 今日の一言 <span class="pstar">✦</span><span class="psub">お客様・ガイドさんへ</span></div>'
+      '<div class="plabel">🗣️ プラチナ語学スクール<span class="pstar">✦</span>今日のフレーズ<span class="psub">お客様・ガイドさんへ</span></div>'
       + '<div class="plangs">'+langsHtml+'</div>'
       + '<div class="psaved'+openCls+'">'
       +   '<div class="pstoggle"><span>📚</span><span>保存した一言（勉強用）</span><span class="pcnt">'+keys.length+'</span><span class="pchev">▼</span></div>'
