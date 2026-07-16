@@ -626,6 +626,38 @@
   @keyframes daySlideL{from{opacity:.35; transform:translateX(26px)} to{opacity:1; transform:none}}
   @keyframes daySlideR{from{opacity:.35; transform:translateX(-26px)} to{opacity:1; transform:none}}
 
+  /* 下部タブバー（ホーム／運行予定） */
+  .tabbar{
+    position:fixed; left:0; right:0; bottom:0; z-index:40;
+    display:flex; background:var(--card); border-top:1px solid var(--line);
+    box-shadow:0 -2px 12px rgba(31,98,142,.10);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .tabbar .tab{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
+    padding:9px 0 8px; background:none; border:0; cursor:pointer; position:relative;
+    color:var(--sub); font-size:10.5px; font-weight:600; font-family:inherit;
+  }
+  .tabbar .tab svg{
+    width:23px; height:23px; stroke:currentColor; fill:none;
+    stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;
+  }
+  .tabbar .tab.on{color:var(--brand); font-weight:800}
+  .tabbar .tab.on svg{stroke-width:2.1}
+  .tabbar .tab.on::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:34px; height:3px; border-radius:0 0 3px 3px; background:var(--brand);
+  }
+  /* タブバーに隠れないよう本文下に余白を確保 */
+  #app{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  /* 「運行予定」タブでは上部の読み物カードを隠す */
+  #app.mode-sched #quotecard,
+  #app.mode-sched #healthcard,
+  #app.mode-sched #wxcard,
+  #app.mode-sched #newscard,
+  #app.mode-sched #horocard,
+  #app.mode-sched #phrasecard{display:none}
+
   /* ルール・設定リンク / 情報パネル */
   .infolink{
     display:inline-block; margin-top:10px; font-size:12px; color:var(--brand);
@@ -730,6 +762,18 @@
     <div>データ元：バスキング運行台帳</div>
   </footer>
 </div>
+
+<!-- 下部タブバー（ログイン後のみ表示） -->
+<nav class="tabbar" id="tabbar" hidden>
+  <button type="button" class="tab on" id="tabhome">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-6h5v6"/></svg>
+    <span>ホーム</span>
+  </button>
+  <button type="button" class="tab" id="tabsched">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path d="M7.5 14h4M7.5 17.5h8"/></svg>
+    <span>運行予定</span>
+  </button>
+</nav>
 
 <!-- 設定・ルール説明 -->
 <div class="info" id="info" hidden><div class="inwrap">
@@ -1312,6 +1356,8 @@ function showApp(data){
   $("#login").hidden = true;
   $("#app").hidden = false;
   $("#logout").hidden = false;
+  $("#tabbar").hidden = false;
+  setTab("home");                       // ログイン直後は必ず「ホーム」から
   const pick = $("#pick"), sel = $("#driver");
   $("#admbar").hidden = !data.admin;   // 「今すぐ更新」は管理者のみ
   renderManage(data);                  // アカウント管理は管理者本人（super）のみ
@@ -1337,6 +1383,7 @@ function showLogin(msg){
   $("#login").hidden = false;
   $("#app").hidden = true;
   $("#logout").hidden = true;
+  $("#tabbar").hidden = true;
   $("#hname").textContent = "";
   $("#updated").textContent = "";
   if(msg) $("#loginmsg").textContent = msg;
@@ -1393,6 +1440,22 @@ $("#loginbtn").addEventListener("click", ()=> doLogin($("#lid").value.trim(), $(
 $("#lpw").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin($("#lid").value.trim(), $("#lpw").value); });
 $("#logout").addEventListener("click", ()=>{ localStorage.removeItem("auth"); $("#lpw").value=""; showLogin(); });
 $("#viewtoggle").addEventListener("click", ()=>{ VIEW = VIEW==="calendar" ? "list" : "calendar"; draw(); });
+
+/* ---- 下部タブ（ホーム／運行予定）---- */
+let TAB = "home";
+function setTab(which){
+  const changed = (which !== TAB);
+  TAB = which;
+  const app = $("#app");
+  if(app) app.classList.toggle("mode-sched", which === "sched");
+  $("#tabhome").classList.toggle("on", which === "home");
+  $("#tabsched").classList.toggle("on", which === "sched");
+  // 「運行予定」タブはカレンダー表示を既定にする（タブを切り替えた時だけ）
+  if(which === "sched" && changed && VIEW !== "calendar"){ VIEW = "calendar"; draw(); }
+  if(changed) window.scrollTo(0, 0);
+}
+$("#tabhome").addEventListener("click", ()=> setTab("home"));
+$("#tabsched").addEventListener("click", ()=> setTab("sched"));
 
 /* ---- 管理者：今すぐ更新（クラウド実行を起動）---- */
 const TRIG_REPO = "kyoda1001-maker/bus-cloud";
