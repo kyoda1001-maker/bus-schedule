@@ -370,6 +370,10 @@
   .newscard{
     --c-kanko:#2f7d55; --c-kanko-bg:#e4f2ea;
     --c-ryoko:#2f6d8f; --c-ryoko-bg:#e6f1f7;
+    --c-spot:#0f8a8f;  --c-spot-bg:#e0f1f2;
+    --c-hotel:#8a5a2b; --c-hotel-bg:#f5ebe0;
+    --c-gourmet:#c0611f; --c-gourmet-bg:#fbeee2;
+    --c-airport:#4a5fa8; --c-airport-bg:#e9ecf8;
     --c-bus:#1f628e;   --c-bus-bg:#e5eff7;
     --c-park:#9a6a1f;  --c-park-bg:#f7eede;
     --c-event:#7a4a8f; --c-event-bg:#f0e8f7;
@@ -413,6 +417,10 @@
   .nsave.on{color:#fff; border:0; background:#3f8f6b}
   .nitem.c-kanko{border-left-color:var(--c-kanko)} .c-kanko .ncat{color:var(--c-kanko); background:var(--c-kanko-bg)}
   .nitem.c-ryoko{border-left-color:var(--c-ryoko)} .c-ryoko .ncat{color:var(--c-ryoko); background:var(--c-ryoko-bg)}
+  .nitem.c-spot{border-left-color:var(--c-spot)}   .c-spot .ncat{color:var(--c-spot); background:var(--c-spot-bg)}
+  .nitem.c-hotel{border-left-color:var(--c-hotel)} .c-hotel .ncat{color:var(--c-hotel); background:var(--c-hotel-bg)}
+  .nitem.c-gourmet{border-left-color:var(--c-gourmet)} .c-gourmet .ncat{color:var(--c-gourmet); background:var(--c-gourmet-bg)}
+  .nitem.c-airport{border-left-color:var(--c-airport)} .c-airport .ncat{color:var(--c-airport); background:var(--c-airport-bg)}
   .nitem.c-bus{border-left-color:var(--c-bus)}     .c-bus .ncat{color:var(--c-bus); background:var(--c-bus-bg)}
   .nitem.c-park{border-left-color:var(--c-park)}   .c-park .ncat{color:var(--c-park); background:var(--c-park-bg)}
   .nitem.c-event{border-left-color:var(--c-event)} .c-event .ncat{color:var(--c-event); background:var(--c-event-bg)}
@@ -1756,7 +1764,7 @@ fetch("horoscope.json?_=" + Date.now())
       + '<div class="nlist">' + listHtml + '</div>'
       + more
       + savedHtml
-      + '<div class="nnote">見出しをタップすると元記事が開きます／毎朝9:00に自動更新</div>';
+      + '<div class="nnote">見出しをタップすると元記事が開きます／毎朝9:00に更新（前日〜当日のニュース）</div>';
     card.hidden = false;
 
     card.querySelectorAll(".nchip").forEach(b=>{

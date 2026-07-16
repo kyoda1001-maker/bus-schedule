@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-16 20:21",
+ "updatedAt": "2026-07-16 20:46",
  "cats": [
   {
    "key": "kanko",
@@ -8,6 +8,22 @@
   {
    "key": "ryoko",
    "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
   },
   {
    "key": "bus",
@@ -32,11 +48,32 @@
  ],
  "items": [
   {
-   "c": "event",
+   "c": "spot",
    "t": "【首里城公園】初公開「琉球国王・王妃衣装完成記念式典（開催：7/22）」および「琉球国王・王妃衣装 お披露目展（会期：7/22～26）」開催！",
    "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5xWTZ4MTFxZG55aFZKeV92N0l5SnBJbW9mcDEzT3JRaDZxNUxkbkRwbE01Mm00UERoa1RSSFVPUERPeFJVS0hYbWVJUVRRYlVsUEhQRmhZODJVejNESkE?oc=5",
    "s": "沖縄タイムス社",
    "d": "2026-07-16T08:48:32+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "フサキビーチリゾート ホテル＆ヴィラズ 石垣島で味わう「北海道グルメ ランチブッフェ」を今年も開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE83dFRJMlVwQ25SSkVjcHR2Q0w1ZTNkZ0taRUVOdHpvM1J1OHNaVGFHRnRodVNvR3ZJYlAzX0xpY1l4M3NxVlFLS09lbDBFU2FsbGJJVm1ZY0cxelB0YXc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-16T06:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "那覇市泉崎に新ホテル 「リビングイン旭橋駅前EAST」が開業 全室に洗濯機・乾燥機",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1McVh1Si1HQmdYR0RyZ0o3Y295ZDlIajNZN04yS0R4enpYa243ejFGcFZhTFBuc1pzcjNCOWM5aXk3NlpsZXJESlEwQ18yaWZQNWhWQ2oycW11dUszSXc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-16T02:27:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "「これまで食べた中で一番」マンゴーの日、那覇空港でPR 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE11TkNTeGtoM2ptLTFDOThZY3NSTkZHalZ2dDRIa05vQWpVZnVERGJfbHpFdFgwdVJnZlItTWUzNnh5SGhwYjN3S3VsdFRFYUR5dGxnVjFqcTFCRUNsaXFGRW93?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-07-15T20:00:00+00:00"
   },
   {
    "c": "kr",
@@ -46,6 +83,13 @@
    "d": "2026-07-15T10:51:52+00:00"
   },
   {
+   "c": "airport",
+   "t": "「甘くておいしい」と笑顔 「マンゴーの日」那覇空港で県産400食ふるまう",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5CWjZQWEZSeTV4WEpuTmpXZjRPalRNVHNWS0c2UDhuN1V0YndjaDVtSkIta1NVQTJRMGdSeUxrcGxXbUNiN29Ld3gyektCeldhQk9rQko2ZUVhbF9XR0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-15T09:42:00+00:00"
+  },
+  {
    "c": "ryoko",
    "t": "沖縄のリゾートエリア恩納村に開業した高級コンドミニアムホテル「ブリスティア・スイート＆リゾート沖縄恩納村」に泊まってみた",
    "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE94WHZsUVFlbzRWYWdmN09YZ2QzYmJMbDVVeWg1Ni1KX3JBU3Rsb2pycC01cV80YU04cm5OdmRsNEFtVWIxUVI1YklCX1lvN3pPdElUaHNGdjkxb0MwUC1UUWJxY2E0T2dy?oc=5",
@@ -53,60 +97,11 @@
    "d": "2026-07-15T07:00:00+00:00"
   },
   {
-   "c": "kanko",
-   "t": "国頭村の地域学習を後押し ガイドブック「沖縄石の文化博物館」を贈呈",
-   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBybi1wVEg5WUFKSUtjdGl5Q1QxbUxlMmJ1a2lqdl9nSVB6eXJrd1VvS3hrNnZIT2lxOEwwbThaN1VRLUNaVTdkaE5hYXpadVhjcXFBNExjaWtYUQ?oc=5",
-   "s": "QAB 琉球朝日放送",
-   "d": "2026-07-13T11:05:03+00:00"
-  },
-  {
-   "c": "kanko",
-   "t": "写真：沖縄観光 世界的に認知 シンガポール／内間広崇",
-   "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9KLUlfVkd5aWd1LWtXTHVHdFhoTGtIczBkcUxlbUNRY2RIOEhHWFE4eVBPTkRfckJ5cHQ3SXVfS0t3SW83a29TUWpfcWdwOE5uNDRzVWFYT1pQUFdtUVJzMHgxOEY3Zw?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-11T18:57:00+00:00"
-  },
-  {
-   "c": "bus",
-   "t": "【台風9号】沖縄本島路線バス 午後1時から運行再開 北部は始発から運行",
-   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1udVVGYnlNTTZVNDhKS1VmLXl2ZWFSeFJWNTc1eTk2akxlTEFvTHZ6NVk2eVF0ZE11LUwwQmkyRURiX2JQRVNHcjVHcnd2dUJmVlRITy02b1JCVGo4UmJRbg?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-07-10T22:13:43+00:00"
-  },
-  {
-   "c": "bus",
-   "t": "【台風9号】沖縄本島の路線バス、11日午後1時発から運行再開",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9LTGhydzJnU0t5ajNvaWwxWnRURWJ1a3NjUVl3X0twbHlBUG13ZUd6UVFnOV9ueDZfSGpjbzAzQ1VKN3JzLTRDSVVQaUJkMDBudTZGaENMWVdiZG9YUHc?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-10T21:48:00+00:00"
-  },
-  {
-   "c": "event",
-   "t": "沖縄県名護市の体験型イベント「TSUNAGU CITY in NAGO」、第5回開催となる2027年に大幅リニューアル",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5TS3dHekNCanRzNGpjbnluX2ZRUi1UTkliUk9paFQyRGp4SE1ySDd4Tm9fa2FMVDJSUWFwMWdzRjJzUFdSWnNZUDA4VEFsX1JaNzJDb1hYZVZUcVJwaFE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-10T09:52:05+00:00"
-  },
-  {
-   "c": "ryoko",
-   "t": "SDGs大賞に沖縄ツーリスト 子の体験格差解消へ沖縄旅行の無償提供が評価",
-   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE04QlhGSERTSklwVVJjbUk5RldCaWxxOFB0WnVvRTROSUVwRWZCQUwtZzBISDE2VzFRcXQ0cWthNjNmZ2lnSjZ0bktGY3hESlZpLTR0VmxYUnMweWk3dUFnek9n?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-07-08T20:00:00+00:00"
-  },
-  {
-   "c": "tw",
-   "t": "台湾訪日教育旅行モニターツアー事業業務に係る企画提案の公募",
-   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE8xRTBWdVZQVnNmdFViZ1Uzd0VZc0l3azB6dlBvMkloZFlNTnNEam8xblFDbHNiRzY2Y3g3d3N1S3o0T1o3aFJmcjlvaHctbWNy?oc=5",
-   "s": "トラベルボイス",
-   "d": "2026-07-07T10:08:36+00:00"
-  },
-  {
-   "c": "kr",
-   "t": "インバウンド中国は〝退場〟 関西経済成長へ依存脱却を 台頭する韓国勢は独特すぎる観光 西論プラス",
-   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB6dEc4Tk96bjlBZ3VQRzk5RVNDZEt6Z0RaVjFQY2JQekNWUnE5eGQyNDh6NGxBM0pDeHdwZWc0cW5LNmpaRnRKZzdzLVNjY1lhWVh0WUk4QW5XZzZsa3dtN0tfT3NuZ2VXYXhoV2FMNTNpeU1qWGc?oc=5",
-   "s": "産経ニュース",
-   "d": "2026-07-02T07:00:00+00:00"
+   "c": "spot",
+   "t": "沖縄美ら海水族館、「美ら海ナイトアクアリウム」開催 8月は午後9時まで時間延長",
+   "u": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1SeEJmRVMtcEJYc2ZTbjdDQzQ1THZUMTBtbDNDMHNKT1Q3c0RtQ3BvY2tZZzVPRG14WUhOLXNlUHVVdEVQR2loaFZCUkRPUFA2MTNsR0dpdw?oc=5",
+   "s": "TRAICY（トライシー）",
+   "d": "2026-07-15T03:36:38+00:00"
   }
  ]
 }
