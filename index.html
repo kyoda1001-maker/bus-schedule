@@ -366,6 +366,83 @@
   }
   .psrow .psbtn.rm{color:#b5453c}
 
+  /* 今日のプラチナニュース */
+  .newscard{
+    --c-kanko:#2f7d55; --c-kanko-bg:#e4f2ea;
+    --c-ryoko:#2f6d8f; --c-ryoko-bg:#e6f1f7;
+    --c-bus:#1f628e;   --c-bus-bg:#e5eff7;
+    --c-park:#9a6a1f;  --c-park-bg:#f7eede;
+    --c-event:#7a4a8f; --c-event-bg:#f0e8f7;
+    --c-tw:#c14f47;    --c-tw-bg:#fbeeec;
+    --c-kr:#3f6bb0;    --c-kr-bg:#eaf0fb;
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 2px 12px rgba(31,98,142,.08); overflow:hidden; margin-bottom:14px;
+  }
+  .newscard .nhead{display:flex; align-items:center; gap:6px; padding:10px 13px 7px}
+  .nhead .ntitle{font-size:12px; font-weight:800; color:var(--brand); letter-spacing:.06em}
+  .nhead .ntitle .star{color:var(--star); margin:0 1px}
+  .nhead .nupd{margin-left:auto; font-size:10px; color:var(--sub); white-space:nowrap}
+  .nchips{display:flex; gap:6px; overflow-x:auto; padding:0 13px 9px; scrollbar-width:none; -ms-overflow-style:none}
+  .nchips::-webkit-scrollbar{display:none}
+  .nchip{
+    flex:none; font-size:11px; font-weight:700; white-space:nowrap; cursor:pointer;
+    border-radius:999px; padding:5px 11px; border:1px solid var(--line);
+    background:var(--card); color:var(--sub);
+  }
+  .nchip.on{color:#fff; background:var(--brand); border-color:var(--brand)}
+  .nlist{display:flex; flex-direction:column}
+  .nitem{
+    display:flex; gap:8px; align-items:flex-start;
+    padding:8px 11px 8px 13px; border-top:1px solid var(--line); border-left:3px solid transparent;
+  }
+  .nitem .nbody{flex:1; min-width:0; text-decoration:none; color:inherit; display:block}
+  .nitem .nbody:active{opacity:.6}
+  .ncat{display:inline-block; font-size:9.5px; font-weight:800; border-radius:5px; padding:1px 6px; margin-bottom:2px}
+  /* 見出しは2行までに制限（1件あたりの高さを揃え、縦に伸びすぎないようにする） */
+  .nhl{
+    font-size:12.5px; font-weight:700; line-height:1.45; color:var(--ink);
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .nmeta{font-size:10.5px; color:var(--sub); margin-top:2px}
+  .nmeta .dot{margin:0 4px}
+  .nsave{
+    flex:none; width:34px; height:34px; align-self:center; border-radius:9px;
+    border:1px solid var(--line); background:var(--card); color:#c0ccd6;
+    font-size:14px; cursor:pointer;
+  }
+  .nsave.on{color:#fff; border:0; background:#3f8f6b}
+  .nitem.c-kanko{border-left-color:var(--c-kanko)} .c-kanko .ncat{color:var(--c-kanko); background:var(--c-kanko-bg)}
+  .nitem.c-ryoko{border-left-color:var(--c-ryoko)} .c-ryoko .ncat{color:var(--c-ryoko); background:var(--c-ryoko-bg)}
+  .nitem.c-bus{border-left-color:var(--c-bus)}     .c-bus .ncat{color:var(--c-bus); background:var(--c-bus-bg)}
+  .nitem.c-park{border-left-color:var(--c-park)}   .c-park .ncat{color:var(--c-park); background:var(--c-park-bg)}
+  .nitem.c-event{border-left-color:var(--c-event)} .c-event .ncat{color:var(--c-event); background:var(--c-event-bg)}
+  .nitem.c-tw{border-left-color:var(--c-tw)}       .c-tw .ncat{color:var(--c-tw); background:var(--c-tw-bg)}
+  .nitem.c-kr{border-left-color:var(--c-kr)}       .c-kr .ncat{color:var(--c-kr); background:var(--c-kr-bg)}
+  .nmore{
+    width:100%; padding:9px; font-size:12px; font-weight:700; cursor:pointer;
+    color:var(--brand); background:#eef3fa; border:0; border-top:1px solid var(--line);
+  }
+  .nempty{font-size:12px; color:var(--sub); text-align:center; padding:16px; line-height:1.7}
+  .nnote{
+    font-size:10px; color:var(--sub); text-align:center;
+    padding:7px 13px 9px; border-top:1px solid var(--line); line-height:1.6;
+  }
+  /* 保存したニュース */
+  .nsaved{border-top:1px solid var(--line)}
+  .nsaved .nstoggle{
+    width:100%; display:flex; align-items:center; gap:8px; cursor:pointer;
+    background:var(--card); border:0; border-bottom:1px solid transparent;
+    padding:10px 13px; font-size:12.5px; font-weight:800; color:var(--ink);
+  }
+  .nsaved .nstoggle .ncnt{
+    margin-left:auto; font-size:11px; font-weight:800; color:#fff; background:var(--brand);
+    border-radius:999px; padding:2px 9px; min-width:22px; text-align:center;
+  }
+  .nsaved .nstoggle .nchev{color:var(--sub); font-size:11px; transition:transform .2s}
+  .nsaved.open .nstoggle .nchev{transform:rotate(180deg)}
+  .nsbody{display:none}
+  .nsaved.open .nsbody{display:block}
+
   .pick{margin-bottom:6px}
   .pick label{font-size:12px; color:var(--sub); display:block; margin:0 2px 6px}
   .pick select{
@@ -614,6 +691,7 @@
   </div>
   <div class="healthcard" id="healthcard" hidden></div>
   <div class="wxcard" id="wxcard" hidden></div>
+  <div class="newscard" id="newscard" hidden></div>
   <div class="horocard" id="horocard" hidden></div>
   <div class="phrasecard" id="phrasecard" hidden></div>
   <div id="managebar" hidden></div>
@@ -1221,6 +1299,7 @@ function applyCollapsible(){ /* 折り畳みは廃止（運行内容は常に全
 function showApp(data){
   $("#hname").textContent = data.name || "運行予定確認";
   if(window.__phraseSetUser) window.__phraseSetUser(data.name || "");
+  if(window.__newsSetUser) window.__newsSetUser(data.name || "");
   $("#updated").textContent = "最終更新：" + (SECURE.meta?.generatedAt || "-");
   $("#login").hidden = true;
   $("#app").hidden = false;
@@ -1596,6 +1675,117 @@ fetch("horoscope.json?_=" + Date.now())
   .then(r => r.ok ? r.json() : null)
   .then(showTodayHoroscope)
   .catch(()=>{});
+
+/* ---- 今日のプラチナニュース（news.json を1日1回・朝9時に更新）---- */
+(function(){
+  let DATA = null, USER = "", memStore = {};
+  let filter = "all", expanded = false, savedOpen = false;
+  const SHOW = 5;
+  const sKey = ()=> "platinum_news::" + (USER || "guest");
+  function loadSaved(){ try{ const v = localStorage.getItem(sKey()); return v ? JSON.parse(v) : {}; }catch(e){ return memStore; } }
+  function persist(o){ memStore = o; try{ localStorage.setItem(sKey(), JSON.stringify(o)); }catch(e){} }
+
+  function label(key){
+    const c = (DATA && DATA.cats || []).find(x=> x.key === key);
+    return c ? c.label : key;
+  }
+  function ago(iso){
+    const t = Date.parse(iso); if(isNaN(t)) return "";
+    const min = Math.floor((Date.now() - t) / 60000);
+    if(min < 60) return Math.max(1, min) + "分前";
+    const hr = Math.floor(min / 60);
+    if(hr < 24) return hr + "時間前";
+    const day = Math.floor(hr / 24);
+    if(day === 1) return "昨日";
+    if(day < 7) return day + "日前";
+    const d = new Date(t);
+    return (d.getMonth() + 1) + "/" + d.getDate();
+  }
+  const esc = s => escapeHtml(String(s));
+
+  function row(n, saved){
+    const on = !!saved[n.u];
+    return '<div class="nitem c-' + n.c + '">'
+      + '<a class="nbody" href="' + esc(n.u) + '" target="_blank" rel="noopener">'
+      +   '<span class="ncat">' + esc(label(n.c)) + '</span>'
+      +   '<div class="nhl">' + esc(n.t) + '</div>'
+      +   '<div class="nmeta">' + esc(n.s) + '<span class="dot">·</span>' + esc(ago(n.d)) + '</div>'
+      + '</a>'
+      + '<button type="button" class="nsave' + (on ? ' on' : '') + '" data-u="' + esc(n.u) + '" '
+      +   'title="' + (on ? '保存済み' : '保存') + '" aria-label="' + (on ? '保存済み' : '保存') + '">'
+      +   (on ? '★' : '☆') + '</button>'
+      + '</div>';
+  }
+
+  function render(){
+    const card = document.getElementById("newscard");
+    if(!card || !DATA) return;
+    const saved = loadSaved();
+    const items = DATA.items || [];
+    const rows = items.filter(n => filter === "all" || n.c === filter);
+    const shown = expanded ? rows : rows.slice(0, SHOW);
+
+    let chips = '<button type="button" class="nchip' + (filter==="all"?" on":"") + '" data-k="all">すべて</button>';
+    (DATA.cats || []).forEach(c=>{
+      chips += '<button type="button" class="nchip' + (filter===c.key?" on":"") + '" data-k="' + esc(c.key) + '">' + esc(c.label) + '</button>';
+    });
+
+    const listHtml = shown.length
+      ? shown.map(n => row(n, saved)).join("")
+      : '<div class="nempty">このカテゴリの新しいニュースはありません。<br>また明日の朝、お届けします。</div>';
+
+    const more = rows.length > SHOW
+      ? '<button type="button" class="nmore" id="nmore">' + (expanded ? "閉じる ▲" : "もっと見る ▼（あと" + (rows.length - SHOW) + "件）") + '</button>'
+      : "";
+
+    const skeys = Object.keys(saved);
+    let savedHtml = "";
+    if(skeys.length){
+      const srows = skeys.map(u => row(saved[u], saved)).join("");
+      savedHtml = '<div class="nsaved' + (savedOpen ? " open" : "") + '">'
+        + '<button type="button" class="nstoggle" id="nstoggle"><span>📌</span><span>保存したニュース</span>'
+        +   '<span class="ncnt">' + skeys.length + '</span><span class="nchev">▼</span></button>'
+        + '<div class="nsbody">' + srows + '</div>'
+        + '</div>';
+    }
+
+    card.innerHTML =
+      '<div class="nhead"><span class="ntitle">📰 今日のプラチナニュース<span class="star">✦</span></span>'
+      +   '<span class="nupd">更新 ' + esc(DATA.updatedAt || "") + '</span></div>'
+      + '<div class="nchips">' + chips + '</div>'
+      + '<div class="nlist">' + listHtml + '</div>'
+      + more
+      + savedHtml
+      + '<div class="nnote">見出しをタップすると元記事が開きます／毎朝9:00に自動更新</div>';
+    card.hidden = false;
+
+    card.querySelectorAll(".nchip").forEach(b=>{
+      b.addEventListener("click", ()=>{ filter = b.getAttribute("data-k"); expanded = false; render(); });
+    });
+    const mb = card.querySelector("#nmore");
+    if(mb) mb.addEventListener("click", ()=>{ expanded = !expanded; render(); });
+    const st = card.querySelector("#nstoggle");
+    if(st) st.addEventListener("click", ()=>{ savedOpen = !savedOpen; render(); });
+    card.querySelectorAll(".nsave").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        const u = b.getAttribute("data-u"), s = loadSaved();
+        if(s[u]){ delete s[u]; }
+        else{
+          const n = (DATA.items || []).find(x=> x.u === u) || s[u];
+          if(n) s[u] = {c:n.c, t:n.t, u:n.u, s:n.s, d:n.d};
+        }
+        persist(s); render();
+      });
+    });
+  }
+
+  window.__newsSetUser = function(name){ USER = name || ""; if(DATA) render(); };
+
+  fetch("news.json?_=" + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(d => { if(!d || !Array.isArray(d.items)) return; DATA = d; render(); })
+    .catch(()=>{});
+})();
 
 /* ---- 今日の一言（台湾中国語・韓国語）---- */
 (function(){
