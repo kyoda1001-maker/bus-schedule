@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-16 20:50",
+ "updatedAt": "2026-07-17 11:37",
  "cats": [
   {
    "key": "kanko",
@@ -48,67 +48,39 @@
  ],
  "items": [
   {
-   "c": "spot",
-   "t": "【首里城公園】初公開「琉球国王・王妃衣装完成記念式典（開催：7/22）」および「琉球国王・王妃衣装 お披露目展（会期：7/22～26）」開催！",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5xWTZ4MTFxZG55aFZKeV92N0l5SnBJbW9mcDEzT3JRaDZxNUxkbkRwbE01Mm00UERoa1RSSFVPUERPeFJVS0hYbWVJUVRRYlVsUEhQRmhZODJVejNESkE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-16T08:48:32+00:00"
+   "c": "tw",
+   "t": "台湾人はなぜ地方に向かうのか 9割がリピーター、理想の観光客像は",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5iM3MyMXRRT2VaNWdJOHdMVFFxTFIwQk05V0VtYXlVRW12Unlyb0RBdWNEdlVGaC1vclU0NXpaeEJqOXZBQ1NaNkcydzBhRzczY05UZDRQV3FTeXJBdzZpZ1pubU5TcVU?oc=5",
+   "s": "朝日新聞",
+   "d": "2026-07-17T02:00:00+00:00"
   },
   {
    "c": "hotel",
-   "t": "フサキビーチリゾート ホテル＆ヴィラズ 石垣島で味わう「北海道グルメ ランチブッフェ」を今年も開催",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE83dFRJMlVwQ25SSkVjcHR2Q0w1ZTNkZ0taRUVOdHpvM1J1OHNaVGFHRnRodVNvR3ZJYlAzX0xpY1l4M3NxVlFLS09lbDBFU2FsbGJJVm1ZY0cxelB0YXc?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-16T06:00:00+00:00"
-  },
-  {
-   "c": "hotel",
-   "t": "那覇市泉崎に新ホテル 「リビングイン旭橋駅前EAST」が開業 全室に洗濯機・乾燥機",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1McVh1Si1HQmdYR0RyZ0o3Y295ZDlIajNZN04yS0R4enpYa243ejFGcFZhTFBuc1pzcjNCOWM5aXk3NlpsZXJESlEwQ18yaWZQNWhWQ2oycW11dUszSXc?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-16T02:27:00+00:00"
-  },
-  {
-   "c": "airport",
-   "t": "「これまで食べた中で一番」マンゴーの日、那覇空港でPR 沖縄",
-   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE11TkNTeGtoM2ptLTFDOThZY3NSTkZHalZ2dDRIa05vQWpVZnVERGJfbHpFdFgwdVJnZlItTWUzNnh5SGhwYjN3S3VsdFRFYUR5dGxnVjFqcTFCRUNsaXFGRW93?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-07-15T20:00:00+00:00"
-  },
-  {
-   "c": "kr",
-   "t": "上半期訪日客、5年ぶり前年割れも消費額は過去最高 中国人客が56％減も韓国↗台湾↗",
-   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1xU19VYlRBUkFJUTNNOHU4YjdsMk45QWM2YkZMbU1aaFR1RWRzU3BMV3hCclBGUDZ4OHU3TlRCREVtVUhIZ0lJNnphcUdtdzFuS2k0dUR2akF4bVVEMGZ0YnBvRWptbkVFVnpCTTNRcDNnSUhhUWc?oc=5",
-   "s": "産経ニュース",
-   "d": "2026-07-15T10:51:52+00:00"
-  },
-  {
-   "c": "airport",
-   "t": "「甘くておいしい」と笑顔 「マンゴーの日」那覇空港で県産400食ふるまう",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5CWjZQWEZSeTV4WEpuTmpXZjRPalRNVHNWS0c2UDhuN1V0YndjaDVtSkIta1NVQTJRMGdSeUxrcGxXbUNiN29Ld3gyektCeldhQk9rQko2ZUVhbF9XR0E?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-15T09:42:00+00:00"
-  },
-  {
-   "c": "ryoko",
-   "t": "沖縄のリゾートエリア恩納村に開業した高級コンドミニアムホテル「ブリスティア・スイート＆リゾート沖縄恩納村」に泊まってみた",
-   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE94WHZsUVFlbzRWYWdmN09YZ2QzYmJMbDVVeWg1Ni1KX3JBU3Rsb2pycC01cV80YU04cm5OdmRsNEFtVWIxUVI1YklCX1lvN3pPdElUaHNGdjkxb0MwUC1UUWJxY2E0T2dy?oc=5",
-   "s": "トラベル Watch",
-   "d": "2026-07-15T07:00:00+00:00"
-  },
-  {
-   "c": "spot",
-   "t": "沖縄美ら海水族館、「美ら海ナイトアクアリウム」開催 8月は午後9時まで時間延長",
-   "u": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1SeEJmRVMtcEJYc2ZTbjdDQzQ1THZUMTBtbDNDMHNKT1Q3c0RtQ3BvY2tZZzVPRG14WUhOLXNlUHVVdEVQR2loaFZCUkRPUFA2MTNsR0dpdw?oc=5",
-   "s": "TRAICY（トライシー）",
-   "d": "2026-07-15T03:36:38+00:00"
+   "t": "ジョルダン[3710]：沖縄県・久米島空港から、リゾートホテルへスムーズにアクセス 空港快走バスで快適・安心な移動 2026年7月17日(適時開示) ：日経会社情報DIGITAL",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1CQzdXOERZRVN6THZiNmRVeHc5ZmJDZ3VQbXM3MDlQbXlnUC1rS25IWWxGRExQUk1uQlhfQTNFV29kQmJFZkg1eWNFS3BSZUZPTmtvZ3hvNUNDNzV6cXZKdjc2NldzWUhxT3c?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-07-17T01:40:00+00:00"
   },
   {
    "c": "kanko",
-   "t": "国頭村の地域学習を後押し ガイドブック「沖縄石の文化博物館」を贈呈",
-   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBybi1wVEg5WUFKSUtjdGl5Q1QxbUxlMmJ1a2lqdl9nSVB6eXJrd1VvS3hrNnZIT2lxOEwwbThaN1VRLUNaVTdkaE5hYXpadVhjcXFBNExjaWtYUQ?oc=5",
-   "s": "QAB 琉球朝日放送",
-   "d": "2026-07-13T11:05:03+00:00"
+   "t": "宿泊税導入まで半年余り 「周知まだ」は49％ 現場の理解度不十分にシステム面の不安も 沖縄観光DX機構調査",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5uR00zclhqa0JBMUpHMWlxM3Eyd1pjUWs3R3RkTFEyU2tVQ3BvNk9yc0VDaEVoRnZYTmZ6RlNhbmhuU1AzQTBmUUpqSDJLUUdaOWZocm5HdEtJd0sxS2c?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-16T23:42:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "首里城の大龍柱「向かい合わせ」で設置 来週にも仕上げの彫刻 沖縄【動画あり】",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBCQmJxSVVSbEJJVmVZNkFjOTJCbjl3eklUa2U1eTFzNHRUZlFZMW9wMTNsZm0yZms4Ql9Ja05ER2FUUHNtYmlhX1BMVjBLX29fd1lYZ0hMZkUtX0U?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-07-16T20:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "大東建託が沖縄離島に高級ホテル 2028年に61室、訪日客・家族層に的",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE83OTNNYl9zUDFGR0ZCWXZsLW1rM1BMNTI3VmhGQlNQalIxUmVxeVloMENWWnFVdXZ1NnM1eGtTaUFzemx0cHdBcVZtUThPXzl1QmRXcDZNOHh1cktneUt3ODVtY0RnN0RRcXFEXw?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-07-16T17:00:00+00:00"
   }
  ]
 }
