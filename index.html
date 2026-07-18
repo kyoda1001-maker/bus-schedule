@@ -663,6 +663,7 @@
   #app.mode-sched #wxcard,
   #app.mode-sched #newscard,
   #app.mode-sched #horocard,
+  #app.mode-sched #boardHome,
   #app.mode-sched #phrasecard{display:none}
   /* 「つぶやき」タブでは、つぶやき欄だけを表示 */
   #tsubu{display:none}
@@ -672,13 +673,71 @@
   #app.mode-tsubu #wxcard,
   #app.mode-tsubu #newscard,
   #app.mode-tsubu #horocard,
+  #app.mode-tsubu #boardHome,
   #app.mode-tsubu #phrasecard,
   #app.mode-tsubu #admbar,
   #app.mode-tsubu #managebar,
   #app.mode-tsubu #pick,
+  #app.mode-tsubu #schSeg,
   #app.mode-tsubu .viewbar,
   #app.mode-tsubu #list,
   #app.mode-tsubu footer{display:none}
+
+  /* ---- みんなの3日間ボード（運行予定タブの切替／ホームカード）---- */
+  /* 運行予定タブ内の「自分／みんな」切替。ホーム・つぶやきでは非表示 */
+  #schSeg{display:none}
+  #app.mode-sched #schSeg{display:flex}
+  #schSeg{background:var(--tint); border:1px solid var(--line); border-radius:12px;
+    padding:3px; margin-bottom:12px; gap:0}
+  #schSeg button{flex:1; border:0; background:transparent; color:var(--sub); font-size:13.5px;
+    font-weight:700; padding:9px 0; border-radius:9px; font-family:inherit; cursor:pointer}
+  #schSeg button.on{background:var(--card); color:var(--brand); box-shadow:0 1px 5px rgba(31,98,142,.16)}
+  /* 「みんな」選択時はカレンダー/リストを隠してボードを出す */
+  #boardSched{display:none}
+  #app.mode-sched.sched-all #boardSched{display:block}
+  #app.mode-sched.sched-all .viewbar,
+  #app.mode-sched.sched-all #list{display:none}
+
+  .boardcard{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; margin-bottom:12px; box-shadow:0 1px 8px rgba(31,98,142,.06)}
+  .boardcard .bhead{display:flex; align-items:center; gap:7px; padding:11px 13px 9px;
+    border-bottom:1px solid var(--line)}
+  .boardcard .bhead .ic{font-size:15px}
+  .boardcard .bhead h3{margin:0; font-size:13.5px; font-weight:800}
+  .boardcard .bhead .days{margin-left:auto; font-size:10.5px; color:var(--sub)}
+  .bgrid{width:100%; border-collapse:collapse; table-layout:fixed}
+  .bgrid th,.bgrid td{border-bottom:1px solid var(--line)}
+  .bgrid thead th{font-size:10.5px; font-weight:700; color:var(--sub); padding:7px 3px;
+    text-align:center; background:var(--tint); line-height:1.3}
+  .bgrid thead th.nm{text-align:left; padding-left:12px; width:30%}
+  .bgrid thead th .wd{display:block; font-size:10px}
+  .bgrid thead th.today{color:var(--brand)}
+  .bgrid thead th.wend .wd{color:#c0392b}
+  .bgrid td.nm{font-size:12px; font-weight:700; padding:9px 6px 9px 12px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .bgrid td.nm .role{display:block; font-size:9.5px; font-weight:500; color:var(--sub)}
+  .bgrid td.cell{padding:7px 3px; text-align:center; vertical-align:middle; cursor:default}
+  .bgrid td.cell.tap{cursor:pointer}
+  .bgrid td.cell.today{background:rgba(31,98,142,.05)}
+  .bgrid .bbdg{display:inline-block; min-width:20px; font-size:11px; font-weight:800; color:#fff;
+    border-radius:6px; padding:1px 6px; line-height:1.55}
+  .bbdg.t-運行{background:var(--unko)} .bbdg.t-待機{background:var(--taiki)}
+  .bbdg.t-日勤{background:var(--nikkin)} .bbdg.t-公休{background:var(--kyu)}
+  .bbdg.t-休み{background:var(--kyu)} .bbdg.t-調整{background:var(--chosei)}
+  .bbdg.t-有休{background:var(--yukyu)}
+  .bgrid .dest{display:block; font-size:9.5px; color:var(--sub); margin-top:2px;
+    line-height:1.35; overflow:hidden; text-overflow:ellipsis; display:-webkit-box;
+    -webkit-line-clamp:2; -webkit-box-orient:vertical; white-space:normal}
+  .bgrid td.cell.blank{color:#c3ccd4; font-size:12px}
+  .boardcard .bfoot{font-size:10px; color:var(--sub); padding:8px 12px; background:var(--tint)}
+  /* タップ詳細（安全な要約のみ：時刻・行程の地名） */
+  .bdetail{padding:11px 13px; border-top:1px solid var(--line); background:var(--tint); font-size:12px}
+  .bdetail .dt{font-weight:800; color:var(--brand); margin-bottom:4px; font-size:12.5px}
+  .bdetail .row{color:var(--ink); margin:2px 0}
+  .bdetail .row .lb{color:var(--sub); margin-right:5px}
+  .bdetail .route{margin-top:5px; color:var(--ink); line-height:1.7}
+  .bdetail .bclose{float:right; border:0; background:transparent; color:var(--sub); font-size:15px;
+    cursor:pointer; line-height:1; padding:0 2px}
 
   /* つぶやき */
   #tsubu{--ts-accent:#2f8f6b; --ts-danger:#b5453c}
@@ -866,6 +925,7 @@
   </div>
   <div class="healthcard" id="healthcard" hidden></div>
   <div class="wxcard" id="wxcard" hidden></div>
+  <div class="boardcard" id="boardHome" hidden></div>
   <div class="newscard" id="newscard" hidden></div>
   <div class="horocard" id="horocard" hidden></div>
   <div class="phrasecard" id="phrasecard" hidden></div>
@@ -894,6 +954,11 @@
       </div>
     </div>
   </div>
+  <div id="schSeg">
+    <button type="button" id="segSelf" class="on">自分の予定</button>
+    <button type="button" id="segAll">みんな（3日間）</button>
+  </div>
+  <div class="boardcard" id="boardSched"></div>
   <div class="viewbar"><button type="button" id="viewtoggle">📅 予定をカレンダー表示</button></div>
   <div id="list"></div>
   <footer>
@@ -1537,12 +1602,93 @@ function renderList(items){
 
 function applyCollapsible(){ /* 折り畳みは廃止（運行内容は常に全文表示） */ }
 
+/* ---- みんなの3日間ボード（他ドライバー＋スタッフの今日・明日・明後日）---- */
+let OVERVIEW = null;
+let SCHVIEW = "self";
+const BADGE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調", 有休:"有"};
+function boardDayHead(iso, i){
+  const d = new Date(iso+"T00:00:00"), wd = d.getDay();
+  const lbl = i===0 ? "今日" : i===1 ? "明日" : i===2 ? "明後日" : "";
+  const wc = (wd===0||wd===6) ? " wend" : "";
+  const tc = iso===TODAY ? " today" : "";
+  return `<th class="${(wc+tc).trim()}">${lbl}<span class="wd">${d.getMonth()+1}/${d.getDate()}(${WD[wd]})</span></th>`;
+}
+function boardHTML(ov, idPrefix){
+  if(!ov || !ov.people || !ov.people.length) return "";
+  const dates = ov.dates || [];
+  const head = `<tr><th class="nm">名前</th>${dates.map(boardDayHead).join("")}</tr>`;
+  const rows = ov.people.map((p, pi)=>{
+    const role = p.role==="staff" ? `<span class="role">事務スタッフ</span>` : "";
+    const cells = (p.days||[]).map((c, di)=>{
+      const iso = dates[di], tc = iso===TODAY ? " today" : "";
+      if(!c || !c.type) return `<td class="cell blank${tc}">—</td>`;
+      const ab = BADGE_ABBR[c.type] || c.type.slice(0,1);
+      const dest = (c.type==="運行" && c.title) ? `<span class="dest">${escapeHtml(c.title)}</span>` : "";
+      const b = c.board || {};
+      const hasDetail = (b.places && b.places.length) || b.dep || b.out || b.back;
+      const attr = hasDetail ? ` data-p="${pi}" data-d="${di}"` : "";
+      return `<td class="cell${tc}${hasDetail?" tap":""}"${attr}><span class="bbdg t-${c.type}">${ab}</span>${dest}</td>`;
+    }).join("");
+    return `<tr><td class="nm">${escapeHtml(p.name)}${role}</td>${cells}</tr>`;
+  }).join("");
+  return `<div class="bhead"><span class="ic">👥</span><h3>みんなの運行予定</h3><span class="days">今日・明日・明後日</span></div>
+    <table class="bgrid"><thead>${head}</thead><tbody>${rows}</tbody></table>
+    <div class="bfoot">運行はタップで詳細（時刻・行程）／表示は今日から3日間のみ</div>`;
+}
+function boardDetailHTML(c){
+  const b = c.board || {};
+  let rows = "";
+  if(b.dep) rows += `<div class="row"><span class="lb">出社</span>${escapeHtml(b.dep)}</div>`;
+  if(b.out || b.back) rows += `<div class="row"><span class="lb">出庫</span>${escapeHtml(b.out||"—")}　<span class="lb">帰庫</span>${escapeHtml(b.back||"—")}</div>`;
+  if(b.places && b.places.length) rows += `<div class="route"><span class="lb">行程</span>${b.places.map(escapeHtml).join(" → ")}</div>`;
+  const ttl = c.title ? escapeHtml(c.title) : "運行";
+  return `<div class="bdetail"><button type="button" class="bclose" aria-label="閉じる">×</button><div class="dt">${ttl}</div>${rows||'<div class="row">詳細はありません</div>'}</div>`;
+}
+function wireBoard(root){
+  const foot = root.querySelector(".bfoot");
+  root.querySelectorAll("td.cell.tap").forEach(td=>{
+    td.onclick = ()=>{
+      const wasThis = td.__open === true;
+      root.querySelectorAll(".bdetail").forEach(x=>x.remove());
+      root.querySelectorAll("td.cell.tap").forEach(x=>{ x.__open = false; });
+      if(wasThis) return;
+      const c = OVERVIEW.people[+td.dataset.p].days[+td.dataset.d];
+      const tmp = document.createElement("div");
+      tmp.innerHTML = boardDetailHTML(c);
+      const detail = tmp.firstElementChild;
+      if(foot) foot.parentNode.insertBefore(detail, foot); else root.appendChild(detail);
+      detail.querySelector(".bclose").onclick = ()=>{ detail.remove(); td.__open = false; };
+      td.__open = true;
+    };
+  });
+}
+function renderBoards(){
+  const html = boardHTML(OVERVIEW, "bd");
+  const eh = $("#boardHome"), es = $("#boardSched");
+  if(eh){ eh.innerHTML = html; eh.hidden = !html; wireBoard(eh); }
+  if(es){ es.innerHTML = html; wireBoard(es); }
+}
+function setSchView(v){
+  SCHVIEW = v;
+  $("#app").classList.toggle("sched-all", v==="all");
+  $("#segSelf").classList.toggle("on", v==="self");
+  $("#segAll").classList.toggle("on", v==="all");
+}
+$("#segSelf").addEventListener("click", ()=> setSchView("self"));
+$("#segAll").addEventListener("click", ()=> setSchView("all"));
+
 /* ---- ログイン制御 ---- */
 function showApp(data){
   $("#hname").textContent = data.name || "運行予定確認";
   if(window.__phraseSetUser) window.__phraseSetUser(data.name || "");
   if(window.__newsSetUser) window.__newsSetUser(data.name || "");
   if(window.__tsubuSetUser) window.__tsubuSetUser(data.name || "", !!data.admin);
+  // みんなの3日間ボード（他ドライバー＋事務スタッフ）
+  OVERVIEW = data.overview || null;
+  renderBoards();
+  const hasBoard = !!(OVERVIEW && OVERVIEW.people && OVERVIEW.people.length);
+  $("#schSeg").style.display = hasBoard ? "" : "none";
+  setSchView("self");                  // ログイン直後は「自分の予定」から
   $("#updated").textContent = "最終更新：" + (SECURE.meta?.generatedAt || "-");
   $("#login").hidden = true;
   $("#app").hidden = false;
