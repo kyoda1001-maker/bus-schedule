@@ -740,6 +740,10 @@
   .ts-rphotoadd .ts-thumbwrap img{width:46px; height:46px}
   .ts-rphotoadd .ts-addbtn{width:46px; height:46px; font-size:20px}
   .ts-rphotoadd .cap{font-size:10px; color:var(--sub)}
+  /* 返信のリアクションは小さめ */
+  .ts-rep .ts-react{margin-top:6px}
+  .ts-rep .ts-rbtn{font-size:11px; padding:4px 10px}
+  .ts-rep .ts-rbtn .em{font-size:12px}
 
   .ts-fab{position:fixed; left:50%; transform:translateX(-50%);
     bottom:calc(70px + env(safe-area-inset-bottom)); z-index:38;
@@ -2272,9 +2276,14 @@ fetch("horoscope.json?_=" + Date.now())
         const rmine=(r.uid===UID);
         const rphotos=(r.photos&&r.photos.length)
           ? '<div class="ts-photos n'+r.photos.length+'">'+r.photos.map(ph=>'<img src="'+esc(ph.url)+'" data-full="'+esc(ph.url)+'" alt="写真">').join("")+'</div>' : "";
+        const rg=r.rGreat||[], rf=r.rFunny||[], rgOn=rg.indexOf(UID)>=0, rfOn=rf.indexOf(UID)>=0;
+        const rreact='<div class="ts-react">'+
+          '<button class="ts-rbtn great'+(rgOn?' on':'')+'" data-reactr="'+p._id+'|'+r.rid+'|great"><span class="em">👍</span>最高だね！'+(rg.length?'<span class="c">'+rg.length+'</span>':'')+'</button>'+
+          '<button class="ts-rbtn funny'+(rfOn?' on':'')+'" data-reactr="'+p._id+'|'+r.rid+'|funny"><span class="em">😂</span>うけるね！'+(rf.length?'<span class="c">'+rf.length+'</span>':'')+'</button>'+
+          '</div>';
         return '<div class="ts-rep"><div class="top"><span class="no">≫</span>'+nickHtml(r)+
           (rmine?' <span class="mine">自分</span>':'')+'<span class="date">'+fmt(r.ts)+'</span></div>'+
-          (r.body?'<div class="body">'+esc(r.body)+'</div>':"")+rphotos+
+          (r.body?'<div class="body">'+esc(r.body)+'</div>':"")+rphotos+rreact+
           ((rmine||ADMIN)?'<div class="ts-acts"><button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button></div>':'')+
           '</div>';
       }).join("");
@@ -2347,6 +2356,19 @@ fetch("horoscope.json?_=" + Date.now())
       const p=findPost(id); const arr=(p&&p[field])||[]; const has=arr.indexOf(UID)>=0;
       const upd={}; upd[field]= has ? fb.FV.arrayRemove(UID) : fb.FV.arrayUnion(UID);
       fb.db.collection("tsubuyaki").doc(id).update(upd).catch(e=>{ console.warn(e); });
+    });
+    // 返信へのリアクション（返信は配列内のため、replies配列を書き換える）
+    list.querySelectorAll("[data-reactr]").forEach(b=>b.onclick=()=>{
+      if(!UID) return;
+      const [id,rid,kind]=b.dataset.reactr.split("|"), field=(kind==="great"?"rGreat":"rFunny");
+      const p=findPost(id); if(!p) return;
+      const reps=(p.replies||[]).map(r=>{
+        if(r.rid!==rid) return r;
+        const nr=Object.assign({}, r), arr=(nr[field]||[]).slice(), i=arr.indexOf(UID);
+        if(i>=0) arr.splice(i,1); else arr.push(UID);
+        nr[field]=arr; return nr;
+      });
+      fb.db.collection("tsubuyaki").doc(id).update({replies: reps}).catch(e=>{ console.warn(e); });
     });
     list.querySelectorAll("[data-sendr]").forEach(b=>b.onclick=async()=>{
       const id=b.dataset.sendr, t=el("#tsr-"+id).value.trim();
