@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-18 16:10",
+ "updatedAt": "2026-07-18 20:30",
  "cats": [
   {
    "key": "kanko",
@@ -47,6 +47,13 @@
   }
  ],
  "items": [
+  {
+   "c": "ryoko",
+   "t": "沖縄の旅行満足度6部門で全国1位 じゃらん調査 総合満足度は5位",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBwRTd2UEtFX3RjcXh3X0hlWEVqeXpSWVZaZU85dHdWQTV1QkNwckdUdG1Sa3lISlJrZW0wNnloWkZpd3dTZHN0cVJKcW1odnJlZEVTQlBnWldER3BYZXc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-18T08:43:00+00:00"
+  },
   {
    "c": "hotel",
    "t": "沖縄・恩納村に全139室のホテルコンドミニアム開業 「別荘利用と資産活用の両立」を提案",
