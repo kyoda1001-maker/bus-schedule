@@ -722,6 +722,24 @@
   .ts-rbox .send{font-size:12.5px; font-weight:700; color:#fff; background:var(--ts-accent);
     border:0; border-radius:9px; padding:8px 14px; cursor:pointer; white-space:nowrap}
   .ts-rbox .cancel{font-size:12px; color:var(--sub); background:none; border:0; cursor:pointer}
+  /* リアクション（最高だね／うけるね） */
+  .ts-react{display:flex; gap:8px; margin-top:9px; flex-wrap:wrap}
+  .ts-rbtn{display:inline-flex; align-items:center; gap:5px; font:inherit; font-size:12px; font-weight:700;
+    color:var(--sub); background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:5px 12px; cursor:pointer; transition:transform .08s ease}
+  .ts-rbtn:active{transform:scale(.95)}
+  .ts-rbtn .em{font-size:14px}
+  .ts-rbtn .c{color:var(--ts-accent); font-weight:800; margin-left:1px}
+  .ts-rbtn.great.on{border-color:var(--brand); background:#eaf2f9; color:var(--brand)}
+  .ts-rbtn.great.on .c{color:var(--brand)}
+  .ts-rbtn.funny.on{border-color:#c07800; background:#fbf3e2; color:#9a6a1f}
+  .ts-rbtn.funny.on .c{color:#9a6a1f}
+  /* 返信の写真 */
+  .ts-rep .ts-photos{margin-top:6px}
+  .ts-rphotoadd{display:flex; gap:6px; align-items:center; margin-top:7px; flex-wrap:wrap}
+  .ts-rphotoadd .ts-thumbwrap img{width:46px; height:46px}
+  .ts-rphotoadd .ts-addbtn{width:46px; height:46px; font-size:20px}
+  .ts-rphotoadd .cap{font-size:10px; color:var(--sub)}
 
   .ts-fab{position:fixed; left:50%; transform:translateX(-50%);
     bottom:calc(70px + env(safe-area-inset-bottom)); z-index:38;
@@ -2175,6 +2193,7 @@ fetch("horoscope.json?_=" + Date.now())
   let ME = "", ADMIN = false, UID = null;
   let posts = [], subscribed = false, opened = false;
   let replyOpenId = null, editingId = null, draft = [];  // draft: [{url,path}] or {blob,preview}
+  let replyDraft = [];  // 返信の写真ドラフト（開いている返信ボックス用）
 
   const el = s => document.querySelector(s);
   const esc = s => escapeHtml(String(s));
@@ -2251,18 +2270,27 @@ fetch("horoscope.json?_=" + Date.now())
         ? '<div class="ts-photos n'+p.photos.length+'">'+p.photos.map(ph=>'<img src="'+esc(ph.url)+'" data-full="'+esc(ph.url)+'" alt="写真">').join("")+'</div>' : "";
       const reps=(p.replies||[]).slice().sort((a,b)=>a.ts-b.ts).map(r=>{
         const rmine=(r.uid===UID);
+        const rphotos=(r.photos&&r.photos.length)
+          ? '<div class="ts-photos n'+r.photos.length+'">'+r.photos.map(ph=>'<img src="'+esc(ph.url)+'" data-full="'+esc(ph.url)+'" alt="写真">').join("")+'</div>' : "";
         return '<div class="ts-rep"><div class="top"><span class="no">≫</span>'+nickHtml(r)+
           (rmine?' <span class="mine">自分</span>':'')+'<span class="date">'+fmt(r.ts)+'</span></div>'+
-          '<div class="body">'+esc(r.body)+'</div>'+
+          (r.body?'<div class="body">'+esc(r.body)+'</div>':"")+rphotos+
           ((rmine||ADMIN)?'<div class="ts-acts"><button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button></div>':'')+
           '</div>';
       }).join("");
       const repliesHtml=reps?'<div class="ts-replies">'+reps+'</div>':"";
       const rbox=(replyOpenId===p._id)?
         '<div class="ts-rbox"><textarea id="tsr-'+p._id+'" placeholder="返信を書く" maxlength="500"></textarea>'+
+        '<div class="ts-rphotoadd" id="tsrp-'+p._id+'"><button type="button" class="ts-addbtn" data-raddphoto="'+p._id+'">＋</button><span class="cap">写真 最大4枚</span></div>'+
+        '<input type="file" id="tsrf-'+p._id+'" accept="image/*" multiple hidden>'+
         '<div class="rrow"><input id="tsrn-'+p._id+'" type="text" maxlength="20" placeholder="ニックネーム（任意）">'+
         '<button class="send" data-sendr="'+p._id+'">返信</button>'+
         '<button class="cancel" data-cancelr="1">やめる</button></div></div>':"";
+      const g=p.rGreat||[], f=p.rFunny||[], gOn=g.indexOf(UID)>=0, fOn=f.indexOf(UID)>=0;
+      const react='<div class="ts-react">'+
+        '<button class="ts-rbtn great'+(gOn?' on':'')+'" data-react="'+p._id+'|great"><span class="em">👍</span>最高だね！'+(g.length?'<span class="c">'+g.length+'</span>':'')+'</button>'+
+        '<button class="ts-rbtn funny'+(fOn?' on':'')+'" data-react="'+p._id+'|funny"><span class="em">😂</span>うけるね！'+(f.length?'<span class="c">'+f.length+'</span>':'')+'</button>'+
+        '</div>';
       const acts='<div class="ts-acts">'+
         '<button class="ts-act reply" data-reply="'+p._id+'">💬 返信'+((p.replies&&p.replies.length)?' <span class="cnt">'+p.replies.length+'</span>':'')+'</button>'+
         (mine?'<button class="ts-act edit" data-edit="'+p._id+'">✏️ 編集</button>':'')+
@@ -2271,34 +2299,86 @@ fetch("horoscope.json?_=" + Date.now())
       return '<div class="ts-post"><div class="top"><span class="no">'+num+'</span>'+nickHtml(p)+
         (mine?' <span class="mine">自分</span>':'')+
         '<span class="date">'+fmt(p.ts)+' ・ '+expLabel(p.ts)+'</span></div>'+
-        '<div class="body">'+esc(p.body)+'</div>'+photos+acts+repliesHtml+rbox+'</div>';
+        '<div class="body">'+esc(p.body)+'</div>'+photos+react+acts+repliesHtml+rbox+'</div>';
     }).join("");
     wire();
+  }
+
+  // 返信の写真ドラフトのサムネイル描画（全体再描画せず、開いている返信ボックス内だけ更新）
+  function renderReplyDraft(){
+    const box=el("#tsrp-"+replyOpenId); if(!box) return;
+    box.querySelectorAll(".ts-thumbwrap").forEach(e=>e.remove());
+    const addBtn=box.querySelector(".ts-addbtn");
+    replyDraft.forEach((d,i)=>{
+      const w=document.createElement("span"); w.className="ts-thumbwrap";
+      w.innerHTML='<img src="'+d.preview+'"><button type="button" class="rm" data-rrm="'+i+'">×</button>';
+      box.insertBefore(w, addBtn);
+    });
+    box.querySelectorAll("[data-rrm]").forEach(b=>b.onclick=()=>{ replyDraft.splice(+b.dataset.rrm,1); renderReplyDraft(); });
+    addBtn.style.display = replyDraft.length>=4 ? "none" : "flex";
+    const cap=box.querySelector(".cap"); if(cap) cap.textContent = replyDraft.length ? replyDraft.length+" / 4 枚" : "写真 最大4枚";
   }
 
   function findPost(id){ return posts.find(x=>x._id===id); }
   function wire(){
     const list=el("#tsList");
-    list.querySelectorAll("[data-reply]").forEach(b=>b.onclick=()=>{ replyOpenId=(replyOpenId===b.dataset.reply)?null:b.dataset.reply; render(); });
-    list.querySelectorAll("[data-cancelr]").forEach(b=>b.onclick=()=>{ replyOpenId=null; render(); });
-    list.querySelectorAll("[data-sendr]").forEach(b=>b.onclick=()=>{
-      const id=b.dataset.sendr, t=el("#tsr-"+id).value.trim(); if(!t) return;
+    list.querySelectorAll("[data-reply]").forEach(b=>b.onclick=()=>{
+      replyOpenId=(replyOpenId===b.dataset.reply)?null:b.dataset.reply; replyDraft=[]; render();
+    });
+    list.querySelectorAll("[data-cancelr]").forEach(b=>b.onclick=()=>{ replyOpenId=null; replyDraft=[]; render(); });
+    // 返信の写真追加
+    list.querySelectorAll("[data-raddphoto]").forEach(b=>b.onclick=()=>{ const f=el("#tsrf-"+b.dataset.raddphoto); if(f) f.click(); });
+    const rf=el("#tsrf-"+replyOpenId);
+    if(rf) rf.onchange=async()=>{
+      const files=[...rf.files]; rf.value="";
+      for(const file of files){
+        if(replyDraft.length>=4){ alert("写真は最大4枚までです"); break; }
+        if(!/^image\//.test(file.type)) continue;
+        const blob=await compress(file); if(!blob) continue;
+        replyDraft.push({blob, preview:URL.createObjectURL(blob)});
+        renderReplyDraft();
+      }
+    };
+    if(replyOpenId) renderReplyDraft();
+    // リアクション（最高だね／うけるね）
+    list.querySelectorAll("[data-react]").forEach(b=>b.onclick=()=>{
+      if(!UID) return;
+      const [id,kind]=b.dataset.react.split("|"), field=(kind==="great"?"rGreat":"rFunny");
+      const p=findPost(id); const arr=(p&&p[field])||[]; const has=arr.indexOf(UID)>=0;
+      const upd={}; upd[field]= has ? fb.FV.arrayRemove(UID) : fb.FV.arrayUnion(UID);
+      fb.db.collection("tsubuyaki").doc(id).update(upd).catch(e=>{ console.warn(e); });
+    });
+    list.querySelectorAll("[data-sendr]").forEach(b=>b.onclick=async()=>{
+      const id=b.dataset.sendr, t=el("#tsr-"+id).value.trim();
+      if(!t && !replyDraft.length){ el("#tsr-"+id).focus(); return; }
+      if(!UID){ alert("接続の準備中です。少し待って再度お試しください。"); return; }
       const nk=el("#tsrn-"+id).value.trim();
-      const rep={rid:UID+"_"+Date.now(), uid:UID, author:ME, nick:nk, body:t, ts:Date.now()};
-      b.disabled=true;
-      fb.db.collection("tsubuyaki").doc(id).update({replies: fb.FV.arrayUnion(rep)})
-        .then(()=>{ replyOpenId=null; }).catch(e=>{ alert("返信できませんでした"); console.warn(e); b.disabled=false; });
+      b.disabled=true; b.textContent="送信中…";
+      try{
+        const photos=[];
+        for(const d of replyDraft){
+          const path="tsubuyaki/"+UID+"/r_"+Date.now()+"_"+Math.floor(Math.random()*1e6)+".jpg";
+          const ref=fb.storage.ref(path);
+          await ref.put(d.blob,{contentType:"image/jpeg"});
+          photos.push({url:await ref.getDownloadURL(), path});
+        }
+        const rep={rid:UID+"_"+Date.now(), uid:UID, author:ME, nick:nk, body:t, ts:Date.now(), photos};
+        await fb.db.collection("tsubuyaki").doc(id).update({replies: fb.FV.arrayUnion(rep)});
+        replyOpenId=null; replyDraft=[];
+      }catch(e){ alert("返信できませんでした"); console.warn(e); b.disabled=false; b.textContent="返信"; }
     });
     list.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
       const p=findPost(b.dataset.del); if(!p) return;
       if(!confirm("このつぶやきを削除しますか？")) return;
       (p.photos||[]).forEach(ph=>{ if(ph.path) fb.storage.ref(ph.path).delete().catch(()=>{}); });
+      (p.replies||[]).forEach(r=>(r.photos||[]).forEach(ph=>{ if(ph.path) fb.storage.ref(ph.path).delete().catch(()=>{}); }));
       fb.db.collection("tsubuyaki").doc(p._id).delete().catch(e=>{ alert("削除できませんでした"); console.warn(e); });
     });
     list.querySelectorAll("[data-delr]").forEach(b=>b.onclick=()=>{
       const [id,rid]=b.dataset.delr.split("|"), p=findPost(id); if(!p) return;
       const rep=(p.replies||[]).find(r=>r.rid===rid); if(!rep) return;
       if(!confirm("この返信を削除しますか？")) return;
+      (rep.photos||[]).forEach(ph=>{ if(ph.path) fb.storage.ref(ph.path).delete().catch(()=>{}); });
       fb.db.collection("tsubuyaki").doc(id).update({replies: fb.FV.arrayRemove(rep)}).catch(e=>{ alert("削除できませんでした"); console.warn(e); });
     });
     list.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>openSheet(b.dataset.edit));
