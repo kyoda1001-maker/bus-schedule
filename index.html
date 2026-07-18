@@ -648,6 +648,13 @@
     content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
     width:34px; height:3px; border-radius:0 0 3px 3px; background:var(--brand);
   }
+  .tabbadge{
+    position:absolute; top:5px; left:calc(50% + 6px); min-width:16px; height:16px;
+    padding:0 4px; background:#e5352b; color:#fff; font-size:10px; font-weight:800;
+    border-radius:999px; display:flex; align-items:center; justify-content:center;
+    line-height:1; box-shadow:0 1px 3px rgba(0,0,0,.28);
+  }
+  .tabbadge[hidden]{display:none}
   /* タブバーに隠れないよう本文下に余白を確保 */
   #app{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
   /* 「運行予定」タブでは上部の読み物カードを隠す */
@@ -909,6 +916,7 @@
   <button type="button" class="tab" id="tabtsubu">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 20 17H9l-4.5 3.5V17H4a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 5Z"/></svg>
     <span>つぶやき</span>
+    <span class="tabbadge" id="tsubuBadge" hidden></span>
   </button>
 </nav>
 
@@ -2195,7 +2203,23 @@ fetch("horoscope.json?_=" + Date.now())
   const fb = window.__fb;
   const DAY = 86400000, MAXW = 1280;
   let ME = "", ADMIN = false, UID = null;
-  let posts = [], subscribed = false, opened = false;
+  let posts = [], subscribed = false, opened = false, lastSeen = 0;
+
+  // 新着バッジ（フッターのつぶやきタブ）
+  function seenKey(){ return "platinum_tsubu_seen::" + (ME || "guest"); }
+  function loadSeen(){
+    let v = 0; try{ v = parseInt(localStorage.getItem(seenKey())||"0",10)||0; }catch(e){}
+    if(!v){ v = Date.now(); setSeen(v); }   // 初回は既存投稿を既読扱い
+    lastSeen = v;
+  }
+  function setSeen(ts){ lastSeen = ts; try{ localStorage.setItem(seenKey(), String(ts)); }catch(e){} }
+  function newCount(){ return posts.filter(p => (p.ts||0) > lastSeen && p.uid !== UID).length; }
+  function updateBadge(){
+    const b = document.getElementById("tsubuBadge"); if(!b) return;
+    const c = newCount();
+    if(c > 0 && (typeof TAB === "undefined" || TAB !== "tsubu")){ b.textContent = c > 99 ? "99+" : c; b.hidden = false; }
+    else { b.hidden = true; }
+  }
   let replyOpenId = null, editingId = null, draft = [];  // draft: [{url,path}] or {blob,preview}
   let replyDraft = [];  // 返信の写真ドラフト（開いている返信ボックス用）
 
@@ -2251,6 +2275,9 @@ fetch("horoscope.json?_=" + Date.now())
         if(Date.now()-(p.ts||0) >= 7*DAY){ purge(p); }
         else posts.push(p);
       });
+      // つぶやきタブを開いている間は既読を進める（新着バッジを出さない）
+      if(typeof TAB !== "undefined" && TAB === "tsubu"){ setSeen(Date.now()); }
+      updateBadge();
       render();
     }, err=>{ status("読み込みに失敗しました（ルール未設定の可能性）。", true); console.warn(err); });
   }
@@ -2486,12 +2513,17 @@ fetch("horoscope.json?_=" + Date.now())
   };
 
   // 公開フック
-  window.__tsubuSetUser=function(name, admin){ ME=name||""; ADMIN=!!admin; if(subscribed) render(); };
+  window.__tsubuSetUser=function(name, admin){
+    ME=name||""; ADMIN=!!admin; loadSeen();
+    // ログイン直後から購読を開始し、他タブにいても新着バッジを出せるようにする
+    if(fb){ ensureAuth().then(()=>{ subscribe(); updateBadge(); }).catch(e=>console.warn(e)); }
+    if(subscribed){ render(); updateBadge(); }
+  };
   window.__tsubuOpen=function(){
-    if(opened) return; opened=true;
     if(!fb){ status("つぶやき機能を読み込めませんでした（通信環境をご確認ください）。", true); return; }
-    status("読み込み中…");
-    ensureAuth().then(()=>subscribe()).catch(e=>{ status("接続できませんでした。", true); console.warn(e); });
+    if(!subscribed){ status("読み込み中…"); ensureAuth().then(()=>subscribe()).catch(e=>{ status("接続できませんでした。", true); console.warn(e); }); }
+    opened=true;
+    setSeen(Date.now()); updateBadge();   // タブを開いたら既読にしてバッジを消す
   };
 })();
 
