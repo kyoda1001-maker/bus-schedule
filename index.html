@@ -2348,6 +2348,7 @@ fetch("horoscope.json?_=" + Date.now())
     renderDraft(); modal.classList.add("open"); setTimeout(()=>txt.focus(),100);
   }
   function closeSheet(){ modal.classList.remove("open"); }
+  el("#tsFab").onclick=()=>openSheet(null);
   el("#tsClose").onclick=closeSheet;
   modal.onclick=e=>{ if(e.target===modal) closeSheet(); };
   el("#tsLightbox").onclick=()=>el("#tsLightbox").classList.remove("open");
