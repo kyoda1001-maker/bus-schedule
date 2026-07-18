@@ -657,6 +657,112 @@
   #app.mode-sched #newscard,
   #app.mode-sched #horocard,
   #app.mode-sched #phrasecard{display:none}
+  /* 「つぶやき」タブでは、つぶやき欄だけを表示 */
+  #tsubu{display:none}
+  #app.mode-tsubu #tsubu{display:block}
+  #app.mode-tsubu #quotecard,
+  #app.mode-tsubu #healthcard,
+  #app.mode-tsubu #wxcard,
+  #app.mode-tsubu #newscard,
+  #app.mode-tsubu #horocard,
+  #app.mode-tsubu #phrasecard,
+  #app.mode-tsubu #admbar,
+  #app.mode-tsubu #managebar,
+  #app.mode-tsubu #pick,
+  #app.mode-tsubu .viewbar,
+  #app.mode-tsubu #list,
+  #app.mode-tsubu footer{display:none}
+
+  /* つぶやき */
+  #tsubu{--ts-accent:#2f8f6b; --ts-danger:#b5453c}
+  .ts-head{display:flex; align-items:center; gap:8px; margin:4px 2px 4px}
+  .ts-head h1{font-size:18px; font-weight:800; margin:0}
+  .ts-head .star{color:var(--star)}
+  .ts-lead{font-size:11.5px; color:var(--sub); margin:0 2px 12px; line-height:1.7}
+  .ts-lead b{color:var(--ink)}
+  .ts-status{font-size:12px; color:var(--sub); text-align:center; padding:20px 10px}
+  .ts-status.err{color:var(--ts-danger)}
+  .ts-empty{text-align:center; color:var(--sub); font-size:13px; padding:26px 10px; line-height:1.8}
+
+  .ts-post{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:11px 13px 10px; margin-bottom:11px; box-shadow:0 1px 8px rgba(31,98,142,.06)}
+  .ts-post .top{display:flex; align-items:center; gap:7px; font-size:11.5px; flex-wrap:wrap}
+  .ts-post .no{font-weight:800; color:var(--brand)}
+  .ts-post .nick{font-weight:700; color:var(--ts-accent)}
+  .ts-post .nick.nn{color:var(--sub); font-weight:600}
+  .ts-post .mine{font-size:9.5px; font-weight:700; color:var(--brand); background:var(--tint);
+    border:1px solid #cfe0ee; border-radius:5px; padding:0 5px}
+  .ts-post .date{color:var(--sub); margin-left:auto; white-space:nowrap}
+  .ts-post .body{font-size:14px; color:var(--ink); margin:7px 0 0; white-space:pre-wrap; word-break:break-word}
+
+  .ts-photos{display:grid; gap:5px; margin-top:9px}
+  .ts-photos.n1{grid-template-columns:1fr}
+  .ts-photos.n2,.ts-photos.n3,.ts-photos.n4{grid-template-columns:1fr 1fr}
+  .ts-photos img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:9px; background:#dfe8f0; display:block; cursor:pointer}
+  .ts-photos.n1 img{aspect-ratio:16/10}
+
+  .ts-acts{display:flex; gap:14px; margin-top:9px; padding-top:8px; border-top:1px dashed var(--line)}
+  .ts-act{background:none; border:0; padding:0; cursor:pointer; font:inherit; font-size:11.5px;
+    font-weight:700; color:var(--sub); display:flex; align-items:center; gap:4px}
+  .ts-act:active{opacity:.6}
+  .ts-act.reply{color:var(--brand)}
+  .ts-act.del{color:var(--ts-danger); margin-left:auto}
+  .ts-act .cnt{color:var(--ts-accent)}
+
+  .ts-replies{margin:9px 0 0 8px; padding-left:11px; border-left:2px solid var(--line);
+    display:flex; flex-direction:column; gap:8px}
+  .ts-rep .top{font-size:11px}
+  .ts-rep .body{font-size:13px; margin-top:3px; white-space:pre-wrap; word-break:break-word}
+  .ts-rbox{margin:9px 0 0 8px; padding-left:11px; border-left:2px solid var(--ts-accent)}
+  .ts-rbox textarea{width:100%; font:inherit; font-size:13px; border:1px solid var(--line);
+    border-radius:10px; padding:8px 10px; resize:vertical; min-height:50px; background:#fbfdff}
+  .ts-rbox .rrow{display:flex; gap:8px; margin-top:6px; align-items:center}
+  .ts-rbox input{flex:1; font:inherit; font-size:12.5px; border:1px solid var(--line);
+    border-radius:9px; padding:7px 10px; background:#fbfdff; min-width:0}
+  .ts-rbox .send{font-size:12.5px; font-weight:700; color:#fff; background:var(--ts-accent);
+    border:0; border-radius:9px; padding:8px 14px; cursor:pointer; white-space:nowrap}
+  .ts-rbox .cancel{font-size:12px; color:var(--sub); background:none; border:0; cursor:pointer}
+
+  .ts-fab{position:fixed; left:50%; transform:translateX(-50%);
+    bottom:calc(70px + env(safe-area-inset-bottom)); z-index:38;
+    display:flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--brand),var(--brand2));
+    color:#fff; border:0; border-radius:999px; padding:12px 22px; font-size:14px; font-weight:800;
+    cursor:pointer; box-shadow:0 6px 20px rgba(31,98,142,.4); font-family:inherit}
+  .ts-fab:active{transform:translateX(-50%) scale(.97)}
+  .ts-fab[hidden]{display:none}
+
+  .ts-modal{position:fixed; inset:0; z-index:50; display:none; align-items:flex-end; justify-content:center;
+    background:rgba(20,35,50,.45)}
+  .ts-modal.open{display:flex}
+  .ts-sheet{width:100%; max-width:560px; background:var(--card); border-radius:18px 18px 0 0;
+    padding:16px 16px calc(16px + env(safe-area-inset-bottom)); box-shadow:0 -6px 30px rgba(0,0,0,.25);
+    max-height:88vh; overflow-y:auto; animation:tsUp .22s ease}
+  @keyframes tsUp{from{transform:translateY(30px); opacity:.5} to{transform:none; opacity:1}}
+  .ts-sheet h2{font-size:15px; margin:0 0 12px; display:flex; align-items:center; gap:7px}
+  .ts-sheet h2 .x{margin-left:auto; font-size:22px; color:var(--sub); background:none; border:0; cursor:pointer; line-height:1}
+  .ts-sheet label{font-size:11.5px; font-weight:700; color:var(--sub); display:block; margin:0 0 4px}
+  .ts-sheet textarea{width:100%; font:inherit; font-size:14px; border:1px solid var(--line);
+    border-radius:11px; padding:11px 12px; resize:vertical; min-height:92px; background:#fbfdff}
+  .ts-sheet .nickrow{margin-top:11px}
+  .ts-sheet .nickrow input{width:100%; font:inherit; font-size:14px; border:1px solid var(--line);
+    border-radius:11px; padding:11px 12px; background:#fbfdff}
+  .ts-photoadd{display:flex; gap:8px; align-items:center; margin-top:12px; flex-wrap:wrap}
+  .ts-thumbwrap{position:relative}
+  .ts-thumbwrap img{width:56px; height:56px; border-radius:9px; object-fit:cover; display:block}
+  .ts-thumbwrap .rm{position:absolute; top:-6px; right:-6px; width:20px; height:20px; border-radius:50%;
+    background:var(--ts-danger); color:#fff; border:2px solid #fff; font-size:11px; cursor:pointer; line-height:1}
+  .ts-addbtn{width:56px; height:56px; border-radius:9px; border:1.5px dashed var(--line); background:#f4f8fb;
+    color:var(--brand); font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center}
+  .ts-photoadd .cap{font-size:10.5px; color:var(--sub)}
+  .ts-submit{width:100%; margin-top:15px; padding:13px; font-size:15px; font-weight:800; color:#fff;
+    background:var(--brand); border:0; border-radius:12px; cursor:pointer}
+  .ts-submit:disabled{opacity:.5}
+  .ts-note{font-size:10.5px; color:var(--sub); text-align:center; margin-top:8px; line-height:1.7}
+
+  .ts-lightbox{position:fixed; inset:0; z-index:60; display:none; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.85); padding:20px}
+  .ts-lightbox.open{display:flex}
+  .ts-lightbox img{max-width:100%; max-height:100%; border-radius:8px}
 
   /* ルール・設定リンク / 情報パネル */
   .infolink{
@@ -734,6 +840,11 @@
   <div class="newscard" id="newscard" hidden></div>
   <div class="horocard" id="horocard" hidden></div>
   <div class="phrasecard" id="phrasecard" hidden></div>
+  <div id="tsubu">
+    <div class="ts-head"><h1>💬 つぶやき</h1><span class="star">✦</span></div>
+    <p class="ts-lead">ひとことどうぞ。ニックネームは自由（未記入は<b>名無しさん</b>）。<br>自分の投稿は<b>編集・削除</b>OK／<b>返信</b>・<b>写真（最大4枚）</b>も可／投稿は<b>1週間で消えます</b>。</p>
+    <div id="tsList"><div class="ts-status" id="tsStatus">読み込み中…</div></div>
+  </div>
   <div id="managebar" hidden></div>
   <div class="pick" id="pick" hidden>
     <label for="driver">ドライバー＆スタッフを選択</label>
@@ -773,7 +884,31 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path d="M7.5 14h4M7.5 17.5h8"/></svg>
     <span>運行予定</span>
   </button>
+  <button type="button" class="tab" id="tabtsubu">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 20 17H9l-4.5 3.5V17H4a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 5Z"/></svg>
+    <span>つぶやき</span>
+  </button>
 </nav>
+
+<!-- つぶやき：投稿ボタン・モーダル・写真拡大 -->
+<button type="button" class="ts-fab" id="tsFab" hidden>✏️ つぶやく</button>
+<div class="ts-modal" id="tsModal">
+  <div class="ts-sheet">
+    <h2 id="tsSheetTitle">✏️ つぶやく<button type="button" class="x" id="tsClose">×</button></h2>
+    <label for="tsTxt">つぶやき</label>
+    <textarea id="tsTxt" maxlength="1000" placeholder="いまの気持ち、今日の運行のこと、なんでもどうぞ"></textarea>
+    <div class="nickrow"><label for="tsNick">ニックネーム（任意）</label>
+      <input id="tsNick" type="text" maxlength="20" placeholder="名無しさん"></div>
+    <div class="ts-photoadd" id="tsPhotoAdd">
+      <button type="button" class="ts-addbtn" id="tsAddPhoto">＋</button>
+      <span class="cap" id="tsPhotoCap">写真 最大4枚</span>
+    </div>
+    <input type="file" id="tsFile" accept="image/*" multiple hidden>
+    <button type="button" class="ts-submit" id="tsSubmit">投稿する</button>
+    <p class="ts-note">写真は最大4枚まで。投稿は1週間で自動的に消えます。</p>
+  </div>
+</div>
+<div class="ts-lightbox" id="tsLightbox"><img id="tsLightboxImg" src="" alt=""></div>
 
 <!-- 設定・ルール説明 -->
 <div class="info" id="info" hidden><div class="inwrap">
@@ -835,6 +970,31 @@
   <p class="lead" style="margin-top:20px">※ 表示はバスキング台帳の入力内容に基づきます。内容の誤りや不明点は運行管理者に確認してください。</p>
   <div style="text-align:center;margin-top:10px"><button type="button" class="closebtn" id="infoclose2" style="float:none">閉じる</button></div>
 </div></div>
+
+<!-- Firebase（つぶやき機能）-->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js"></script>
+<script>
+  window.__fb = null;
+  try{
+    firebase.initializeApp({
+      apiKey: "AIzaSyDztabNqc8Xr5-Hy7BGsV8I8HCbJRhmiPw",
+      authDomain: "platinum-tsubuyaki.firebaseapp.com",
+      projectId: "platinum-tsubuyaki",
+      storageBucket: "platinum-tsubuyaki.firebasestorage.app",
+      messagingSenderId: "1069286655964",
+      appId: "1:1069286655964:web:839cce924b3d5efa833119"
+    });
+    window.__fb = {
+      db: firebase.firestore(),
+      storage: firebase.storage(),
+      auth: firebase.auth(),
+      FV: firebase.firestore.FieldValue
+    };
+  }catch(e){ console.warn("Firebase init failed", e); }
+</script>
 
 <script>
 const WD = ["日","月","火","水","木","金","土"];
@@ -1352,6 +1512,7 @@ function showApp(data){
   $("#hname").textContent = data.name || "運行予定確認";
   if(window.__phraseSetUser) window.__phraseSetUser(data.name || "");
   if(window.__newsSetUser) window.__newsSetUser(data.name || "");
+  if(window.__tsubuSetUser) window.__tsubuSetUser(data.name || "", !!data.admin);
   $("#updated").textContent = "最終更新：" + (SECURE.meta?.generatedAt || "-");
   $("#login").hidden = true;
   $("#app").hidden = false;
@@ -1384,6 +1545,7 @@ function showLogin(msg){
   $("#app").hidden = true;
   $("#logout").hidden = true;
   $("#tabbar").hidden = true;
+  if($("#tsFab")) $("#tsFab").hidden = true;
   $("#hname").textContent = "";
   $("#updated").textContent = "";
   if(msg) $("#loginmsg").textContent = msg;
@@ -1447,15 +1609,24 @@ function setTab(which){
   const changed = (which !== TAB);
   TAB = which;
   const app = $("#app");
-  if(app) app.classList.toggle("mode-sched", which === "sched");
+  if(app){
+    app.classList.toggle("mode-sched", which === "sched");
+    app.classList.toggle("mode-tsubu", which === "tsubu");
+  }
   $("#tabhome").classList.toggle("on", which === "home");
   $("#tabsched").classList.toggle("on", which === "sched");
+  $("#tabtsubu").classList.toggle("on", which === "tsubu");
   // 「運行予定」タブはカレンダー表示を既定にする（タブを切り替えた時だけ）
   if(which === "sched" && changed && VIEW !== "calendar"){ VIEW = "calendar"; draw(); }
+  // 「つぶやき」タブに入ったら初期化＋投稿ボタン表示
+  const fab = $("#tsFab");
+  if(fab) fab.hidden = (which !== "tsubu");
+  if(which === "tsubu" && window.__tsubuOpen) window.__tsubuOpen();
   if(changed) window.scrollTo(0, 0);
 }
 $("#tabhome").addEventListener("click", ()=> setTab("home"));
 $("#tabsched").addEventListener("click", ()=> setTab("sched"));
+$("#tabtsubu").addEventListener("click", ()=> setTab("tsubu"));
 
 /* ---- 管理者：今すぐ更新（クラウド実行を起動）---- */
 const TRIG_REPO = "kyoda1001-maker/bus-cloud";
@@ -1995,6 +2166,230 @@ fetch("horoscope.json?_=" + Date.now())
     .then(r => r.ok ? r.json() : null)
     .then(d => { if(!d || !Array.isArray(d.tw) || !Array.isArray(d.kr)) return; DATA = d; initIdx(); render(); })
     .catch(()=>{});
+})();
+
+/* ---- つぶやき（Firebase: Firestore + Storage + 匿名Auth）---- */
+(function(){
+  const fb = window.__fb;
+  const DAY = 86400000, MAXW = 1280;
+  let ME = "", ADMIN = false, UID = null;
+  let posts = [], subscribed = false, opened = false;
+  let replyOpenId = null, editingId = null, draft = [];  // draft: [{url,path}] or {blob,preview}
+
+  const el = s => document.querySelector(s);
+  const esc = s => escapeHtml(String(s));
+  function fmt(ts){
+    const diff = Date.now()-ts;
+    if(diff<60000) return "たった今";
+    if(diff<3600000) return Math.floor(diff/60000)+"分前";
+    if(diff<86400000) return Math.floor(diff/3600000)+"時間前";
+    const days = Math.floor(diff/86400000);
+    if(days<7) return days+"日前";
+    const d=new Date(ts); return (d.getMonth()+1)+"/"+d.getDate();
+  }
+  function expLabel(ts){ const left=7-(Date.now()-ts)/DAY; return left<=1?"まもなく消えます":"あと"+Math.ceil(left)+"日で消えます"; }
+  function status(msg, err){ const s=el("#tsStatus"); if(s){ s.textContent=msg; s.className="ts-status"+(err?" err":""); } }
+
+  // 匿名ログイン
+  function ensureAuth(){
+    return new Promise((res,rej)=>{
+      if(!fb){ rej(new Error("firebase")); return; }
+      if(fb.auth.currentUser){ UID=fb.auth.currentUser.uid; res(UID); return; }
+      fb.auth.onAuthStateChanged(u=>{ if(u){ UID=u.uid; res(UID); } });
+      fb.auth.signInAnonymously().catch(rej);
+    });
+  }
+
+  // 画像を縮小してBlob化（アップロード軽量化）
+  function compress(file){
+    return new Promise((res)=>{
+      const img=new Image(), url=URL.createObjectURL(file);
+      img.onload=()=>{
+        let w=img.width,h=img.height;
+        if(w>MAXW||h>MAXW){ if(w>=h){h=Math.round(h*MAXW/w);w=MAXW;} else {w=Math.round(w*MAXW/h);h=MAXW;} }
+        const c=document.createElement("canvas"); c.width=w; c.height=h;
+        c.getContext("2d").drawImage(img,0,0,w,h);
+        URL.revokeObjectURL(url);
+        c.toBlob(b=>res(b), "image/jpeg", 0.82);
+      };
+      img.onerror=()=>{ URL.revokeObjectURL(url); res(null); };
+      img.src=url;
+    });
+  }
+
+  function subscribe(){
+    if(subscribed || !fb) return; subscribed=true;
+    fb.db.collection("tsubuyaki").orderBy("ts","desc").limit(200).onSnapshot(snap=>{
+      const all=[];
+      snap.forEach(d=>{ const p=d.data(); p._id=d.id; all.push(p); });
+      // 1週間経過は表示せず、見つけたら削除（誰かが開いた時に自動掃除）
+      posts=[];
+      all.forEach(p=>{
+        if(Date.now()-(p.ts||0) >= 7*DAY){ purge(p); }
+        else posts.push(p);
+      });
+      render();
+    }, err=>{ status("読み込みに失敗しました（ルール未設定の可能性）。", true); console.warn(err); });
+  }
+
+  function purge(p){
+    try{
+      (p.photos||[]).forEach(ph=>{ if(ph.path) fb.storage.ref(ph.path).delete().catch(()=>{}); });
+      fb.db.collection("tsubuyaki").doc(p._id).delete().catch(()=>{});
+    }catch(e){}
+  }
+
+  function nickHtml(o){ return o.nick ? '<span class="nick">'+esc(o.nick)+'</span>' : '<span class="nick nn">名無しさん</span>'; }
+
+  function render(){
+    const list=el("#tsList"); if(!list) return;
+    if(!posts.length){ list.innerHTML='<div class="ts-empty">まだつぶやきがありません。<br>下の「✏️ つぶやく」から一言どうぞ。</div>'; return; }
+    const n=posts.length;
+    list.innerHTML = posts.map((p,idx)=>{
+      const num=n-idx, mine=(p.uid===UID);
+      const photos=(p.photos&&p.photos.length)
+        ? '<div class="ts-photos n'+p.photos.length+'">'+p.photos.map(ph=>'<img src="'+esc(ph.url)+'" data-full="'+esc(ph.url)+'" alt="写真">').join("")+'</div>' : "";
+      const reps=(p.replies||[]).slice().sort((a,b)=>a.ts-b.ts).map(r=>{
+        const rmine=(r.uid===UID);
+        return '<div class="ts-rep"><div class="top"><span class="no">≫</span>'+nickHtml(r)+
+          (rmine?' <span class="mine">自分</span>':'')+'<span class="date">'+fmt(r.ts)+'</span></div>'+
+          '<div class="body">'+esc(r.body)+'</div>'+
+          ((rmine||ADMIN)?'<div class="ts-acts"><button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button></div>':'')+
+          '</div>';
+      }).join("");
+      const repliesHtml=reps?'<div class="ts-replies">'+reps+'</div>':"";
+      const rbox=(replyOpenId===p._id)?
+        '<div class="ts-rbox"><textarea id="tsr-'+p._id+'" placeholder="返信を書く" maxlength="500"></textarea>'+
+        '<div class="rrow"><input id="tsrn-'+p._id+'" type="text" maxlength="20" placeholder="ニックネーム（任意）">'+
+        '<button class="send" data-sendr="'+p._id+'">返信</button>'+
+        '<button class="cancel" data-cancelr="1">やめる</button></div></div>':"";
+      const acts='<div class="ts-acts">'+
+        '<button class="ts-act reply" data-reply="'+p._id+'">💬 返信'+((p.replies&&p.replies.length)?' <span class="cnt">'+p.replies.length+'</span>':'')+'</button>'+
+        (mine?'<button class="ts-act edit" data-edit="'+p._id+'">✏️ 編集</button>':'')+
+        ((mine||ADMIN)?'<button class="ts-act del" data-del="'+p._id+'">🗑 削除'+((!mine&&ADMIN)?'（管理者）':'')+'</button>':'')+
+        '</div>';
+      return '<div class="ts-post"><div class="top"><span class="no">'+num+'</span>'+nickHtml(p)+
+        (mine?' <span class="mine">自分</span>':'')+
+        '<span class="date">'+fmt(p.ts)+' ・ '+expLabel(p.ts)+'</span></div>'+
+        '<div class="body">'+esc(p.body)+'</div>'+photos+acts+repliesHtml+rbox+'</div>';
+    }).join("");
+    wire();
+  }
+
+  function findPost(id){ return posts.find(x=>x._id===id); }
+  function wire(){
+    const list=el("#tsList");
+    list.querySelectorAll("[data-reply]").forEach(b=>b.onclick=()=>{ replyOpenId=(replyOpenId===b.dataset.reply)?null:b.dataset.reply; render(); });
+    list.querySelectorAll("[data-cancelr]").forEach(b=>b.onclick=()=>{ replyOpenId=null; render(); });
+    list.querySelectorAll("[data-sendr]").forEach(b=>b.onclick=()=>{
+      const id=b.dataset.sendr, t=el("#tsr-"+id).value.trim(); if(!t) return;
+      const nk=el("#tsrn-"+id).value.trim();
+      const rep={rid:UID+"_"+Date.now(), uid:UID, author:ME, nick:nk, body:t, ts:Date.now()};
+      b.disabled=true;
+      fb.db.collection("tsubuyaki").doc(id).update({replies: fb.FV.arrayUnion(rep)})
+        .then(()=>{ replyOpenId=null; }).catch(e=>{ alert("返信できませんでした"); console.warn(e); b.disabled=false; });
+    });
+    list.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
+      const p=findPost(b.dataset.del); if(!p) return;
+      if(!confirm("このつぶやきを削除しますか？")) return;
+      (p.photos||[]).forEach(ph=>{ if(ph.path) fb.storage.ref(ph.path).delete().catch(()=>{}); });
+      fb.db.collection("tsubuyaki").doc(p._id).delete().catch(e=>{ alert("削除できませんでした"); console.warn(e); });
+    });
+    list.querySelectorAll("[data-delr]").forEach(b=>b.onclick=()=>{
+      const [id,rid]=b.dataset.delr.split("|"), p=findPost(id); if(!p) return;
+      const rep=(p.replies||[]).find(r=>r.rid===rid); if(!rep) return;
+      if(!confirm("この返信を削除しますか？")) return;
+      fb.db.collection("tsubuyaki").doc(id).update({replies: fb.FV.arrayRemove(rep)}).catch(e=>{ alert("削除できませんでした"); console.warn(e); });
+    });
+    list.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>openSheet(b.dataset.edit));
+    list.querySelectorAll(".ts-photos img").forEach(img=>img.onclick=()=>{ el("#tsLightboxImg").src=img.dataset.full; el("#tsLightbox").classList.add("open"); });
+  }
+
+  // 投稿モーダル
+  const modal=el("#tsModal"), txt=el("#tsTxt"), nick=el("#tsNick"),
+        sheetTitle=el("#tsSheetTitle"), submit=el("#tsSubmit"),
+        photoAdd=el("#tsPhotoAdd"), addBtn=el("#tsAddPhoto"), cap=el("#tsPhotoCap"), fileInput=el("#tsFile");
+
+  function renderDraft(){
+    photoAdd.querySelectorAll(".ts-thumbwrap").forEach(e=>e.remove());
+    draft.forEach((d,i)=>{
+      const w=document.createElement("span"); w.className="ts-thumbwrap";
+      w.innerHTML='<img src="'+(d.url||d.preview)+'"><button type="button" class="rm" data-rm="'+i+'">×</button>';
+      photoAdd.insertBefore(w, addBtn);
+    });
+    photoAdd.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{ draft.splice(+b.dataset.rm,1); renderDraft(); });
+    addBtn.style.display = draft.length>=4 ? "none" : "flex";
+    cap.textContent = draft.length ? draft.length+" / 4 枚" : "写真 最大4枚";
+  }
+  addBtn.onclick=()=>fileInput.click();
+  fileInput.onchange=async()=>{
+    const files=[...fileInput.files]; fileInput.value="";
+    for(const f of files){
+      if(draft.length>=4){ alert("写真は最大4枚までです"); break; }
+      if(!/^image\//.test(f.type)) continue;
+      const blob=await compress(f); if(!blob) continue;
+      draft.push({blob, preview:URL.createObjectURL(blob)});
+      renderDraft();
+    }
+  };
+
+  function openSheet(id){
+    editingId=id||null; draft=[];
+    if(id){
+      const p=findPost(id); if(!p) return;
+      sheetTitle.childNodes[0].nodeValue="✏️ つぶやきを編集";
+      txt.value=p.body; nick.value=p.nick||"";
+      draft=(p.photos||[]).map(ph=>({url:ph.url, path:ph.path}));
+      submit.textContent="更新する";
+    }else{
+      sheetTitle.childNodes[0].nodeValue="✏️ つぶやく";
+      txt.value=""; nick.value=""; submit.textContent="投稿する";
+    }
+    renderDraft(); modal.classList.add("open"); setTimeout(()=>txt.focus(),100);
+  }
+  function closeSheet(){ modal.classList.remove("open"); }
+  el("#tsClose").onclick=closeSheet;
+  modal.onclick=e=>{ if(e.target===modal) closeSheet(); };
+  el("#tsLightbox").onclick=()=>el("#tsLightbox").classList.remove("open");
+
+  submit.onclick=async()=>{
+    const t=txt.value.trim(); if(!t){ txt.focus(); return; }
+    if(!fb||!UID){ alert("接続の準備中です。少し待って再度お試しください。"); return; }
+    submit.disabled=true; submit.textContent="送信中…";
+    try{
+      // 新規写真をアップロード
+      const photos=[];
+      for(const d of draft){
+        if(d.url){ photos.push({url:d.url, path:d.path||""}); continue; }
+        const path="tsubuyaki/"+UID+"/"+Date.now()+"_"+Math.floor(Math.random()*1e6)+".jpg";
+        const ref=fb.storage.ref(path);
+        await ref.put(d.blob, {contentType:"image/jpeg"});
+        const url=await ref.getDownloadURL();
+        photos.push({url, path});
+      }
+      if(editingId){
+        await fb.db.collection("tsubuyaki").doc(editingId).update({body:t, nick:nick.value.trim(), photos});
+      }else{
+        await fb.db.collection("tsubuyaki").add({
+          uid:UID, author:ME, nick:nick.value.trim(), body:t, photos,
+          ts:Date.now(),
+          expireAt: firebase.firestore.Timestamp.fromMillis(Date.now()+7*DAY),
+          replies:[]
+        });
+      }
+      closeSheet();
+    }catch(e){ alert("投稿できませんでした。通信状況をご確認ください。"); console.warn(e); }
+    submit.disabled=false; submit.textContent=editingId?"更新する":"投稿する";
+  };
+
+  // 公開フック
+  window.__tsubuSetUser=function(name, admin){ ME=name||""; ADMIN=!!admin; if(subscribed) render(); };
+  window.__tsubuOpen=function(){
+    if(opened) return; opened=true;
+    if(!fb){ status("つぶやき機能を読み込めませんでした（通信環境をご確認ください）。", true); return; }
+    status("読み込み中…");
+    ensureAuth().then(()=>subscribe()).catch(e=>{ status("接続できませんでした。", true); console.warn(e); });
+  };
 })();
 
 init();
