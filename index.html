@@ -844,9 +844,21 @@
   .ts-note{font-size:10.5px; color:var(--sub); text-align:center; margin-top:8px; line-height:1.7}
 
   .ts-lightbox{position:fixed; inset:0; z-index:60; display:none; align-items:center; justify-content:center;
-    background:rgba(0,0,0,.85); padding:20px}
+    background:rgba(0,0,0,.9); padding:20px; touch-action:pan-y}
   .ts-lightbox.open{display:flex}
-  .ts-lightbox img{max-width:100%; max-height:100%; border-radius:8px}
+  .ts-lightbox .lb-stage{max-width:100%; max-height:100%; display:flex; align-items:center; justify-content:center}
+  .ts-lightbox img{max-width:100%; max-height:82vh; border-radius:8px; user-select:none; -webkit-user-drag:none}
+  .ts-lightbox .lb-close{position:absolute; top:14px; right:16px; width:38px; height:38px; border:0;
+    background:rgba(255,255,255,.15); color:#fff; font-size:24px; line-height:1; border-radius:50%; cursor:pointer}
+  .ts-lightbox .lb-nav{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border:0;
+    background:rgba(255,255,255,.15); color:#fff; font-size:30px; line-height:1; border-radius:50%; cursor:pointer}
+  .ts-lightbox .lb-nav.prev{left:12px} .ts-lightbox .lb-nav.next{right:12px}
+  .ts-lightbox .lb-nav:active,.ts-lightbox .lb-close:active,.ts-lightbox .lb-dl:active{background:rgba(255,255,255,.32)}
+  .ts-lightbox .lb-count{position:absolute; top:18px; left:50%; transform:translateX(-50%);
+    color:#fff; font-size:13px; font-weight:700; background:rgba(0,0,0,.4); padding:3px 12px; border-radius:999px}
+  .ts-lightbox .lb-dl{position:absolute; right:18px; bottom:calc(20px + env(safe-area-inset-bottom));
+    border:0; background:rgba(255,255,255,.92); color:#17557c; font-weight:800; font-size:13.5px;
+    padding:9px 15px; border-radius:999px; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,.4)}
 
   /* ルール・設定リンク / 情報パネル */
   .infolink{
@@ -998,7 +1010,14 @@
     <p class="ts-note">写真は最大4枚まで。投稿は1週間で自動的に消えます。</p>
   </div>
 </div>
-<div class="ts-lightbox" id="tsLightbox"><img id="tsLightboxImg" src="" alt=""></div>
+<div class="ts-lightbox" id="tsLightbox">
+  <button type="button" class="lb-close" id="tsLbClose" aria-label="閉じる">×</button>
+  <button type="button" class="lb-nav prev" id="tsLbPrev" aria-label="前の写真">‹</button>
+  <div class="lb-stage" id="tsLbStage"><img id="tsLightboxImg" src="" alt="写真"></div>
+  <button type="button" class="lb-nav next" id="tsLbNext" aria-label="次の写真">›</button>
+  <div class="lb-count" id="tsLbCount"></div>
+  <button type="button" class="lb-dl" id="tsLbDownload">⬇ 保存</button>
+</div>
 
 <!-- 設定・ルール説明 -->
 <div class="info" id="info" hidden><div class="inwrap">
@@ -2347,7 +2366,16 @@ fetch("horoscope.json?_=" + Date.now())
     lastSeen = v;
   }
   function setSeen(ts){ lastSeen = ts; try{ localStorage.setItem(seenKey(), String(ts)); }catch(e){} }
-  function newCount(){ return posts.filter(p => (p.ts||0) > lastSeen && p.uid !== UID).length; }
+  function newCount(){
+    let n = 0;
+    posts.forEach(p => {
+      if((p.ts||0) > lastSeen && p.uid !== UID) n++;               // 新着の投稿
+      (p.replies||[]).forEach(r => {                                // 新着の返信も通知に含める
+        if((r.ts||0) > lastSeen && r.uid !== UID) n++;
+      });
+    });
+    return n;
+  }
   function updateBadge(){
     const b = document.getElementById("tsubuBadge"); if(!b) return;
     const c = newCount();
@@ -2565,7 +2593,12 @@ fetch("horoscope.json?_=" + Date.now())
       fb.db.collection("tsubuyaki").doc(id).update({replies: fb.FV.arrayRemove(rep)}).catch(e=>{ alert("削除できませんでした"); console.warn(e); });
     });
     list.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>openSheet(b.dataset.edit));
-    list.querySelectorAll(".ts-photos img").forEach(img=>img.onclick=()=>{ el("#tsLightboxImg").src=img.dataset.full; el("#tsLightbox").classList.add("open"); });
+    // 写真グループ単位でギャラリーを開く（同じ投稿/返信内の写真を左右スワイプで切替）
+    list.querySelectorAll(".ts-photos").forEach(group=>{
+      const imgs=[...group.querySelectorAll("img")];
+      const urls=imgs.map(im=>im.dataset.full);
+      imgs.forEach((im,i)=>{ im.onclick=()=>openLightbox(urls, i); });
+    });
   }
 
   // 投稿モーダル
@@ -2614,7 +2647,51 @@ fetch("horoscope.json?_=" + Date.now())
   el("#tsFab").onclick=()=>openSheet(null);
   el("#tsClose").onclick=closeSheet;
   modal.onclick=e=>{ if(e.target===modal) closeSheet(); };
-  el("#tsLightbox").onclick=()=>el("#tsLightbox").classList.remove("open");
+  // 写真ギャラリー（ライトボックス：左右スワイプ／矢印切替・ダウンロード）
+  let lbPhotos=[], lbIndex=0;
+  function lbShow(){
+    const url=lbPhotos[lbIndex]; if(!url) return;
+    el("#tsLightboxImg").src=url;
+    const multi=lbPhotos.length>1;
+    el("#tsLbCount").textContent = multi ? (lbIndex+1)+" / "+lbPhotos.length : "";
+    el("#tsLbPrev").style.display = multi ? "" : "none";
+    el("#tsLbNext").style.display = multi ? "" : "none";
+  }
+  function openLightbox(photos, index){
+    lbPhotos=(photos||[]).filter(Boolean); lbIndex=Math.min(Math.max(0,index||0), lbPhotos.length-1);
+    if(!lbPhotos.length) return;
+    lbShow(); el("#tsLightbox").classList.add("open");
+  }
+  function lbGo(dir){ if(lbPhotos.length<2) return; lbIndex=(lbIndex+dir+lbPhotos.length)%lbPhotos.length; lbShow(); }
+  function closeLightbox(){ el("#tsLightbox").classList.remove("open"); }
+  async function downloadPhoto(url){
+    if(!url) return;
+    const name="tsubuyaki_"+(lbIndex+1)+"_"+Date.now()+".jpg";
+    try{
+      const r=await fetch(url,{mode:"cors"}); if(!r.ok) throw 0;
+      const blob=await r.blob(); const o=URL.createObjectURL(blob);
+      const a=document.createElement("a"); a.href=o; a.download=name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(o),4000);
+    }catch(e){ window.open(url,"_blank","noopener"); }   // CORS等で失敗時は新規タブで開く（長押し保存）
+  }
+  el("#tsLbPrev").onclick=e=>{ e.stopPropagation(); lbGo(-1); };
+  el("#tsLbNext").onclick=e=>{ e.stopPropagation(); lbGo(1); };
+  el("#tsLbClose").onclick=e=>{ e.stopPropagation(); closeLightbox(); };
+  el("#tsLbDownload").onclick=e=>{ e.stopPropagation(); downloadPhoto(lbPhotos[lbIndex]); };
+  el("#tsLightbox").onclick=e=>{ if(e.target.id==="tsLightbox"||e.target.id==="tsLbStage") closeLightbox(); };
+  (function(){
+    const stage=el("#tsLbStage"); let x0=null,y0=null;
+    stage.addEventListener("touchstart",e=>{ const t=e.changedTouches[0]; x0=t.clientX; y0=t.clientY; },{passive:true});
+    stage.addEventListener("touchend",e=>{
+      if(x0===null) return; const t=e.changedTouches[0]; const dx=t.clientX-x0, dy=t.clientY-y0; x0=y0=null;
+      if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)*1.3) lbGo(dx<0?1:-1);
+    },{passive:true});
+  })();
+  document.addEventListener("keydown",e=>{
+    if(!el("#tsLightbox").classList.contains("open")) return;
+    if(e.key==="ArrowLeft") lbGo(-1); else if(e.key==="ArrowRight") lbGo(1); else if(e.key==="Escape") closeLightbox();
+  });
 
   submit.onclick=async()=>{
     const t=txt.value.trim(); if(!t){ txt.focus(); return; }
