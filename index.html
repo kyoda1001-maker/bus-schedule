@@ -727,6 +727,12 @@
     line-height:1.35; overflow:hidden; text-overflow:ellipsis; display:-webkit-box;
     -webkit-line-clamp:2; -webkit-box-orient:vertical; white-space:normal}
   .bgrid td.cell.blank{color:#c3ccd4; font-size:12px}
+  /* 選択中のハイライト（どのマスをタップしたか一目でわかるように）*/
+  .bgrid td.cell.sel{box-shadow:inset 0 0 0 2.5px var(--brand); background:var(--tint)}
+  .bgrid td.nm.sel{color:var(--brand); background:var(--tint)}
+  .bgrid thead th.sel{color:var(--brand); background:#d7e8f6}
+  @media (prefers-color-scheme:dark){ .bgrid thead th.sel{background:#1c3a4f} }
+  .bgrid tr.bdetailrow > td{padding:0}
   .boardcard .bfoot{font-size:10px; color:var(--sub); padding:8px 12px; background:var(--tint)}
   /* タップ詳細（「自分の予定」と同じ全文を表示） */
   .bdetail{padding:10px 12px 4px; border-top:1px solid var(--line); background:var(--tint)}
@@ -1653,20 +1659,32 @@ function boardDetailHTML(person, item){
     + `<div class="bdname">👤 ${escapeHtml(person)}</div>${renderItem(item)}</div>`;
 }
 function wireBoard(root){
-  const foot = root.querySelector(".bfoot");
+  function clearSel(){
+    root.querySelectorAll("tr.bdetailrow").forEach(x=>x.remove());
+    root.querySelectorAll(".sel").forEach(x=>x.classList.remove("sel"));
+    root.querySelectorAll("td.cell.tap").forEach(x=>{ x.__open = false; });
+  }
+  const ths = root.querySelectorAll("thead th");
   root.querySelectorAll("td.cell.tap").forEach(td=>{
     td.onclick = ()=>{
       const wasThis = td.__open === true;
-      root.querySelectorAll(".bdetail").forEach(x=>x.remove());
-      root.querySelectorAll("td.cell.tap").forEach(x=>{ x.__open = false; });
-      if(wasThis) return;
+      clearSel();
+      if(wasThis) return;                       // 同じセルの再タップ＝閉じる
       const p = OVERVIEW.people[+td.dataset.p];
-      const c = p.days[+td.dataset.d];
-      const tmp = document.createElement("div");
-      tmp.innerHTML = boardDetailHTML(p.name, c);
-      const detail = tmp.firstElementChild;
-      if(foot) foot.parentNode.insertBefore(detail, foot); else root.appendChild(detail);
-      detail.querySelector(".bclose").onclick = ()=>{ detail.remove(); td.__open = false; };
+      const di = +td.dataset.d;
+      const c = p.days[di];
+      const tr = td.closest("tr");
+      // 詳細をタップした行の真下に展開（どこをタップしたか一目でわかる）
+      const cols = (OVERVIEW.dates ? OVERVIEW.dates.length : 3) + 1;
+      const drow = document.createElement("tr");
+      drow.className = "bdetailrow";
+      drow.innerHTML = `<td colspan="${cols}">${boardDetailHTML(p.name, c)}</td>`;
+      tr.insertAdjacentElement("afterend", drow);
+      // 選択したセル・その人の名前・その日付の見出しをハイライト
+      td.classList.add("sel");
+      const nm = tr.querySelector("td.nm"); if(nm) nm.classList.add("sel");
+      if(ths[di+1]) ths[di+1].classList.add("sel");
+      drow.querySelector(".bclose").onclick = ()=> clearSel();
       td.__open = true;
     };
   });
