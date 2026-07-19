@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-19 16:49",
+ "updatedAt": "2026-07-19 20:39",
  "cats": [
   {
    "key": "kanko",
@@ -47,6 +47,13 @@
   }
  ],
  "items": [
+  {
+   "c": "kanko",
+   "t": "なぜ？ 那覇・波の上ビーチを遊泳禁止 観光客「残念だが仕方がない」",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBrVHc3MUlHcExNN1BMSUE1c0tacG5rX01pU0JOSmlIdjBMTWFwZXJDWHlNdWViRllVTE1UU0NxS0ZseGxKbW80Q2hQYXlNY2luWExqTzRrN0RxS0Itbnc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-19T07:55:00+00:00"
+  },
   {
    "c": "spot",
    "t": "＜書評＞『首里城の龍 意匠のしくみ』琉球独特の造形文化明らかに",
