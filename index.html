@@ -1635,26 +1635,43 @@ function applyCollapsible(){ /* 折り畳みは廃止（運行内容は常に全
 let OVERVIEW = null;
 let SCHVIEW = "self";
 const BADGE_ABBR = {運行:"運", 待機:"待", 日勤:"日", 公休:"休", 休み:"休", 調整:"調", 有休:"有"};
+function todayISO(){                    // 端末の「今日」（毎回ライブ算出）
+  const t = new Date(), p = n => String(n).padStart(2,"0");
+  return `${t.getFullYear()}-${p(t.getMonth()+1)}-${p(t.getDate())}`;
+}
+function boardWindow(){                 // 端末の現在日から3日間（今日・明日・明後日）
+  const base = new Date(); base.setHours(0,0,0,0);
+  const p = n => String(n).padStart(2,"0");
+  return [0,1,2].map(k=>{
+    const d = new Date(base); d.setDate(d.getDate()+k);
+    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+  });
+}
 function boardDayHead(iso, i){
   const d = new Date(iso+"T00:00:00"), wd = d.getDay();
   const lbl = i===0 ? "今日" : i===1 ? "明日" : i===2 ? "明後日" : "";
   const wc = (wd===0||wd===6) ? " wend" : "";
-  const tc = iso===TODAY ? " today" : "";
+  const tc = iso===todayISO() ? " today" : "";
   return `<th class="${(wc+tc).trim()}">${lbl}<span class="wd">${d.getMonth()+1}/${d.getDate()}(${WD[wd]})</span></th>`;
 }
 function boardHTML(ov, idPrefix){
   if(!ov || !ov.people || !ov.people.length) return "";
-  const dates = ov.dates || [];
-  const head = `<tr><th class="nm">名前</th>${dates.map(boardDayHead).join("")}</tr>`;
+  const win = boardWindow();            // 表示する3日間は端末時計基準（0:00に自動で繰り上がる）
+  const today = todayISO();
+  const head = `<tr><th class="nm">名前</th>${win.map(boardDayHead).join("")}</tr>`;
   const rows = ov.people.map((p, pi)=>{
     const role = p.role==="staff" ? `<span class="role">事務スタッフ</span>` : "";
-    const cells = (p.days||[]).map((c, di)=>{
-      const iso = dates[di], tc = iso===TODAY ? " today" : "";
+    // overviewは数日分持つ。必要な3日を日付キーで引く（欠けている日は空欄）
+    const byDate = {};
+    (p.days||[]).forEach(c=>{ if(c && c.date) byDate[c.date] = c; });
+    const cells = win.map((iso, di)=>{
+      const tc = iso===today ? " today" : "";
+      const c = byDate[iso];
       if(!c || !c.type) return `<td class="cell blank${tc}">—</td>`;
       const ab = BADGE_ABBR[c.type] || c.type.slice(0,1);
       // 団体名（運行）・待機の1/2・日勤の運管A/B など、type と違う title は face にも出す
       const dest = (c.title && c.title !== c.type) ? `<span class="dest">${escapeHtml(c.title)}</span>` : "";
-      return `<td class="cell${tc} tap" data-p="${pi}" data-d="${di}"><span class="bbdg t-${c.type}">${ab}</span>${dest}</td>`;
+      return `<td class="cell${tc} tap" data-p="${pi}" data-di="${di}" data-date="${iso}"><span class="bbdg t-${c.type}">${ab}</span>${dest}</td>`;
     }).join("");
     return `<tr><td class="nm">${escapeHtml(p.name)}${role}</td>${cells}</tr>`;
   }).join("");
@@ -1680,11 +1697,12 @@ function wireBoard(root){
       clearSel();
       if(wasThis) return;                       // 同じセルの再タップ＝閉じる
       const p = OVERVIEW.people[+td.dataset.p];
-      const di = +td.dataset.d;
-      const c = p.days[di];
+      const di = +td.dataset.di;
+      const c = (p.days||[]).find(x=> x.date === td.dataset.date);
+      if(!c) return;
       const tr = td.closest("tr");
       // 詳細をタップした行の真下に展開（どこをタップしたか一目でわかる）
-      const cols = (OVERVIEW.dates ? OVERVIEW.dates.length : 3) + 1;
+      const cols = tr.querySelectorAll("td").length;   // 名前＋3日
       const drow = document.createElement("tr");
       drow.className = "bdetailrow";
       drow.innerHTML = `<td colspan="${cols}">${boardDetailHTML(p.name, c)}</td>`;
@@ -1698,10 +1716,16 @@ function wireBoard(root){
     };
   });
 }
+let _boardDay = null;
 function renderBoards(){
   const es = $("#boardSched");
   if(es){ es.innerHTML = boardHTML(OVERVIEW, "bd"); wireBoard(es); }
+  _boardDay = todayISO();
 }
+// 0:00をまたいだら（日付が変わったら）ボードの今日・明日・明後日を自動で繰り上げる
+setInterval(()=>{
+  if(OVERVIEW && _boardDay && todayISO() !== _boardDay) renderBoards();
+}, 30000);
 function setSchView(v){
   SCHVIEW = v;
   $("#app").classList.toggle("sched-all", v==="all");
