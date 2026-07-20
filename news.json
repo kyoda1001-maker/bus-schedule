@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-19 20:39",
+ "updatedAt": "2026-07-20 19:32",
  "cats": [
   {
    "key": "kanko",
@@ -46,48 +46,5 @@
    "label": "日韓"
   }
  ],
- "items": [
-  {
-   "c": "kanko",
-   "t": "なぜ？ 那覇・波の上ビーチを遊泳禁止 観光客「残念だが仕方がない」",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBrVHc3MUlHcExNN1BMSUE1c0tacG5rX01pU0JOSmlIdjBMTWFwZXJDWHlNdWViRllVTE1UU0NxS0ZseGxKbW80Q2hQYXlNY2luWExqTzRrN0RxS0Itbnc?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-19T07:55:00+00:00"
-  },
-  {
-   "c": "spot",
-   "t": "＜書評＞『首里城の龍 意匠のしくみ』琉球独特の造形文化明らかに",
-   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE03Vmw3aXNQNzB4MFRUREY4UHZ3dnVhWHg1eHRmMTQ5bkNib3Vxc01hamZHRFRNVkVZYTJvNUFvVXljVGdlTlQ1TTBCOC11c0RxMUdUb0hjOWM3WC1WNEVr?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-07-19T03:18:25+00:00"
-  },
-  {
-   "c": "kanko",
-   "t": "ジャングリア沖縄が開業1年 「素通り観光」脱却に期待集まる 美ら海水族館に人気偏る本島北部",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9CX1N6UTFWVFZPV0xlNk5UZ21MNDl1U3dkT3lJXzZKaWhEa1FJamt0M2JGeWFnQjlIUnR2UUFsOEU2OWZkN05sQ1p4ZE1yWVN6WER4MWdOdHRCM0lPZFE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-18T22:30:00+00:00"
-  },
-  {
-   "c": "spot",
-   "t": "「素通り観光」脱却に期待 経済波及効果に課題も ジャングリア開業１年",
-   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBWelg3bFJpMUd5ck1acGxLMUpxaU5xSFF0bnhnZUtSQ0lPMFpuRGVsLVJRbi1BaWhOb2pFc1dnWlBTbThGc2VIMXViWFZzUjliMFU2MU9Ba2ZkM3pNTEZMWmVn?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-07-18T20:00:00+00:00"
-  },
-  {
-   "c": "hotel",
-   "t": "沖縄の宿泊業 数十億円規模の損失の恐れ 業界支える外国人材の不足が加速",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5ybTJ2cjhGUzJsUmFnWDJSOTBDUEYxbTBVb0pqZTZGR05mTzVxSjFwR0FEMVdhMWROQmt6X090SjZqaHJ2aXBicGEyMU5YRk54eDhVRldkVlNlTW5VY3c?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-18T20:00:00+00:00"
-  },
-  {
-   "c": "event",
-   "t": "「関東沖縄エイサーまつり」初開催 40団体が勇壮に 屋慶名、園田も参上 きょうまで東京・中野",
-   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1KWko4c09sQVpOY19SOG9TZnFQVkg2c0FFX1ViVlU3c3EybE04TkZYMVBxWmdRYnlGN2xnMFh6R0NjMGI4SEViZS16bDNSSmo4b0pZLWJtbU1xa2JyS3E0aQ?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-07-18T20:00:00+00:00"
-  }
- ]
+ "items": []
 }
