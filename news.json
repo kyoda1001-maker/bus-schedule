@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-20 19:32",
+ "updatedAt": "2026-07-21 06:41",
  "cats": [
   {
    "key": "kanko",
@@ -46,5 +46,55 @@
    "label": "日韓"
   }
  ],
- "items": []
+ "items": [
+  {
+   "c": "kanko",
+   "t": "沖縄の観光魅力6部門全国1位 特産品や施設に満足感 総合満足度は5位 じゃらん調査",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9FRUpkYWJ4MHE3M3p1elpFdHVQd0toZEZkN2dqb0lFcG8yRTRYVloyMjlsVzhlWXNVUVhhR0RYQjlOTmhDWXdiOTJWbWNvN2RNVk1JRnR3UmZ3TU1VYUE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-20T19:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "［政懇21］地政学リスクと日本経済の展望 野村総合研究所 エグゼクティブ・エコノミスト 木内登英氏が講演 23日 サウスゲートホテル沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5HZTlWX2k3Z19EcUdUR3QyM1Y5MjFyQkt5bTdOaFphdV9tWWZaUngwN0d1eURDa05PaHh3OHNOZWZJLUxtWEtMLU5ndnFweFZ2cmp0NUZmMDlNbUtISWc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-20T18:57:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "不満続出のジャングリアは今 プロ野球優勝並みの経済効果も",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9LOUQxdENLVWdWd2hUd3ZlRjZNb1JCX0dVVTQwS2tjUWJVRUZvY1g2cFZGZTRwMWNjTk96aDYwUVlydXFVd0tDOFpGS1dkX3R6X09ESHk0RnpMR2tqeXRkdFAwbWtSazNl?oc=5",
+   "s": "毎日新聞",
+   "d": "2026-07-20T09:00:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "なぜ？ 那覇・波の上ビーチを遊泳禁止 観光客「残念だが仕方がない」",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBrVHc3MUlHcExNN1BMSUE1c0tacG5rX01pU0JOSmlIdjBMTWFwZXJDWHlNdWViRllVTE1UU0NxS0ZseGxKbW80Q2hQYXlNY2luWExqTzRrN0RxS0Itbnc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-19T10:55:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "【動画】伝統の甕仕込み泡盛「玉友」と、滞在型に刷新されたハーバービューホテル 沖縄観光のいま",
+   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBoREJxVEs0NjhCM2J4OXAyZmtuYVhKUjdVY1lEbXpzQ2p6a1dRdVQxU0hYZ3RENUdzQVRUcEd1bTRlRGlPOW9UWnlNX2FGemJIRGpwWVNrQmRfWDlOQkNGTTV0bmdGc3lMV3RpS1RYNWoySHNHVVE?oc=5",
+   "s": "産経ニュース",
+   "d": "2026-07-19T04:02:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "＜書評＞『首里城の龍 意匠のしくみ』琉球独特の造形文化明らかに",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE03Vmw3aXNQNzB4MFRUREY4UHZ3dnVhWHg1eHRmMTQ5bkNib3Vxc01hamZHRFRNVkVZYTJvNUFvVXljVGdlTlQ1TTBCOC11c0RxMUdUb0hjOWM3WC1WNEVr?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-07-19T03:18:25+00:00"
+  },
+  {
+   "c": "event",
+   "t": "「関東沖縄エイサーまつり」初開催 40団体が勇壮に 屋慶名、園田も参上 きょうまで東京・中野",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1KWko4c09sQVpOY19SOG9TZnFQVkg2c0FFX1ViVlU3c3EybE04TkZYMVBxWmdRYnlGN2xnMFh6R0NjMGI4SEViZS16bDNSSmo4b0pZLWJtbU1xa2JyS3E0aQ?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-07-18T20:00:00+00:00"
+  }
+ ]
 }
