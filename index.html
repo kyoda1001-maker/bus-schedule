@@ -139,9 +139,36 @@
     margin-bottom:14px; box-shadow:0 2px 12px rgba(31,98,142,.08);
   }
   .quotecard .qlabel{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
     font-size:11px; font-weight:700; color:var(--brand); letter-spacing:.1em;
   }
   .quotecard .qlabel .star{color:var(--star)}
+  .quotecard .qsave{
+    flex:none; letter-spacing:0; font-size:11.5px; font-weight:700; color:var(--brand);
+    background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:3px 12px; cursor:pointer; font-family:inherit;
+  }
+  .quotecard .qsave.on{background:var(--brand); color:#fff; border-color:var(--brand)}
+  /* 保存した名言 */
+  .qsaved{margin-top:11px; border-top:1px dashed var(--line); padding-top:9px}
+  .qstoggle{display:flex; align-items:center; gap:6px; width:100%; background:none; border:0;
+    cursor:pointer; font-size:12px; font-weight:700; color:var(--brand); font-family:inherit; padding:2px 0}
+  .qscnt{background:var(--tint); border:1px solid var(--line); border-radius:999px;
+    font-size:10.5px; padding:0 7px; color:var(--brand)}
+  .qschev{margin-left:auto; transition:transform .2s}
+  .qsaved.open .qschev{transform:rotate(180deg)}
+  .qsbody{display:none; margin-top:8px}
+  .qsaved.open .qsbody{display:block}
+  .qsitem{background:var(--card); border:1px solid var(--line); border-radius:11px;
+    padding:9px 26px 9px 11px; margin-bottom:8px; position:relative}
+  .qsitem .qsq{font-size:13.5px; font-weight:500; line-height:1.7; color:var(--ink);
+    padding-left:10px; border-left:3px solid var(--star)}
+  .qsitem .qsa{font-size:11.5px; color:var(--sub); text-align:right; margin-top:5px}
+  .qsitem .qsa b{color:var(--brand); font-weight:700}
+  .qsitem .qsd{font-size:11.5px; color:var(--sub); line-height:1.7; margin-top:6px;
+    padding-top:6px; border-top:1px dashed var(--line)}
+  .qsitem .qsrm{position:absolute; top:6px; right:7px; border:0; background:transparent;
+    color:var(--sub); font-size:15px; cursor:pointer; line-height:1; padding:0 2px}
   .quotecard .qtext{
     font-size:16px; font-weight:500; line-height:1.8; color:var(--ink);
     margin:9px 0 10px; padding-left:14px; border-left:3px solid var(--star);
@@ -940,10 +967,12 @@
 <!-- 予定表示 -->
 <div class="wrap" id="app" hidden>
   <div class="quotecard" id="quotecard">
-    <div class="qlabel">今日のプラチナ名言 <span class="star">✦</span></div>
+    <div class="qlabel"><span>今日のプラチナ名言 <span class="star">✦</span></span>
+      <button type="button" class="qsave" id="qsave" aria-label="この名言を保存">☆ 保存</button></div>
     <div class="qtext" id="qtext">感謝の心が高まれば、それに正比例して幸福感が高まっていく。</div>
     <div class="qauthor" id="qauthor">— <b>松下 幸之助</b>（1894–1989 ／ 経営者・パナソニック創業者）</div>
     <div class="qexplain" id="qexplain" hidden></div>
+    <div class="qsaved" id="qsaved" hidden></div>
   </div>
   <div class="healthcard" id="healthcard" hidden></div>
   <div class="wxcard" id="wxcard" hidden></div>
@@ -1738,6 +1767,7 @@ $("#segAll").addEventListener("click", ()=> setSchView("all"));
 /* ---- ログイン制御 ---- */
 function showApp(data){
   $("#hname").textContent = data.name || "運行予定確認";
+  if(window.__quoteSetUser) window.__quoteSetUser(data.name || "");
   if(window.__phraseSetUser) window.__phraseSetUser(data.name || "");
   if(window.__newsSetUser) window.__newsSetUser(data.name || "");
   if(window.__tsubuSetUser) window.__tsubuSetUser(data.name || "", !!data.admin);
@@ -2003,30 +2033,70 @@ document.querySelectorAll(".infolink").forEach(b=> b.addEventListener("click", o
 $("#infoclose").addEventListener("click", closeInfo);
 $("#infoclose2").addEventListener("click", closeInfo);
 
-/* ---- 今日の名言（quotes.json から日付で日替わり表示）---- */
-function showTodayQuote(list){
-  if(!Array.isArray(list) || !list.length) return;
-  const d = new Date();
-  const dayNum = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
-  const q = list[((dayNum % list.length) + list.length) % list.length];
-  if($("#qtext")) $("#qtext").textContent = q.q;
-  if($("#qauthor")){
-    const meta = [q.e, q.n].filter(Boolean).map(escapeHtml).join(" ／ ");
-    $("#qauthor").innerHTML = "— <b>" + escapeHtml(q.a) + "</b>" + (meta ? "（" + meta + "）" : "");
+/* ---- 今日の名言（quotes.json から日付で日替わり表示＋保存機能）---- */
+(function(){
+  let LIST = null, CUR = null, USER = "", memStore = {}, savedOpen = false;
+  const sKey = ()=> "platinum_quotes::" + (USER || "guest");
+  function loadSaved(){ try{ const v=localStorage.getItem(sKey()); return v?JSON.parse(v):{}; }catch(e){ return memStore; } }
+  function persist(o){ memStore=o; try{ localStorage.setItem(sKey(), JSON.stringify(o)); }catch(e){} }
+  const esc = s => escapeHtml(String(s));
+  const metaOf = q => [q.e, q.n].filter(Boolean).map(esc).join(" ／ ");
+  const keyOf = q => q.q;                                // 名言本文をキーにする
+
+  function showToday(){
+    if(!Array.isArray(LIST) || !LIST.length) return;
+    const d = new Date();
+    const dayNum = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+    CUR = LIST[((dayNum % LIST.length) + LIST.length) % LIST.length];
+    if($("#qtext")) $("#qtext").textContent = CUR.q;
+    if($("#qauthor")){ const m = metaOf(CUR); $("#qauthor").innerHTML = "— <b>" + esc(CUR.a) + "</b>" + (m ? "（" + m + "）" : ""); }
+    if($("#qexplain")){ if(CUR.d){ $("#qexplain").textContent = CUR.d; $("#qexplain").hidden = false; } else $("#qexplain").hidden = true; }
+    updateSaveBtn(); renderSaved();
   }
-  if($("#qexplain")){
-    if(q.d){
-      $("#qexplain").textContent = q.d;
-      $("#qexplain").hidden = false;
-    } else {
-      $("#qexplain").hidden = true;
-    }
+  function updateSaveBtn(){
+    const b = $("#qsave"); if(!b || !CUR) return;
+    const on = !!loadSaved()[keyOf(CUR)];
+    b.classList.toggle("on", on);
+    b.textContent = on ? "★ 保存済み" : "☆ 保存";
   }
-}
-fetch("quotes.json?_=" + Date.now())
-  .then(r => r.ok ? r.json() : null)
-  .then(showTodayQuote)
-  .catch(()=>{});
+  function renderSaved(){
+    const box = $("#qsaved"); if(!box) return;
+    const s = loadSaved(), keys = Object.keys(s);
+    if(!keys.length){ box.hidden = true; box.innerHTML = ""; return; }
+    box.hidden = false;
+    const rows = keys.map(k=>{
+      const q = s[k], m = metaOf(q);
+      return '<div class="qsitem"><button type="button" class="qsrm" data-k="'+esc(k)+'" aria-label="削除">×</button>'
+        + '<div class="qsq">'+esc(q.q)+'</div>'
+        + '<div class="qsa">— <b>'+esc(q.a)+'</b>'+(m?"（"+m+"）":"")+'</div>'
+        + (q.d ? '<div class="qsd">💡 '+esc(q.d)+'</div>' : '')
+        + '</div>';
+    }).join("");
+    box.innerHTML = '<button type="button" class="qstoggle" id="qstoggle"><span>📖</span><span>保存した名言</span>'
+      + '<span class="qscnt">'+keys.length+'</span><span class="qschev">▼</span></button>'
+      + '<div class="qsbody">'+rows+'</div>';
+    box.classList.toggle("open", savedOpen);
+    const tg = $("#qstoggle"); if(tg) tg.onclick = ()=>{ savedOpen = !savedOpen; box.classList.toggle("open", savedOpen); };
+    box.querySelectorAll(".qsrm").forEach(b=> b.onclick = ()=>{ const s2 = loadSaved(); delete s2[b.dataset.k]; persist(s2); updateSaveBtn(); renderSaved(); });
+  }
+
+  const sb = $("#qsave");
+  if(sb) sb.onclick = ()=>{
+    if(!CUR) return;
+    const s = loadSaved(), k = keyOf(CUR);
+    if(s[k]){ delete s[k]; }
+    else { s[k] = {q:CUR.q, a:CUR.a, e:CUR.e||"", n:CUR.n||"", d:CUR.d||""}; savedOpen = true; }
+    persist(s); updateSaveBtn(); renderSaved();
+  };
+
+  // ログイン後にユーザー名を受け取り、保存を本人のものに切り替える
+  window.__quoteSetUser = function(name){ USER = name || ""; savedOpen = false; showToday(); };
+
+  fetch("quotes.json?_=" + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(list => { if(Array.isArray(list) && list.length){ LIST = list; showToday(); } })
+    .catch(()=>{});
+})();
 
 /* ---- 今日の健康マメ知識（health_tips.json から日付で日替わり表示）---- */
 function showTodayHealth(list){
