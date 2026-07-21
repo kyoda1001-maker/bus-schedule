@@ -797,6 +797,7 @@
     border:1px solid #cfe0ee; border-radius:5px; padding:0 5px}
   .ts-post .date{color:var(--sub); margin-left:auto; white-space:nowrap}
   .ts-post .body{font-size:14px; color:var(--ink); margin:7px 0 0; white-space:pre-wrap; word-break:break-word}
+  .ts-link{color:var(--brand); font-weight:700; text-decoration:underline; word-break:break-all}
 
   .ts-photos{display:grid; gap:5px; margin-top:9px}
   .ts-photos.n1{grid-template-columns:1fr}
@@ -2508,6 +2509,24 @@ fetch("horoscope.json?_=" + Date.now())
 
   const el = s => document.querySelector(s);
   const esc = s => escapeHtml(String(s));
+  // 本文中の http(s):// リンクをクリック可能にする。
+  // URLに使える文字だけを拾う（日本語文が続いても巻き込まない）／通常テキストはHTMLエスケープ＝XSS安全。
+  function linkify(text){
+    const s = String(text);
+    const re = /https?:\/\/[\w.~:/?#@!$&'()*+,;=%\[\]-]+/g;   // URL構成文字のみ（日本語で自然に停止）
+    let out = "", last = 0, m;
+    while((m = re.exec(s)) !== null){
+      out += esc(s.slice(last, m.index));                    // URL前の通常テキスト
+      let url = m[0];
+      const tail = (url.match(/[.,!?;:)]+$/) || [""])[0];     // 末尾のASCII句読点はリンク外へ
+      if(tail) url = url.slice(0, url.length - tail.length);
+      const eu = esc(url);
+      out += '<a href="'+eu+'" class="ts-link" target="_blank" rel="noopener noreferrer">'+eu+'</a>' + esc(tail);
+      last = m.index + m[0].length;
+    }
+    out += esc(s.slice(last));                               // 最後のテキスト
+    return out;
+  }
   function fmt(ts){
     const diff = Date.now()-ts;
     if(diff<60000) return "たった今";
@@ -2593,7 +2612,7 @@ fetch("horoscope.json?_=" + Date.now())
           '</div>';
         return '<div class="ts-rep"><div class="top"><span class="no">≫</span>'+nickHtml(r)+
           (rmine?' <span class="mine">自分</span>':'')+'<span class="date">'+fmt(r.ts)+'</span></div>'+
-          (r.body?'<div class="body">'+esc(r.body)+'</div>':"")+rphotos+rreact+
+          (r.body?'<div class="body">'+linkify(r.body)+'</div>':"")+rphotos+rreact+
           ((rmine||ADMIN)?'<div class="ts-acts"><button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button></div>':'')+
           '</div>';
       }).join("");
@@ -2618,7 +2637,7 @@ fetch("horoscope.json?_=" + Date.now())
       return '<div class="ts-post"><div class="top"><span class="no">'+num+'</span>'+nickHtml(p)+
         (mine?' <span class="mine">自分</span>':'')+
         '<span class="date">'+fmt(p.ts)+' ・ '+expLabel(p.ts)+'</span></div>'+
-        '<div class="body">'+esc(p.body)+'</div>'+photos+react+acts+repliesHtml+rbox+'</div>';
+        '<div class="body">'+linkify(p.body)+'</div>'+photos+react+acts+repliesHtml+rbox+'</div>';
     }).join("");
     wire();
   }
