@@ -886,10 +886,12 @@
   .ts-note{font-size:10.5px; color:var(--sub); text-align:center; margin-top:8px; line-height:1.7}
 
   .ts-lightbox{position:fixed; inset:0; z-index:60; display:none; align-items:center; justify-content:center;
-    background:rgba(0,0,0,.9); padding:20px; touch-action:pan-y}
+    background:rgba(0,0,0,.9); padding:20px; touch-action:none; overflow:hidden}
   .ts-lightbox.open{display:flex}
   .ts-lightbox .lb-stage{max-width:100%; max-height:100%; display:flex; align-items:center; justify-content:center}
-  .ts-lightbox img{max-width:100%; max-height:82vh; border-radius:8px; user-select:none; -webkit-user-drag:none}
+  .ts-lightbox img{max-width:100%; max-height:82vh; border-radius:8px; user-select:none; -webkit-user-drag:none;
+    transform-origin:center center; will-change:transform}
+  .ts-lightbox .lb-close,.ts-lightbox .lb-nav,.ts-lightbox .lb-count,.ts-lightbox .lb-dl{z-index:2}
   .ts-lightbox .lb-close{position:absolute; top:14px; right:16px; width:38px; height:38px; border:0;
     background:rgba(255,255,255,.15); color:#fff; font-size:24px; line-height:1; border-radius:50%; cursor:pointer}
   .ts-lightbox .lb-nav{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border:0;
@@ -2792,6 +2794,7 @@ fetch("horoscope.json?_=" + Date.now())
   function lbShow(){
     const url=lbPhotos[lbIndex]; if(!url) return;
     el("#tsLightboxImg").src=url;
+    if(typeof resetZoom==="function") resetZoom(false);   // 新しい写真は等倍で表示
     const multi=lbPhotos.length>1;
     el("#tsLbCount").textContent = multi ? (lbIndex+1)+" / "+lbPhotos.length : "";
     el("#tsLbPrev").style.display = multi ? "" : "none";
@@ -2819,15 +2822,64 @@ fetch("horoscope.json?_=" + Date.now())
   el("#tsLbNext").onclick=e=>{ e.stopPropagation(); lbGo(1); };
   el("#tsLbClose").onclick=e=>{ e.stopPropagation(); closeLightbox(); };
   el("#tsLbDownload").onclick=e=>{ e.stopPropagation(); downloadPhoto(lbPhotos[lbIndex]); };
-  el("#tsLightbox").onclick=e=>{ if(e.target.id==="tsLightbox"||e.target.id==="tsLbStage") closeLightbox(); };
-  (function(){
-    const stage=el("#tsLbStage"); let x0=null,y0=null;
-    stage.addEventListener("touchstart",e=>{ const t=e.changedTouches[0]; x0=t.clientX; y0=t.clientY; },{passive:true});
-    stage.addEventListener("touchend",e=>{
-      if(x0===null) return; const t=e.changedTouches[0]; const dx=t.clientX-x0, dy=t.clientY-y0; x0=y0=null;
+  el("#tsLightbox").onclick=e=>{ if(scale>1) return; if(e.target.id==="tsLightbox"||e.target.id==="tsLbStage") closeLightbox(); };
+
+  // ---- 拡大写真の操作：ピンチでズーム／ズーム中は指でパン／ダブルタップで拡大縮小／等倍時は左右スワイプで切替 ----
+  let scale=1, tx=0, ty=0, startDist=0, startScale=1, panSX=0, panSY=0, panTX=0, panTY=0;
+  let gmode=null, swSX=0, swSY=0, lastTap=0;
+  const lbImg = ()=> el("#tsLightboxImg");
+  function applyTransform(){ lbImg().style.transform = "translate("+tx+"px,"+ty+"px) scale("+scale+")"; }
+  function resetZoom(anim){
+    const i=lbImg(); if(!i) return;
+    i.style.transition = anim ? "transform .2s" : "none";
+    scale=1; tx=0; ty=0; applyTransform();
+    if(anim) setTimeout(()=>{ i.style.transition="none"; }, 220);
+  }
+  function clampPan(){
+    const i=lbImg(), bw=i.clientWidth, bh=i.clientHeight;
+    const mx=Math.max(0,(bw*scale-window.innerWidth)/2), my=Math.max(0,(bh*scale-window.innerHeight)/2);
+    tx=Math.max(-mx,Math.min(mx,tx)); ty=Math.max(-my,Math.min(my,ty));
+  }
+  function toggleZoom(cx,cy){
+    const i=lbImg(); i.style.transition="transform .2s";
+    if(scale>1){ scale=1; tx=0; ty=0; }
+    else { scale=2.5; tx=-(cx-window.innerWidth/2)*(scale-1); ty=-(cy-window.innerHeight/2)*(scale-1); clampPan(); }
+    applyTransform(); setTimeout(()=>{ i.style.transition="none"; }, 220);
+  }
+  const twoDist = t => Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY);
+  const lbEl = el("#tsLightbox");
+  lbEl.addEventListener("touchstart", e=>{
+    if(e.touches.length===2){
+      gmode="pinch"; startDist=twoDist(e.touches)||1; startScale=scale; lbImg().style.transition="none";
+    } else if(e.touches.length===1){
+      const t=e.touches[0];
+      if(scale>1){ gmode="pan"; panSX=t.clientX; panSY=t.clientY; panTX=tx; panTY=ty; }
+      else { gmode="swipe"; swSX=t.clientX; swSY=t.clientY; }
+      const now=Date.now();
+      if(now-lastTap<300){ toggleZoom(t.clientX,t.clientY); lastTap=0; gmode=null; }   // ダブルタップ
+      else lastTap=now;
+    }
+  }, {passive:false});
+  lbEl.addEventListener("touchmove", e=>{
+    if(gmode==="pinch" && e.touches.length>=2){
+      e.preventDefault();
+      scale=Math.min(4, Math.max(1, startScale*twoDist(e.touches)/startDist));
+      clampPan(); applyTransform();
+    } else if(gmode==="pan" && e.touches.length===1){
+      e.preventDefault();
+      const t=e.touches[0];
+      tx=panTX+(t.clientX-panSX); ty=panTY+(t.clientY-panSY); clampPan(); applyTransform();
+    }
+  }, {passive:false});
+  lbEl.addEventListener("touchend", e=>{
+    if(gmode==="pinch"){ if(scale<=1.02) resetZoom(true); gmode=null; return; }
+    if(gmode==="pan"){ gmode=null; return; }
+    if(gmode==="swipe"){
+      const t=e.changedTouches[0]; const dx=t.clientX-swSX, dy=t.clientY-swSY;
       if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)*1.3) lbGo(dx<0?1:-1);
-    },{passive:true});
-  })();
+      gmode=null;
+    }
+  }, {passive:false});
   document.addEventListener("keydown",e=>{
     if(!el("#tsLightbox").classList.contains("open")) return;
     if(e.key==="ArrowLeft") lbGo(-1); else if(e.key==="ArrowRight") lbGo(1); else if(e.key==="Escape") closeLightbox();
