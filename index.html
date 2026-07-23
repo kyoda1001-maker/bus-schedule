@@ -713,20 +713,19 @@
   #app.mode-tsubu #list,
   #app.mode-tsubu footer{display:none}
 
-  /* ---- みんなの3日間ボード（運行予定タブの切替／ホームカード）---- */
-  /* 運行予定タブ内の「自分／みんな」切替。ホーム・つぶやきでは非表示 */
-  #schSeg{display:none}
-  #app.mode-sched #schSeg{display:flex}
-  #schSeg{background:var(--tint); border:1px solid var(--line); border-radius:12px;
+  /* ---- みんなの3日間ボード（ホーム・運行予定で「自分／みんな」を選択）---- */
+  /* 「自分／みんな」切替。ホームと運行予定で表示（つぶやきでは非表示）*/
+  #schSeg{display:flex; background:var(--tint); border:1px solid var(--line); border-radius:12px;
     padding:3px; margin-bottom:12px; gap:0}
   #schSeg button{flex:1; border:0; background:transparent; color:var(--sub); font-size:13.5px;
     font-weight:700; padding:9px 0; border-radius:9px; font-family:inherit; cursor:pointer}
   #schSeg button.on{background:var(--card); color:var(--brand); box-shadow:0 1px 5px rgba(31,98,142,.16)}
-  /* 「みんな」選択時はカレンダー/リストを隠してボードを出す */
+  /* 「みんな」選択時はカレンダー/リストを隠してボードを出す（ホーム・運行予定 共通）*/
   #boardSched{display:none}
-  #app.mode-sched.sched-all #boardSched{display:block}
-  #app.mode-sched.sched-all .viewbar,
-  #app.mode-sched.sched-all #list{display:none}
+  #app.sched-all #boardSched{display:block}
+  #app.sched-all .viewbar,
+  #app.sched-all #list{display:none}
+  #app.mode-tsubu #boardSched{display:none}   /* つぶやきでは出さない */
 
   .boardcard{background:var(--card); border:1px solid var(--line); border-radius:14px;
     overflow:hidden; margin-bottom:12px; box-shadow:0 1px 8px rgba(31,98,142,.06)}
