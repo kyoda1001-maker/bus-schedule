@@ -771,6 +771,15 @@
   .bdetail .day{margin-bottom:6px}
   .bdetail .bclose{float:right; border:0; background:transparent; color:var(--sub); font-size:16px;
     cursor:pointer; line-height:1; padding:0 2px}
+  /* 詳細内の日移動（左右スライド／矢印で 今日・明日・明後日）*/
+  .bdetail .bdaynav{display:flex; align-items:center; gap:8px; margin:2px 0 8px}
+  .bdetail .bnav{flex:none; width:30px; height:30px; border:1px solid var(--line); background:var(--card);
+    color:var(--brand); font-size:18px; line-height:1; border-radius:50%; cursor:pointer; font-family:inherit}
+  .bdetail .bnav.ph{visibility:hidden}
+  .bdetail .bnav:active{background:var(--tint)}
+  .bdetail .bdaylbl{flex:1; text-align:center; font-size:13px; font-weight:800; color:var(--ink)}
+  .bdetail .empty{font-size:12.5px; color:var(--sub); text-align:center; padding:14px 4px}
+  .bdetail .bdaytip{font-size:10px; color:var(--sub); text-align:center; padding:4px 0 2px; opacity:.85}
 
   /* つぶやき */
   #tsubu{--ts-accent:#2f8f6b; --ts-danger:#b5453c}
@@ -1698,7 +1707,7 @@ function boardHTML(ov, idPrefix){
     const cells = win.map((iso, di)=>{
       const tc = iso===today ? " today" : "";
       const c = byDate[iso];
-      if(!c || !c.type) return `<td class="cell blank${tc}">—</td>`;
+      if(!c || !c.type) return `<td class="cell blank${tc} tap" data-p="${pi}" data-di="${di}" data-date="${iso}">—</td>`;
       const ab = BADGE_ABBR[c.type] || c.type.slice(0,1);
       // 団体名（運行）・待機の1/2・日勤の運管A/B など、type と違う title は face にも出す
       const dest = (c.title && c.title !== c.type) ? `<span class="dest">${escapeHtml(c.title)}</span>` : "";
@@ -1710,40 +1719,70 @@ function boardHTML(ov, idPrefix){
     <table class="bgrid"><thead>${head}</thead><tbody>${rows}</tbody></table>
     <div class="bfoot">タップで詳細（自分の予定と同じ内容）／表示は今日から3日間のみ</div>`;
 }
-function boardDetailHTML(person, item){
-  // 「自分の予定」と同じ renderItem をそのまま使う（内容は一切省略しない）
+function boardDetailHTML(person, item, di){
+  // 「自分の予定」と同じ renderItem をそのまま使う（内容は一切省略しない）。
+  // 上部に日移動ナビ（左右スライド／矢印で 今日・明日・明後日）を付ける。
+  const win = boardWindow();
+  const iso = win[di] || (item && item.date) || todayISO();
+  const d = new Date(iso+"T00:00:00"), wd = d.getDay();
+  const lbl = di===0 ? "今日" : di===1 ? "明日" : di===2 ? "明後日" : "";
+  const dayhdr = `${lbl}　${d.getMonth()+1}/${d.getDate()}(${WD[wd]})`;
+  const body = (item && item.type) ? renderItem(item) : `<div class="empty">この日の予定はありません</div>`;
+  const prev = di>0 ? `<button type="button" class="bnav" data-nav="-1" aria-label="前の日">‹</button>` : `<span class="bnav ph"></span>`;
+  const next = di<win.length-1 ? `<button type="button" class="bnav" data-nav="1" aria-label="次の日">›</button>` : `<span class="bnav ph"></span>`;
   return `<div class="bdetail"><button type="button" class="bclose" aria-label="閉じる">×</button>`
-    + `<div class="bdname">👤 ${escapeHtml(person)}</div>${renderItem(item)}</div>`;
+    + `<div class="bdname">👤 ${escapeHtml(person)}</div>`
+    + `<div class="bdaynav">${prev}<span class="bdaylbl">${dayhdr}</span>${next}</div>`
+    + `${body}`
+    + `<div class="bdaytip">← 左右にスライドで 今日・明日・明後日 →</div></div>`;
 }
 function wireBoard(root){
+  const ths = root.querySelectorAll("thead th");
+  const win = boardWindow();
+  let curPi = null, curDi = null;
   function clearSel(){
     root.querySelectorAll("tr.bdetailrow").forEach(x=>x.remove());
     root.querySelectorAll(".sel").forEach(x=>x.classList.remove("sel"));
-    root.querySelectorAll("td.cell.tap").forEach(x=>{ x.__open = false; });
   }
-  const ths = root.querySelectorAll("thead th");
+  function closeDetail(){ clearSel(); curPi = curDi = null; }
+  function itemFor(p, iso){
+    let hit = null; (p.days||[]).forEach(c=>{ if(c && c.date===iso) hit = c; });
+    return hit || {date: iso, type: "", title: ""};
+  }
+  function openDetail(pi, di){
+    if(di < 0 || di >= win.length) return;       // 今日〜明後日の端で止まる
+    clearSel();
+    const p = OVERVIEW.people[pi]; if(!p) return;
+    const tr = root.querySelectorAll("tbody tr")[pi]; if(!tr) return;   // 詳細行除去後なので人の行に一致
+    const item = itemFor(p, win[di]);
+    const cols = tr.querySelectorAll("td").length;
+    const drow = document.createElement("tr");
+    drow.className = "bdetailrow";
+    drow.innerHTML = `<td colspan="${cols}">${boardDetailHTML(p.name, item, di)}</td>`;
+    tr.insertAdjacentElement("afterend", drow);
+    // ハイライト：セル（列位置di）・名前・その日の見出し
+    const cells = tr.querySelectorAll("td.cell");
+    if(cells[di]) cells[di].classList.add("sel");
+    const nm = tr.querySelector("td.nm"); if(nm) nm.classList.add("sel");
+    if(ths[di+1]) ths[di+1].classList.add("sel");
+    const detail = drow.querySelector(".bdetail");
+    detail.querySelector(".bclose").onclick = ()=> closeDetail();
+    // 矢印で前後の日へ（同じ人）
+    detail.querySelectorAll("[data-nav]").forEach(b=> b.onclick = e=>{ e.stopPropagation(); openDetail(pi, di + (+b.dataset.nav)); });
+    // 左右スワイプで前後の日へ（同じ人）。縦スクロールは妨げない
+    let x0=null, y0=null;
+    detail.addEventListener("touchstart", e=>{ const t=e.changedTouches[0]; x0=t.clientX; y0=t.clientY; }, {passive:true});
+    detail.addEventListener("touchend", e=>{
+      if(x0===null) return; const t=e.changedTouches[0]; const dx=t.clientX-x0, dy=t.clientY-y0; x0=y0=null;
+      if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)*1.3) openDetail(pi, di + (dx<0?1:-1));
+    }, {passive:true});
+    curPi = pi; curDi = di;
+  }
   root.querySelectorAll("td.cell.tap").forEach(td=>{
     td.onclick = ()=>{
-      const wasThis = td.__open === true;
-      clearSel();
-      if(wasThis) return;                       // 同じセルの再タップ＝閉じる
-      const p = OVERVIEW.people[+td.dataset.p];
-      const di = +td.dataset.di;
-      const c = (p.days||[]).find(x=> x.date === td.dataset.date);
-      if(!c) return;
-      const tr = td.closest("tr");
-      // 詳細をタップした行の真下に展開（どこをタップしたか一目でわかる）
-      const cols = tr.querySelectorAll("td").length;   // 名前＋3日
-      const drow = document.createElement("tr");
-      drow.className = "bdetailrow";
-      drow.innerHTML = `<td colspan="${cols}">${boardDetailHTML(p.name, c)}</td>`;
-      tr.insertAdjacentElement("afterend", drow);
-      // 選択したセル・その人の名前・その日付の見出しをハイライト
-      td.classList.add("sel");
-      const nm = tr.querySelector("td.nm"); if(nm) nm.classList.add("sel");
-      if(ths[di+1]) ths[di+1].classList.add("sel");
-      drow.querySelector(".bclose").onclick = ()=> clearSel();
-      td.__open = true;
+      const pi = +td.dataset.p, di = +td.dataset.di;
+      if(curPi===pi && curDi===di){ closeDetail(); return; }   // 同じセル再タップで閉じる
+      openDetail(pi, di);
     };
   });
 }
