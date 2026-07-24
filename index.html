@@ -2546,6 +2546,7 @@ fetch("horoscope.json?_=" + Date.now())
   }
   let replyOpenId = null, editingId = null, draft = [];  // draft: [{url,path}] or {blob,preview}
   let replyDraft = [];  // 返信の写真ドラフト（開いている返信ボックス用）
+  let replyPrefill = "";  // 返信への返信で引用（＞相手名）を差し込む
 
   const el = s => document.querySelector(s);
   const esc = s => escapeHtml(String(s));
@@ -2653,7 +2654,8 @@ fetch("horoscope.json?_=" + Date.now())
         return '<div class="ts-rep"><div class="top"><span class="no">≫</span>'+nickHtml(r)+
           (rmine?' <span class="mine">自分</span>':'')+'<span class="date">'+fmt(r.ts)+'</span></div>'+
           (r.body?'<div class="body">'+linkify(r.body)+'</div>':"")+rphotos+rreact+
-          ((rmine||ADMIN)?'<div class="ts-acts"><button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button></div>':'')+
+          '<div class="ts-acts"><button class="ts-act reply" data-replyr="'+p._id+'|'+r.rid+'">💬 返信</button>'+
+          ((rmine||ADMIN)?'<button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button>':'')+'</div>'+
           '</div>';
       }).join("");
       const repliesHtml=reps?'<div class="ts-replies">'+reps+'</div>':"";
@@ -2701,9 +2703,23 @@ fetch("horoscope.json?_=" + Date.now())
   function wire(){
     const list=el("#tsList");
     list.querySelectorAll("[data-reply]").forEach(b=>b.onclick=()=>{
-      replyOpenId=(replyOpenId===b.dataset.reply)?null:b.dataset.reply; replyDraft=[]; render();
+      replyOpenId=(replyOpenId===b.dataset.reply)?null:b.dataset.reply; replyDraft=[]; replyPrefill=""; render();
     });
-    list.querySelectorAll("[data-cancelr]").forEach(b=>b.onclick=()=>{ replyOpenId=null; replyDraft=[]; render(); });
+    // 返信への返信：その投稿の返信欄を開き、相手名の引用（＞〜）を差し込む
+    list.querySelectorAll("[data-replyr]").forEach(b=>b.onclick=()=>{
+      const [pid,rid]=b.dataset.replyr.split("|");
+      const p=findPost(pid); const r=p&&(p.replies||[]).find(x=>x.rid===rid);
+      const who=(r&&r.nick&&r.nick.trim())?r.nick.trim():"名無しさん";
+      replyOpenId=pid; replyDraft=[]; replyPrefill="＞"+who+" ";
+      render();
+    });
+    list.querySelectorAll("[data-cancelr]").forEach(b=>b.onclick=()=>{ replyOpenId=null; replyDraft=[]; replyPrefill=""; render(); });
+    // 返信ボックスに引用を差し込んでフォーカス（返信への返信のとき）
+    if(replyOpenId && replyPrefill){
+      const ta=el("#tsr-"+replyOpenId);
+      if(ta){ ta.value=replyPrefill; ta.focus(); try{ ta.setSelectionRange(ta.value.length,ta.value.length); }catch(e){} }
+      replyPrefill="";
+    }
     // 返信の写真追加
     list.querySelectorAll("[data-raddphoto]").forEach(b=>b.onclick=()=>{ const f=el("#tsrf-"+b.dataset.raddphoto); if(f) f.click(); });
     const rf=el("#tsrf-"+replyOpenId);
