@@ -821,10 +821,18 @@
   .ts-act.del{color:var(--ts-danger); margin-left:auto}
   .ts-act .cnt{color:var(--ts-accent)}
 
-  .ts-replies{margin:9px 0 0 8px; padding-left:11px; border-left:2px solid var(--line);
-    display:flex; flex-direction:column; gap:8px}
+  .ts-replies{margin:10px 0 0 6px; display:flex; flex-direction:column; gap:9px}
+  /* 返信は1件ずつカード化して区別（左に返信を示すアクセント）*/
+  .ts-rep{background:var(--tint); border:1px solid var(--line); border-left:3px solid var(--brand);
+    border-radius:11px; padding:8px 11px 9px}
   .ts-rep .top{font-size:11px}
   .ts-rep .body{font-size:13px; margin-top:3px; white-space:pre-wrap; word-break:break-word}
+  /* リアクション＋返信を一塊のバーに */
+  .ts-repbar{display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:8px}
+  .ts-repbar .ts-rbtn{font-size:11px; padding:4px 9px; gap:3px}
+  .ts-rbtn.reply{color:var(--brand)}
+  .ts-rbtn.reply .em{font-size:12px}
+  .ts-repbar .ts-act.del{margin-left:auto; align-self:center}
   .ts-rbox{margin:9px 0 0 8px; padding-left:11px; border-left:2px solid var(--ts-accent)}
   .ts-rbox textarea{width:100%; font:inherit; font-size:13px; border:1px solid var(--line);
     border-radius:10px; padding:8px 10px; resize:vertical; min-height:50px; background:#fbfdff}
@@ -2647,15 +2655,16 @@ fetch("horoscope.json?_=" + Date.now())
         const rphotos=(r.photos&&r.photos.length)
           ? '<div class="ts-photos n'+r.photos.length+'">'+r.photos.map(ph=>'<img src="'+esc(ph.url)+'" data-full="'+esc(ph.url)+'" alt="写真">').join("")+'</div>' : "";
         const rg=r.rGreat||[], rf=r.rFunny||[], rgOn=rg.indexOf(UID)>=0, rfOn=rf.indexOf(UID)>=0;
-        const rreact='<div class="ts-react">'+
+        // リアクション＋返信を1つのバーにまとめる（返信ごとに一塊で分かりやすく）
+        const rbar='<div class="ts-repbar">'+
           '<button class="ts-rbtn great'+(rgOn?' on':'')+'" data-reactr="'+p._id+'|'+r.rid+'|great"><span class="em">👍</span>最高だね！'+(rg.length?'<span class="c">'+rg.length+'</span>':'')+'</button>'+
           '<button class="ts-rbtn funny'+(rfOn?' on':'')+'" data-reactr="'+p._id+'|'+r.rid+'|funny"><span class="em">😂</span>うけるね！'+(rf.length?'<span class="c">'+rf.length+'</span>':'')+'</button>'+
+          '<button class="ts-rbtn reply" data-replyr="'+p._id+'|'+r.rid+'"><span class="em">💬</span>返信</button>'+
+          ((rmine||ADMIN)?'<button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button>':'')+
           '</div>';
         return '<div class="ts-rep"><div class="top"><span class="no">≫</span>'+nickHtml(r)+
           (rmine?' <span class="mine">自分</span>':'')+'<span class="date">'+fmt(r.ts)+'</span></div>'+
-          (r.body?'<div class="body">'+linkify(r.body)+'</div>':"")+rphotos+rreact+
-          '<div class="ts-acts"><button class="ts-act reply" data-replyr="'+p._id+'|'+r.rid+'">💬 返信</button>'+
-          ((rmine||ADMIN)?'<button class="ts-act del" data-delr="'+p._id+'|'+r.rid+'">🗑 削除</button>':'')+'</div>'+
+          (r.body?'<div class="body">'+linkify(r.body)+'</div>':"")+rphotos+rbar+
           '</div>';
       }).join("");
       const repliesHtml=reps?'<div class="ts-replies">'+reps+'</div>':"";
