@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-23 18:14",
+ "updatedAt": "2026-07-24 18:11",
  "cats": [
   {
    "key": "kanko",
@@ -48,11 +48,46 @@
  ],
  "items": [
   {
+   "c": "hotel",
+   "t": "【ザ ロイヤルパークホテル アイコニック 那覇】鉄板焼「琉火」夏休み期間限定ご褒美ランチ",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5JSTgwTlAwNVVSb0h4MUt3N3dQZWMyMHlpdlYxWG9NQWlfZWVKajRtaG9FV0V2eVhDU1U2YkdRRFpYeE56c0tIanhBWl8yQ1lTUDlHdEdwTmNLVTE5OVE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-24T03:43:04+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "「おめでとう」マーチングバンド世界2位・西原高が帰国 次は「絶対に日本一に」 那覇空港で保護者らで迎え【動画あり】",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1HVVJ2S2FMYmt2dVlDOTJTVmJ1U1U2Sk94SWlrRmRPSG14QXM0SVdUS3lxWDJYTW8wSFNqenk0VEVvOXNfdU5BZ3pSUU1xd081WmdrX0UtMGc3YUpkT0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-23T23:45:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "沖縄ブランド周知啓発へ 参加型イベント開催 戦略会議",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9DRTc3dW5kZ25QeWViYlliMk9yemgxT3daOWtmSVQtbVBDdFUyclptUHU5SDIzWi1IX3NpLS1BX0ZEcFE1a1lTZ0ZoTkxKakRURWRXNUkyclJEN1VlNVJYWENB?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-07-23T20:00:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "下地島 検疫空港に 宮古島 利便性の向上期待",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFA3Sloya25LQTJHRW5LQUFLc3VCQkwwOHNXa2J6TUkwRGtvaXpCVG92YjM3UDlueUpwWjZlY0xaUkxIVUxKS3ByejBMdmlXVmhBY2F1dFBfU21iSUxiV0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-23T18:57:00+00:00"
+  },
+  {
    "c": "kr",
    "t": "対象ツアーが最大5000円引き「初めての韓国旅行応援キャンペーン」。JATA×韓国観光公社による取り組みを聞いてきた",
    "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5LOUs3SVVuNUFEelBhNkJXTmgwcHNnX1I5dG9IalF4WFZxWXQyRTc5d3ZMNUNHRWNPOE43QkdaS1hYenVvd3dndVc0SlNvc0gwTVB0V0Jld2xHX2FBc3F0M29iU0IzT3B3?oc=5",
    "s": "トラベル Watch",
    "d": "2026-07-23T07:24:52+00:00"
+  },
+  {
+   "c": "tw",
+   "t": "ナビタイム、台湾ホテル協会と連携、加盟4000軒のホテル情報を台湾旅行アプリに掲載",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE12eFk0RDNtcVZxQWlsZXZFc2c3bklZa2lJZ2RycDBuVy1BempuUHNKUUtyQ2dYRHduZzRhelRBSHNIbldqbm0zZ1BHU0RuODVwWURMNQ?oc=5",
+   "s": "トラベルボイス",
+   "d": "2026-07-23T01:46:05+00:00"
   },
   {
    "c": "kr",
@@ -66,6 +101,20 @@
    "t": "それでもジャングリア支援 追加融資の琉球銀「リスク取り地域振興」",
    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1LeUdsTFpESzB0M1V5TlRRd2hSUXpqaXpRcC02bWxCWmFKM2h0c1QxcnE0YkJiYm9yRXczSXZseTI2dEtmQVY1N3k3LXp2M3FqUVdhVm9VWTdsVXUwbldoNnJtWW5tZy1xOEdGbw?oc=5",
    "s": "日本経済新聞",
+   "d": "2026-07-22T20:00:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "地域文化を観光に生かす 東京 沖縄工芸の可能性、討論",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9KR0M4VmhmcVprRlNEVDZNMnpQVWZjbG5mclJvR0RCc0d2R0dMVTNQeDliRDJkOGhheUdMbFRCZnRfZ3NibG8wLTV3TC1TQzFIZkZRLUlhQnBkUVBiM2Jla1RB?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-07-22T20:00:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "中３沖縄修学旅行、平和学習やマングローブ植樹・青い海へも…開明",
+   "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNWDU4NVcyTUJ2QlVTRU5NYm1Id3ZtZUtDYVJET3M5SUdFN21veVFwZ1NPc2xzTk9MMmtuUVVBVUtVLVR1alBNYjRSc2QzTTBOTGdwSE5xWXl5NnNJQ0w2MVZxMWM1SnVkUm4zUG1Rb0cwWUszT3JYRlB5clMzRU5tbkNLVXpMMFVkVHc?oc=5",
+   "s": "読売新聞",
    "d": "2026-07-22T20:00:00+00:00"
   },
   {
@@ -104,6 +153,13 @@
    "d": "2026-07-22T01:48:03+00:00"
   },
   {
+   "c": "bus",
+   "t": "バスに道を譲る「ゆずり愛バスレーン」 国道58号で11月2日から実証実験 那覇市久茂地－沖縄市胡屋など2区間で【地図あり】",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5KVU1DWmkwS2JtclBRX3Awc080bFh5bXdrVUE2SnRrb2pub1VkMzdwRjRCVjYza3NxaFpGSW84MWJSTHIwd2F2UTdTRjNscDJ6Zl80eFNHVjNZcGxkNlE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-07-21T22:20:00+00:00"
+  },
+  {
    "c": "hotel",
    "t": "ミラクルくんコラボＴシャツを販売開始 ユインチホテル南城 沖縄",
    "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5VR2s5S1h0NV9zekJ0dDdvQVB4NC11WXpWVk9LcnVMRWdWQ3RMWTNPaDVRWk1DRUFEMzBIU2REdHl6enBXQkduQW1sMkFKaEpMOEk1UlV1bV9DVlJ5SkdIaGRR?oc=5",
@@ -116,55 +172,6 @@
    "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1CSVNPakFBTFRHLU1jdUxUZUxHdXh3TnJDQ0YyckFxLW1OWE1yU1poUnJ1R25lNUZ0MmFiTVd3UjhTc2VEUFM5Vlk3dEhVSlBCZWF0YkEzMmQzb2FudGNBRC1R?oc=5",
    "s": "琉球新報デジタル",
    "d": "2026-07-21T20:00:00+00:00"
-  },
-  {
-   "c": "bus",
-   "t": "バスへの「ゆずり愛」を呼びかけ 沖縄県が11月から新バスレーン 罰則なしの協力型で那覇市から沖縄市、北谷町まで",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE82bGN1b2NnbHFIcjJpQmF4NW5Edm5WcFZhaExDZWVpQ2NNWTN2bU9GY0dldVF6dDVIY3dPZjVuZU5xaU9WaVE3NzhTYXNKcWtyX3puSHFpZWJFUkt4SkE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-21T05:07:00+00:00"
-  },
-  {
-   "c": "event",
-   "t": "子どもの居場所と企業をマッチング 県が那覇市で支援イベント開催 NPO代表、社会貢献を「自分ごと」と提言",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFA1TTZKQVVTcGJHZm1PMUI4VFVoSWF1V0lDWU1nTUtpVEdiV3hlSEpXN0NxSVVYNXFpVkljcVJTbEJYNkthMTB4QkVhWGlWQmkxcGE4WUlUeS0wbFoybEE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-21T03:48:00+00:00"
-  },
-  {
-   "c": "airport",
-   "t": "国交省、訪日外国人レンタカーの「右折」に安全対策。新千歳・福岡・那覇空港で",
-   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8tajR0NXQzdnVYUFFOZUdpMWt6V21PUmE4NlJSN0xzTlp6ZkluQ0NENnFtandBQW1jLWVoWXUwek9XbHBRTWlfTHc3bGVHTTlqcmJWTlRLeEhXdmNkX3VoWEtaazRlV1A3?oc=5",
-   "s": "トラベル Watch",
-   "d": "2026-07-21T03:43:20+00:00"
-  },
-  {
-   "c": "ryoko",
-   "t": "沖縄の観光魅力、6部門で全国1位 特産品や大人向けスポットなど評価 じゃらん国内宿泊旅行調査【ランキング表あり】",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9FRUpkYWJ4MHE3M3p1elpFdHVQd0toZEZkN2dqb0lFcG8yRTRYVloyMjlsVzhlWXNVUVhhR0RYQjlOTmhDWXdiOTJWbWNvN2RNVk1JRnR3UmZ3TU1VYUE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-20T20:33:00+00:00"
-  },
-  {
-   "c": "kanko",
-   "t": "沖縄の観光魅力6部門全国1位 特産品や施設に満足感 総合満足度は5位 じゃらん調査",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9FRUpkYWJ4MHE3M3p1elpFdHVQd0toZEZkN2dqb0lFcG8yRTRYVloyMjlsVzhlWXNVUVhhR0RYQjlOTmhDWXdiOTJWbWNvN2RNVk1JRnR3UmZ3TU1VYUE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-20T19:00:00+00:00"
-  },
-  {
-   "c": "hotel",
-   "t": "［政懇21］地政学リスクと日本経済の展望 野村総合研究所 エグゼクティブ・エコノミスト 木内登英氏が講演 23日 サウスゲートホテル沖縄",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5HZTlWX2k3Z19EcUdUR3QyM1Y5MjFyQkt5bTdOaFphdV9tWWZaUngwN0d1eURDa05PaHh3OHNOZWZJLUxtWEtMLU5ndnFweFZ2cmp0NUZmMDlNbUtISWc?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-20T18:57:00+00:00"
-  },
-  {
-   "c": "airport",
-   "t": "那覇空港の構内道路で長時間駐車や客待ち頻発 那覇空港事務所が適正利用呼びかけ",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1ZU2dFYVpfM2ZPSk1QbGZhUTdkZFdDWHFOSkxxX05wLUNpZDdiNVBuNHp3ODR6VVJLNE1HaUJ2Tks4Z0l6bUV3THl6RkZxc1doWmkyLTVZVWxhc19BRXc?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-07-20T18:57:00+00:00"
   }
  ]
 }
