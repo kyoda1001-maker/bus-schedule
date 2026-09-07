@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-06 20:49",
+ "updatedAt": "2026-09-07 10:51",
  "cats": [
   {
    "key": "kanko",
@@ -48,6 +48,20 @@
  ],
  "items": [
   {
+   "c": "spot",
+   "t": "首里城復興祭、11月1日に「琉球絵巻行列」開催へ 参加者40人を募集",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE55M3gtZXN0dmI3R2h2QWN3eFlRMFZHYkZVQUFFbXJVOTZCRXlia2ZzVnBuZGwtekhLLVE4REdGc2M1TldxUmNDRVByTl9YTmYwN2N4MFplQ2Z3U1VBQ0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-06T21:51:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "【沖縄知事選】知事選に「関心がある」97％ 力を入れてほしい政策「経済・観光」最多46％＜情勢調査＞",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1KWFp6bXVlUDJZZWY5Tzc4TGlVT1JuSk5sTUVkR3B3bzNQUHhNLU9GYzhySG9fR3ZPN0M4alJuU0NjUmxDZUNyOVN6dGNrRWQ5MGRvQ3JBc2FMcUg1TDVpTg?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-09-06T20:00:00+00:00"
+  },
+  {
    "c": "hotel",
    "t": "「沖縄を味わう」 ユインチホテル南城がレストラン一新 県産食材で地域の魅力を料理",
    "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9xNkZOaWxxNFkwNzU5N0FYa1QxMk9uMklpMDVfbHRDdkl6VUhDMDR5akYtRG5FOTdfdF9EX21Gb1BnTkNWdkRySVBKcWpXc0Q3MGJEX1NSd3ZraWJ2amc?oc=5",
@@ -67,13 +81,6 @@
    "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE00bm1oY3hMSXlfSlp3Z21jdjRzU2tCZDM0a21lemF0bjFETGp0RGMzV01TSVBoeTYwMDVYYkFaa2ZZeFNPSmd1dEt5Tmt3SzY2cjVHMHFuRThCMUF5ZmZDXw?oc=5",
    "s": "琉球新報デジタル",
    "d": "2026-09-04T20:00:00+00:00"
-  },
-  {
-   "c": "spot",
-   "t": "ジャングリア沖縄、月曜定休に 2027年から保守点検やトレーニングで",
-   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBjdzJNV3VRcHdtUTFvYnNPM2RWMmhUSHZXODY2NklfOU80MDh3UkJpdzlEVlJyM09OX3o0ZlE3cWNrOGU3ZkU5WEFOMUQ4UUE2WEVKS3RFRmt5dVBOUkZmdEc0anBkbG5ETnJtag?oc=5",
-   "s": "日本経済新聞",
-   "d": "2026-09-04T03:44:10+00:00"
   }
  ]
 }
