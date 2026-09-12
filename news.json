@@ -1,0 +1,121 @@
+{
+ "updatedAt": "2026-09-12 20:47",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "kr",
+   "t": "韓国からの訪日個人旅行者誘客促進事業実施に係る公募型プロポーザルの実施",
+   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE05ZGxpV1pUanlmSEhzM3BaRUZLSXZiR0xwVXJkMTd2bGo1VEVyajN2NHpKTEVfbkM4cU5wMDFDTWFpbWtpZE1BYkk0M3V3c3JU?oc=5",
+   "s": "トラベルボイス",
+   "d": "2026-09-11T05:27:13+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "沖縄旅行の夫婦・恋人層シェア増加 ビジネスチャンスに県内外のウェディング事業者をマッチング 県商談会に100社超が参加",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9uam9BQjVFUVRoUWo4aWNnTHNMUEpvX3Y3RWZiWHkxa1VmRXE0LWdVYzN0NC1lN0YydG50aW5sc2loY2dhU0l0elRoODB1UUpyNUl3Vnc5bUNBZWpnRkE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-11T03:55:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "ＣＲＧホールディングス[7041]：波の上ビーチを臨む、新たなミニマルラグジュアリーホテル「KAINOA Naminoue Beachfront Hotel」が2026年９月10日、沖縄・那覇にグランドオープン 2026年9月11日(適時開示) ：日経会社情報DIGITAL",
+   "u": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOMGxrQnNlRzdCQlFkR0ZkeDdaTXR0RER0c3dzSFdZQ3g3OEdzX2FBakJ3cFdzT0Z2X1FrcUNzZGl1bUY0QjNPRC1YcnY0blY3MU1hSGtrQmZBaTl1MmNGYlNHWlp1N2Q5dGdLU011a2tLVjBuV0VueklGem1QTXI0RDFyRFVNcjYxRUQ1Q2prVzhDZ3habFFSUGY0SDRsaGxicEh1NE90c0pIQ0tGSmNmZC1xOFJoeVFlTnlZMzlIbFhUVWpLMi13b0FtcmU?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-09-11T03:00:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "那覇空港の第2滑走路が一時閉鎖 空自F15が油圧トラブルで着陸 約1時間後再開、到着14便に遅れ",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE95TDFTQkJkblNIOEdFTHJ2Q3NaV3VRSFVpdVF6cTRSVmlCNGVvNGVaUVFPeWJvVDg0b1JYelRNTmhDcFB1Ulc2NFVvREFmVlg4Qmg5YkhZaHhyenVOeWc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-10T20:57:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "沖縄知事選２０２６：観光 空前の活況でも 増えぬ年収 県民敬遠",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4td2VSNlp1b2Y5cThxLVFubFlVdVkxUzFQY2k3OXkyR1ZTQ2hFTkhvQXIxWjE1LTdZQlEzMUNQWGdac0JURGxIREUxd1BLcnI0V3JuTUc4Y0Z2X0VaRUN1Mnl3bW8tX0g5?oc=5",
+   "s": "毎日新聞",
+   "d": "2026-09-10T20:05:43+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "空自F15火花散らす 那覇空港 利用者 不安の声",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBack40T1N1dGxMY3k0V0VRYXVudElZVFl5ZmN1V2NyQ3BoejA5dHpRc1pseGk4NDJEalN0eTdEWGlEQ1dvYkxLbDVmT2kwRVpfeUp3d0FtUk10ZUJheHc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-10T18:58:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "【沖縄で「音楽の秋」を体験】「うんこミュージアム OKINAWA」、初の秋イベント『秋のBIGうんこバンド2026』を10月1日（木）より開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFAzdG5xdnVDUVZsOE92Njh0c1E5YjdRRGN0dTJvNWZIamI3MVpYLTJfNFo4TEJheUJ6aVc0enVSSkJ5bl9pNWlKcVhjemJBc3Jmd0gtbmdOS04yOXlNVWc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-10T07:43:04+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "【沖縄県知事選 識者の目線】観光に六つの課題 県民の豊かさにつながる政策を 琉球大学准教授・柳銀珠氏",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5DcE1IM3lyeTg3d0lSY0ozdGU2eWZUMlAxZ1RaVWlfV2lDb0lQR05GQVZhbkg5MWNOY1ROaXpxelJhaVRLNGRiallNTkcxY2t2NTF1OHNCcmIzeFN0SlE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-10T00:40:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "交通網整備で満足度向上 講師・鳥海高太朗氏 航空・旅行アナリスト＜琉球フォーラム＞",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9QVG1HaHBzNUFVWFpwYW8xLVRSYmxiWWpvZ0pyUS12MmxtSWZkRnQ5YTk3VG5fMDZhMDdWUXNPWUpxSXU1ajM5X2NHR2NMemZtZ1ZNcnVvMzdXYmRpeWZERG9n?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-09-09T20:00:00+00:00"
+  },
+  {
+   "c": "bus",
+   "t": "沖縄県、バス４社と連携協定 共同運行や人材確保など支援へ",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBMdjhLbGJBUU9vUkhsR3lqVVpXcW5LbDlWNGsxUktPbllVMGhLM0RMMTVJSFp0dy1OSTBsd19iLWJyRWp6Nm04UGFKU01Tc3ZWMkZobmZrbWJTLW1YV0l4QWNn?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-09-09T20:00:00+00:00"
+  }
+ ]
+}
