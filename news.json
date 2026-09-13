@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-12 20:47",
+ "updatedAt": "2026-09-13 11:03",
  "cats": [
   {
    "key": "kanko",
@@ -48,6 +48,13 @@
  ],
  "items": [
   {
+   "c": "kanko",
+   "t": "沖縄知事選2026：知事で手取り変わるのか 活況の観光、沖縄の「避けたい産業」に",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4tZjhVY2xhZ1poRlVrTVNRcGlrVTRxbEI1bVJnckIzcnFzNE5jaHJweXZSQngySUg2dmdYR2h3MnM2cjAweTFkcWU0SWpyamduNEFPWkV5aFJpUURhMEhZX2o0OXdqVGRu?oc=5",
+   "s": "毎日新聞",
+   "d": "2026-09-12T04:00:00+00:00"
+  },
+  {
    "c": "kr",
    "t": "韓国からの訪日個人旅行者誘客促進事業実施に係る公募型プロポーザルの実施",
    "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE05ZGxpV1pUanlmSEhzM3BaRUZLSXZiR0xwVXJkMTd2bGo1VEVyajN2NHpKTEVfbkM4cU5wMDFDTWFpbWtpZE1BYkk0M3V3c3JU?oc=5",
@@ -88,34 +95,6 @@
    "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBack40T1N1dGxMY3k0V0VRYXVudElZVFl5ZmN1V2NyQ3BoejA5dHpRc1pseGk4NDJEalN0eTdEWGlEQ1dvYkxLbDVmT2kwRVpfeUp3d0FtUk10ZUJheHc?oc=5",
    "s": "沖縄タイムス社",
    "d": "2026-09-10T18:58:00+00:00"
-  },
-  {
-   "c": "event",
-   "t": "【沖縄で「音楽の秋」を体験】「うんこミュージアム OKINAWA」、初の秋イベント『秋のBIGうんこバンド2026』を10月1日（木）より開催",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFAzdG5xdnVDUVZsOE92Njh0c1E5YjdRRGN0dTJvNWZIamI3MVpYLTJfNFo4TEJheUJ6aVc0enVSSkJ5bl9pNWlKcVhjemJBc3Jmd0gtbmdOS04yOXlNVWc?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-09-10T07:43:04+00:00"
-  },
-  {
-   "c": "kanko",
-   "t": "【沖縄県知事選 識者の目線】観光に六つの課題 県民の豊かさにつながる政策を 琉球大学准教授・柳銀珠氏",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5DcE1IM3lyeTg3d0lSY0ozdGU2eWZUMlAxZ1RaVWlfV2lDb0lQR05GQVZhbkg5MWNOY1ROaXpxelJhaVRLNGRiallNTkcxY2t2NTF1OHNCcmIzeFN0SlE?oc=5",
-   "s": "沖縄タイムス社",
-   "d": "2026-09-10T00:40:00+00:00"
-  },
-  {
-   "c": "ryoko",
-   "t": "交通網整備で満足度向上 講師・鳥海高太朗氏 航空・旅行アナリスト＜琉球フォーラム＞",
-   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9QVG1HaHBzNUFVWFpwYW8xLVRSYmxiWWpvZ0pyUS12MmxtSWZkRnQ5YTk3VG5fMDZhMDdWUXNPWUpxSXU1ajM5X2NHR2NMemZtZ1ZNcnVvMzdXYmRpeWZERG9n?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-09-09T20:00:00+00:00"
-  },
-  {
-   "c": "bus",
-   "t": "沖縄県、バス４社と連携協定 共同運行や人材確保など支援へ",
-   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBMdjhLbGJBUU9vUkhsR3lqVVpXcW5LbDlWNGsxUktPbllVMGhLM0RMMTVJSFp0dy1OSTBsd19iLWJyRWp6Nm04UGFKU01Tc3ZWMkZobmZrbWJTLW1YV0l4QWNn?oc=5",
-   "s": "琉球新報デジタル",
-   "d": "2026-09-09T20:00:00+00:00"
   }
  ]
 }
