@@ -1,0 +1,107 @@
+{
+ "updatedAt": "2026-09-15 21:59",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "hotel",
+   "t": "沖縄銀行、那覇のホテル計画にノンリコース融資 中国銀と協調",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5xeVZ4ZUpuNmt1ZGdxTjJja2FtcVlELS10XzFfMU9pZ0dKM0pjYzJoRXRHLXdmQS14MDJnWFZhSnNPUDFVeEVmbkpfYklnRlktQmxGRWRYRlFFVnpGZXhJZlN6TjlmRzZCLWhaTQ?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-09-15T06:29:49+00:00"
+  },
+  {
+   "c": "tw",
+   "t": "台湾インバウンド、2026年最新のインフルエンサー施策実践ガイド ほか：訪日ラボ 今週の注目記事5選",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBnNjZ3ZGRscTc0QmF2cGh5aHhrUlFxVmtrdG5TcWNTMVBNck1MalhaQTFwczFzSzY3RHFQZ0hMYkJzWURVQm5MbjB2SHJRRGI4NVJ4ZlI5LUo0aU9iX3lNSDRvZWVOem8?oc=5",
+   "s": "訪日ラボ",
+   "d": "2026-09-14T23:02:48+00:00"
+  },
+  {
+   "c": "event",
+   "t": "日本のアニメ文化を国内外へ発信する大型イベント「JAPAN ANIME FESTIVAL OKINAWA」を2027年3月に沖縄で開催決定！",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBVYXZHcUJ4VGhrWFgxeXhzWkdWVkJIZDJZRHRlOHB6STE0aGE4MW9nTWxqMnVxMXRJRnVMUUFRdFJ5RVBFd2dOOF9WTlREd3pncXVNby1OMXoxcHE5M1E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-14T02:00:49+00:00"
+  },
+  {
+   "c": "kr",
+   "t": "2026年中国・国慶節は最大13連休、旅行者はどこへ？ 欧米豪・韓国が人気、旅行スタイルも多様化",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5PZ2FVWHgxbV9VUU0zcFh1WHhrd2phb3YzX3lDRGpYLUc3TW9NeUdXcE1KelBINUtWcU5EOUZkTE1kOGdCNFRfWVNnWTNiaE83ZGVlTWs4RFI2UQ?oc=5",
+   "s": "やまとごころ.jp",
+   "d": "2026-09-13T23:00:36+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "大阪が世界観光都市魅力度指数で3位に 京都・沖縄もトップ10入り",
+   "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5yd1lhRWRnUGpmZDJYbDYzdUVTZU45ZVVidGpIUThNWXRHcFZUd3NUQlJLd0pQZmZXZlpnQVV2alJUUElNRUhITVBkc2JpZWtyeVVFUFV4WVFLdEVZOTY1blZwbWFSNjl4WHBBRzR1VQ?oc=5",
+   "s": "訪日ラボ",
+   "d": "2026-09-13T22:08:19+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "沖縄県知事に古謝氏、自衛隊の空港・港湾活用に弾み 中国抑止を念頭",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBwMkZrcnRRanhXSFZwenhHQjFEa3JVLVhXQ1Qya3ljT1E0YzdNR2dtUnZyanRnU05Yb1F3REdHQ1pOa051dW84b1ZyNkxpai1JWDB5VllOWkhBN3Byem01SGl6cFhJRVBPcWJhRQ?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-09-13T20:00:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "首里城ゆかりの 伝統芸能楽しむ 正殿復興記念",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5CUEVScWw1cTZoV0J2SEtYdmtoRjlnM183Rml5MzhXZy1saW54UW45QWVmSDhBd2Z3ZWNFbDk5clJiYjVHWHpnVlZqSGxOd2VJdU9xQk9sYjk2QUZscFE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-13T18:58:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "台風で外出できない観光客にネイル体験 15～21歳の生徒が施術 那覇のホテルでイベント",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5TWFFCWFlFakgtQ3hwN19TM1dVeGJ6NWRBeGJ3Zy1pY19CdVhUeHBBeE5VTDVIODZydTZXVVgwLWpYQnJzekF0UEJmX0V6SDhzOEpxM2lwZVlyZ3dCTlE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-13T18:57:00+00:00"
+  }
+ ]
+}
