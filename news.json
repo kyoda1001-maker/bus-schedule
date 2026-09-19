@@ -1,0 +1,142 @@
+{
+ "updatedAt": "2026-09-19 21:08",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "gourmet",
+   "t": "“変態的こだわり”が生んだ､沖縄そば スラムダンクから料理の道へ",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9ZQWsycUFuMmlHLXdCVFBCQUc2YjR2Z0J4UHlMQjFabEZ1ZHM3N0Ewb2N3aW5KelB4TjdOVFdLdWE2eDBOZC0tcVR0bTBBcDJfREp0c1YzM3dPQzg?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-09-19T09:26:15+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "沖縄セルラー、那覇空港の全館で5G提供開始 通信速度は4Gの4倍 auなどが対象",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4ybi1iM1lJWngxOFdqQ2NqMVFvOEp3NXZwUHBhSWVaRncxa05hUHh3MGpGYy14bS1vQy1faEpyeTNkTklzS2xjY1o3S2ZuSWZWVTZMejRZek11WXpjeXc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-19T00:52:00+00:00"
+  },
+  {
+   "c": "gourmet",
+   "t": "沖縄の“うまい”大集合！沖縄料理＆ソウルフード15選！朝ごはん・骨汁・ポーたま・タコスまでシルバーウィークを満腹に",
+   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBkZEU4Q0RnOU53M3pGNERfRGVtQ0hfMHlRcDc1VjNyQjdjandGOWpUR0czc2FYS3NfdmwxRnNybUtuekV5NUEweGlSclRLNlFCUnZ2VnU4blU?oc=5",
+   "s": "OTV 沖縄テレビ放送",
+   "d": "2026-09-18T21:13:46+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "「海がきれいでテンション上がった」那覇空港に観光客、続々と 秋の大型連休「シルバーウィーク」 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE94ZHBYVDk5M3R4Nl91ZmV6aFRWNXZCRG9QWDdsdkVlYU0tQ2VhZVZRaGVPX1lOUWxld1JLeVEycUxUUndNalp0bGJsY0x0cGcxTmtVUjFkVUFQYW14aWE2Rw?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-09-18T20:00:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "◆関大の魅力を九州で発信！受験生から卒業生までが集う一大イベント◆「関西大学フェスティバルin九州・沖縄」を福岡で開催～関大出身のお笑い芸人、人気YouTuberらによるステージも～",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1FQWJWMmZZWWY4bjV6YThDd0JVRmlGR20zVFBzQzZRck05ZWY2dFRkMEM1N0FfaklKbWhNUmVOanNxZ3hlZ21wQzJWX1hxNURlSXVUVjJ6dkc2X3prdmc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-18T05:00:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "「いっしょうけんめいがんばるにょ！」 FC琉球マスコット「ジンベーニョ」が那覇観光大使に就任",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE10ZVVJbEtLamJFdmZVYlZHVmhvRzUzVFNpYXZESC0weFlNRC1adXQ3LXhBa2FMOWNJNWU3TFM2R200ZmRwNmRoeWN4d1cycTBVSmUySE8zNFdKWFAtYkE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-18T02:03:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "【シルバーウィークにナイトプールが復活】沖縄・ラグナガーデンホテル「さふぃスパ沖縄」で夜のプールとアウトドアサウナを満喫。9月25日・26日はアウフグースも開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5zTkE3ci1IRndmaDdtUmNoak85N1FNZnlLcEhtdVpyeGc4Si1XTC1pSXFFRElmUXZERlIwdTZ4TUZVZUhQcEhPNkl2Sk55c0ktV0VrN1lnSVprVk5ySEE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-18T01:13:05+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "首里城でジャズや琉球在来馬、地域防災も 連休中の19～21日、イベント多彩 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0xTldOVnZqeUVvNnZ2VmQxWl85dGhBck9sWndOS2M4bmowSDZHd0thWmVWTWtiT0dpclUxd1VyUXliMHNMM2FSREEzbDQzekpOeUtXZGVNQ1J5Z0pYQzNPSw?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-09-17T20:00:00+00:00"
+  },
+  {
+   "c": "kr",
+   "t": "8月の訪日外国人観光客30万人減 韓国など14の国と地域からは過去最多も中国は6割減｜Quebee キュエビー",
+   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5DbTVZRk9yQ3Vud3JwWHRkLTRtaVM3RThQUE9heXRVUmtjZk5jcThBQlVOWlB4bTBUbWVIXzJCNE1OZWE3aDV1UEIwNzQzc2tFRjNscnB6M1E?oc=5",
+   "s": "QAB 琉球朝日放送",
+   "d": "2026-09-17T01:23:54+00:00"
+  },
+  {
+   "c": "event",
+   "t": "【（一財）沖縄美ら島財団】沖縄美ら島財団 総合研究所 小中学生向けイベント開催！「さがそう！わくわくのタネ～あなたの好奇心の花を咲かせます～」",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5ZU3hqRlduMmFOcm4yTEFOcF9Va0VmQkd2U0h4bEE2NElkdVF5cmFCZ29zRXp1SERQSzlZdjVHYXhraUhjNTdOazhzbFRYaEdPSXZpdnYtcTV1NmZHc0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-17T01:13:03+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "那覇・のうれんプラザ近くに新ホテル JAL出資、2029年夏開業へ 沖縄銀行などが協調融資",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBnaGhHX1U0VnE2UFg2eFBlV1VhNkNyVVFOOUhuc0pLbWQwSDdObUJSTzNFN2ZyRkhUTjJwb0xrQ0xwYzFVVi14T05ob0NETlRVdS15dFBfNmhFZnlrWVE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-17T00:11:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "首里城周辺で伝統と未来つなぐ3日間 9月19日からイベント、旗頭やジャズに防災体験も",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFA1QTNzci1jcGN0ZGxiOTJyd2JyOHcycEg1bFRsaTRKV05iV0kySFUtMGk5N3R1SmhYbkhlZVdSUW5yTVFraW1wTGdoM1BKN1poVVJMQk5WYkFpcm5SUGc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-16T23:43:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "羽田線就航２０年で式典 スカイマークが那覇空港で",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE40Vlg0WWtEOFJLVFUyU1R1VkFuX0oyQzJqMHRIX2tlaEVYLWVwOXVYN2tGLTlNLVpGNFJUM0tnNFcyblpBQkFtSi1EMW14YVlNcEpEc0pfOU1pNDJWYnh3MUF3?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-09-16T20:00:00+00:00"
+  }
+ ]
+}
