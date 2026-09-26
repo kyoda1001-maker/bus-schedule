@@ -1,0 +1,135 @@
+{
+ "updatedAt": "2026-09-26 21:33",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "ryoko",
+   "t": "8月の沖縄観光客数92万3900人 台風接近で前年同月比14.0％減 2カ月ぶり",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBQRGJ2emVXa1cySVo5REZkakJybnowbWx4VWZtQVFXaGdlUzdwUGltS2JEanExaEU2bG04V2h6WkpPMUg1bWdqWTMtcUZfYzZEWDNvaWhpRU43TUlLd3c?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-26T01:03:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "出発前エンジンに異変なし 佐賀行き便が那覇空港に引き返し、全日空機緊急脱出",
+   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5aU3A3UE1WNmsxLVJmczhfdXJlU3FON2lrS2QyXzdHYk9pLXQyd1ZoX19OZFJxNm5VNk5oSmtYZ21PVXcwZGdGQ3YyelhNM1p1bzhINU01cEpVT18yVnpEYUk3TmdrRkVpdzBOOHMxY3kxdUhMeFE?oc=5",
+   "s": "産経ニュース",
+   "d": "2026-09-25T20:55:16+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "三者三様 色彩豊かに表現 クリエイター城間さん 初の親子展 那覇のホテル 家族で創作支え合う",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1SeWpCYXNhWnQ2VEV6NXZrbS1yOTV2X1V6NzdGMTkzUTdNdXBUUGwzVlJkemJqUDJjR2plNWxZbE8yTTNKc3NEOGhkd1FnRkxyQ3NqMVhFUEo4V3FQMEE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-25T19:00:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "国際通り周辺でごみ拾い×スポーツ！ 沖縄セルラー、9月27日に「スポＧＯＭＩ」イベント開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5wejJnSjRQb2Q5Vk1WWFBSZWNkVVlqajFwY0MyOFl2SWdLb1J3aFlNaVpUelgxR3RvUzNmc29TSk5NN2s0ZDdtcU9PQXYyYWwzYzg2OXkwTmI2c1lZeXc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-25T04:51:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "ジャングリアに沖縄公庫がつなぎ融資30億円 続く赤字、25日株主総会",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBZM2pNZFpNN3Rqcnc0VUVRNU1mZUxXTENwSWktMkJ2NHJnTmFsejREMXNOV0JUaFVUbXZiRURJdkpiTTlPSU9RTHlzUmh2b2JXdE5UMThqcUI5T1RJLW5TUzdRQXA3T2JZSGxMOQ?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-09-24T20:00:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "ジャングリア、開業1年余で暗礁 再出発へ財務再建が急務 魅力高める施策に課題 識者「テーマパーク集積地の日本で苦戦」",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE12b1NNYUt3a09YR29XVW0xcmdGRl9JMEd6RlJKeEl5RWM2cHJ2VldOb1UxN0tsRUJMVlFyRUNPZWxqcFlCVy13WDJtdVplVEFfNjJiaEY0WUlFX2p2WUE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-24T19:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "秋刀魚、銀鮭、きのこ、栗、さつま芋、旬の味覚が彩り豊かの「秋の味覚ランチブッフェ」＆「季節の会席料理」を9月より開催｜沖縄・ラグナガーデンホテル",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBKRDFWX0FXREFDNGZBai1Ca3RrUkxEYkZiMFVXZVZZM3FoRXdRXzU2andFNGhKTGVoVG51N0hsTnhkMUFSdGsza3EzQTRaS0RRSzVHZ3JyNlJGd0JfTGc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-24T10:50:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "首里城復興キャラバンを前面に押し出した「沖縄エリア」は20以上のブースが軒を連ねて見どころだらけ！",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE43b0s1TjVBcUVQY3RXZGJtLXhqRnFDMUxvV0cySEJsUWtLcWtfMEozLXhtQV9zM2NNeWtNZ2xRWU82YnYyUGVRaVo1dkpUQmFSdnBDZmllZkdLYjJZdWx6YzNBZm4xb3ZC?oc=5",
+   "s": "トラベル Watch",
+   "d": "2026-09-24T07:16:25+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "「焦げた臭い」「ガタガタガタという振動」 ＡＮＡ機が那覇空港に緊急着陸 乗客らが語る機内の様子",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE10LWtFMXVHSkw4VlRRZU1hVkJ0UnoyMmNSdUVkeVdPTGN6S09NZDhTQnltRGRDeDB0bG9HRjlnQmVxaG1qdmpLcG43Ty1peFBrYW1uekdCbXhnY2MycUE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-24T01:22:11+00:00"
+  },
+  {
+   "c": "event",
+   "t": "エイサー披露で名古屋に「沖縄の風」 「ふるさと全国県人会まつり」が開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1XZnU3TENvX1dkcEhxcnVYemtIekE1UFV0Y0hWanBPaG1zUlhGQUVDZ0tybDVZejliWmFsUDUyZV9GR0puWS1pc2l3Zk5vUFRzdkhkUDFMVHF1aER3Ync?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-23T22:58:00+00:00"
+  },
+  {
+   "c": "bus",
+   "t": "埼玉・松伏町で沖縄の味「ドラゴンフルーツ」を名物に バス運転手の人生を「完熟の甘さ」が変えた",
+   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBQSmJEMF9HREZaWWtBX0NEM2dnaG5uQkNIY19HRG1FcjdWZkNFVjI3bUNQRUxNaUJKYXMwbFQzdnhTY1VKNXNSSlR2NFczRFdUNFNN?oc=5",
+   "s": "東京新聞",
+   "d": "2026-09-23T22:43:45+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "ジャングリア沖縄 親会社が173億円余の赤字",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE55WVRuVXhPUkVaNHpNM2FadHNPcHA4M3l3ZXhjOTlkNl9JVk5LT3NXVllxU1B1SncxYWRVMDBDc2xpc3hyd3BWaTlYX3RySVRQZERtMXRDcEtRVHpnSERB?oc=5",
+   "s": "news.web.nhk",
+   "d": "2026-09-23T20:47:00+00:00"
+  }
+ ]
+}
