@@ -1,0 +1,121 @@
+{
+ "updatedAt": "2026-10-03 21:51",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "spot",
+   "t": "［大弦小弦］落とした魂取り戻す 首里城の文化財復元",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBmZmgwTFZGTlZ6TXkzVVp0dHpMOWdSSDRBbzE1UDNDclFmT0hZaHJONzc3X2ppSGtNb0xlaWRjVmMwTWEzYlRXeFFjODBkZTJOT0ZvQ0p1Z2F5cTAtcGc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-02T21:03:00+00:00"
+  },
+  {
+   "c": "gourmet",
+   "t": "自家製スパイス香る極上タコライス！ 身体にやさしい料理が揃う店 「パーラーぬちぐすい」（那覇市）",
+   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE40R0c3U0t2SU0tcy04ZlBGaFZxXzN1SnBiZUJCXzdPcUdZUEk1Sm5aYmlkMzRoTVlUNnlGWlJvUFNYUTBKbktobEJhaVN2dHUzY09zSklhSmw?oc=5",
+   "s": "OTV 沖縄テレビ放送",
+   "d": "2026-10-02T11:28:04+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "沖縄担当相 ジャングリア沖縄「観光振興に重要」",
+   "u": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9fWV80TUtPN3drOF9VdHN6aTE5Z0VNWlZGNzZlUC1pUE9Ua0x5S0tWOHlUODQ5VlFwUjlCd19KdVFFQ1lkWk5JMHZCRVRZLWE0TkxaX0JhSzhhekFGV0E2TUhHQVQzNmpiaHZR?oc=5",
+   "s": "otv.co.jp",
+   "d": "2026-10-02T10:29:26+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "アートホテル石垣島 「アートでアートTシャツ展」を11月10日まで開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE51NHBTUXMtcUEzbVZuOGF1Ti15TERpT0pRNDQ4Z3Ywb0JhUVJZV0VZS0gtSVliUFdmN2N5MThWVklMdVVTYzlEd2RxQmwyNU52VWMtRFRMT3hxMURldEE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-02T06:00:00+00:00"
+  },
+  {
+   "c": "bus",
+   "t": "きっかけは社長の妻 豊見城市民体育館の愛称が「東京バスアリーナとみぐすく」に",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1GRUZLcGJGaEhKUTRXcFZFTVhGWHdOR3VZR0plOVFtZERYTW41Q0pqM0pXTTlvak1XcmJXRzBDNUpnMGo4V19HODFRNUNxeTBURXI2ZENoV25ESXMtY2c?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-02T03:52:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "沖縄の宿泊税、使い道は？ バス運行リアルタイムアプリや芸能無料鑑賞 県観光振興戦略会議が事業候補 21項目追加し計37案に【追加案の一覧】",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBaSmwxbW14ZTJjOWgwbERQLWg0MU0wUzU3b2VpeVVEb200emZSTTB1TGw1Q1g3NXRHY19pOU56ZXRIZ1NDSk56RnVuS0FCbjVPN3dEN2laNTBlSW1IaGc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-02T02:08:45+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "特定利用空港 市民反対訴え 宮古と下地島で",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBJeHQtNlA0OEs2Yk9NNlNnUm5vRWdwdE56YzN5OVNMT3pFV3pQVmdsdHo2X3ZCc216T3phYloyQkhEVG5rOTFJLWtobXhsNE82RFlzUkEtYXNhNE13V2c?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-01T18:57:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "【ヒルトン沖縄北谷リゾート】2026年クリスマステーマは 『深海に煌めく星降る静寂のクリスマス』",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5HYm1tUGlWdnBOdzl6VWU5VFRfZzZtUzV2TXQtcTl3U0JYcDlSZWt5dVBuWWl2SFR1VU9ub3pSdEF5WnF5em5iZHdPQ18yMDk4V1AzTGxHWXRJNllZTkE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-01T03:43:13+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "まさかの焼失で首里城正殿「令和の復元」始動、琉球史研究者の失意と再起",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE96TWZXXzBVYXZqYkl3Q1NRSUhjVnZacTlyOEFCNUsyYTFlc0tCZHoyWHJhVU1jUE5MR1JhM0RyMDNWZUh6TnlsTE12ci1ydjZsOG9kZXZFcGJOeTliX3lEamFILTlycWo4ZDc3OA?oc=5",
+   "s": "日経クロステック（xTECH）",
+   "d": "2026-09-30T20:00:00+00:00"
+  },
+  {
+   "c": "bus",
+   "t": "東京バスが沖縄でネーミングライツ取得したきっかけは 豊見城市体育館に愛称 市長「即決で決めてくれた」",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1GRUZLcGJGaEhKUTRXcFZFTVhGWHdOR3VZR0plOVFtZERYTW41Q0pqM0pXTTlvak1XcmJXRzBDNUpnMGo4V19HODFRNUNxeTBURXI2ZENoV25ESXMtY2c?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-09-30T18:57:00+00:00"
+  }
+ ]
+}
