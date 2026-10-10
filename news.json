@@ -1,0 +1,135 @@
+{
+ "updatedAt": "2026-10-10 23:05",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "spot",
+   "t": "首里城復元で沖縄応援企画 ＡＮＡ、記念品発売も",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9MelhqcnAwNFMwN1VVMGVNTXBxOG5nUXdNdGVCNm5lOUMtUmVyUG9IRi1vMGxNaFIyWjZXZmFUZmZBNWozZlcwZjdYaWkxMmtuRHFpaWpTaEc5R1U2eUltOWpB?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-09T20:00:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "ハイサイ酒店那覇空港店V 軟式野球秋季中央大会・実年の部 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9KTU1EdzdjZS1kVURqak1LVlM4NlBjdll2U2tHQ1lOT2dQSWxzRGpYZnBvVXNoNUhVamU5TzNhV05BVmVQbk1yZVFFTnZ6anZzbFBMYU13RXExdUx0YWc?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-09T05:46:48+00:00"
+  },
+  {
+   "c": "event",
+   "t": "【VALX初の沖縄イベント開催！】全国1位に輝いたMEGAドン・キホーテ宜野湾店でスペシャルイベントを開催",
+   "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE44NGczdlZSamZOQTBodloxc3lSSVJIXzBMcVdFVC1memF4QjQtY2tadFhXUnJIN29wYTAyVllWenBKcnAzaGxWV1BuM1VKWnA4VHg0c2QxbVJGd1NlUTBiZk10VTFJQQ?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-09T05:00:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "ジャングリアを沖縄そばで救いたい！ ［まーちゃんのお笑いニュース道場 web版］",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1Bd1kySjNQSWRkV1Fhal9oVENqbXRSSFh4eUNNeHFQc1VhVXVPbTdDSmtjYTVCaXBBSFdDWHlmeXlJQzBiWDNvaWpCUlcyM3J3V2JFNHhqRmhzSVo4aDhxUWJxWFVDdnM?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-09T02:30:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "沖縄15離島の観光活性化へ、ポケモン「ガーディ」の現地限定ステッカーで来訪促進、新たに9島が参加",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5uR0dNaU9YVzZMRjZNOUJUbDZnTzZZamlQTE9fMmhiM2V4ZmdrWUJUY19TWGRUZnpBZVBUdWZNVnUzb05rZjlrYXZVQXl0cEtzd2c0MA?oc=5",
+   "s": "トラベルボイス｜観光産業ニュース",
+   "d": "2026-10-09T01:40:56+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "那覇空港ビルで首里城復興催し １３～１８日、国際線２階",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1lalNuM0wyeTZzSUFFVDhIQkE2ZUR2VzM4X280ejU1ZTNYWG1qekxQdUFYbmZ4Mkx6SmJoTUpuODdZYzk4NnpkQ2ZFY0plS19Ca0c0eWFPSzBvZTUxTU0wUWt3?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-08T20:00:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "観光と文化の接点、設計を 担い手につなぎ還元 OSPで考える 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBSSnp5RWNBX2ZETTNLRWJNaFNXbG90UUlaUW93TS1yUVdfd1h6M1ZwNGlFVi1zMjFDVndWb2l3LWxWR0VsQmFPSW9RdWRWN0Q2ZWFxYVV2YVlzVU5TTDdoNQ?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-08T20:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "【沖縄ハーバービューホテル】「クリスマスを、1日で終わらせない」約2カ月間にわたる「フェスティブシーズン2026」開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBmczVXbnh0a2pIWmxyT3RKdzlOWmpRZy04bHBRbVpBd29vcjh0UElMNmZOWmRiTEloN1ZidnM0dFBWOGlwWEhWMDQ4QlBwTjI5MlFQS2NheGhhZlNHU1E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-08T04:00:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "ダイブ、沖縄県令和8年度観光人材育成・確保促進事業の「沖縄観光キャリアカレッジ」の運営事務局を受託",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE0tekJjNkJuOElZUFRGNFVyR1Y5XzBXWlZrUWRGVDUtNHZvZmVvbVVyemVjRWh6Q2o5ZFNsVEpWUmVOVWNxc1Y2WnlTcUszTUVESzlUeUd1UzdhTENuU3c?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-08T02:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "【シェラトン沖縄サンマリーナリゾート】～目の前で仕上げ、切り分ける“ライブ感”を大切な人とシェア～限定ディナーコース「Gather & Grill」が登場",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE03cWxpZnJBX0lKSXpXMU9LUUh1Ull5MFVUX0JfX3gxNWNfWjAzZHNKV3habEd4TEYzSmEyUWRNd2VjRlZXZE1PYmZsMHZ2TGFmRndVTkpjenNjbl84RlE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-08T02:00:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "「沖縄そばの日フェスタ」開催 県内17製麺所を食べ比べ 10月16・17日、那覇",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1xZ01NaHoxSHJ3WEVHZFBndm9PQlV5Vmg5M2wxUGlRd1k4NFBIQW5NQjFlV0hqR21felpiN01YSEVnTzFYUFliTEtRVzNwSkZ0MGVHSE4wMUVmNW1keFE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-07T21:48:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "電動二輪で名護ぐるり 観光、市民の新たな足に 2026年度から ライム、市などと協定 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9FbjdtX0tlb0VpcG94X1FaZDNkMERHT25BRjFWRzZMdnVsaU1sNW5rNzFMTHJlbVFudldTRG9sbVpEN3ExOUJsWjZHVHI2UEFYckRtYTQ5ZGR1SnVrRHlXZEdB?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-07T20:00:00+00:00"
+  }
+ ]
+}
