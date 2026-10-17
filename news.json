@@ -1,0 +1,135 @@
+{
+ "updatedAt": "2026-10-17 20:50",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "kanko",
+   "t": "神戸の人気店8店舗が出店 ジェラートや航空体験も 「KOBE旅フェスタ＆出張マルシェ」 沖縄ライカムで10月17・18日",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5pZ3dPdXUxeWhSWnJkSDlkdkJWck5FeVdoRFQ0YWY0dE9oQjFHbUZmOU9MRXZvMEh1VnlWX2sxdGFkek9PZzlMNmVWR2xYYkVHUURCamwwU1d4SGtPMnc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-17T00:05:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "熊本県八代市を応援！ 20・21日、那覇市泉崎の琉球新報１階でイベント開催",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE8xZW5RanA2UGtsdG9GbHMwSXBzZEo3NExfVlF5MzJIazhtT09jTno1VTN0NU8xQk5wdjJNbkVTaDV5bXlfRl9Sdm4zcHpud2RPOU9UOFFwWGJWUW8?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-16T05:32:53+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "那覇で過ごす、華やかなクリスマス／ ザ ロイヤルパークホテル アイコニック 那覇",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9OdFVTSVNVbDdFVUJOWHR0Q3gwS3ozdlh2Y3c0TllILXFJTmpNNW9BUm1HcFRtYlRIR0wtQ3NGM0l1Z3g2YThHMFdISjdoNlFxd2R4OGpGelhjOE44Vnc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-16T04:00:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "「ME:I」ジャングリアに 19日、フェスに出演 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBtdHozVjJsZHhsR0hhN0FxcTBDa28weWU1Qi1oY1JaLWVvaFVrZ3RfQ2hpMjZWVVZQOTFRZkV5aTFZTVVINXlJZVNMZk9fbFg5YnhVVjgzMk9HeWRZYWRtUFZtN043RUk?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-16T01:52:09+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "透析中でも沖縄旅行を——スーパーホテル沖縄・名護、「旅行透析プラン」開始 宿泊・医療・無料送迎をセットで提供",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE54TVRXVVFkblBSVDl2aHhDWm1WUTRvZGNOVmFHc3Q1Smt4NDlZaUQtbzgxaHV5MGYyV0tjTFl6N3UxZ1R2U2FQTmNabEhSR3R0RUVHYQ?oc=5",
+   "s": "観光経済新聞",
+   "d": "2026-10-16T01:31:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "【「はいむるぶし」（沖縄・小浜島）】クリスマス限定宿泊プラン・シャンパーニュとともに楽しむ極上の“月光浴” “星光浴”",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9wa1hkZVhHemE3bXJKRTRwZm80b2tkZ0ZtTW03RDJ6dWFhTU5femlaN2hfbmxVVWRmWDh4RUtYMThxUlg0NmNJSFFWRTY5V203dlh5VFJTMk1QaEMxVVE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-16T01:30:39+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "旅の始まりと終わりに、世界をめぐる感動を。空港のスキマ時間を「シネマトラベル」に変える事業提携がスタート ビジュアルボイス×沖縄・那覇空港「ファミンチュシアター」で11月からショートフィルムを上映",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9qTGNRMmJRUmRlZlVVVU00Nnk3TXRjUk5yLUxrc0dPMDYyTlhrOUVwb2NsNWJzQlBnWXJ4WTVRWUV3MHg5Z0UwMGh6Z1EyZUhNNWZmbHUxMVJoQzZNT1E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-16T01:00:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "沖縄県魚グルクン、稚魚の長期飼育に成功 美ら海水族館が世界初 餌のプランクトン育成が鍵",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE10MTlBWVlhbVpmSHV5TjFxTkJWZmJ5SVoyNkhVSkNnTFp3SlpvRnNCckRZTHlOdldhOHdEdWZOam9lUjdBZGFGVGVrZFBaX2dqbmVWaXNfcXZVdzRwTVFZTQ?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-15T20:00:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "那覇空港内で禁止のレンタカー受け渡し、AIカメラで監視強化へ",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBEdHU0S0U2bF9NQjdVN1ZEQmxaX1poUDVsbzdwYllTX245X2p5VEtYOW9JNDBLVVlzcFFOakh1R0duQVB6bERGc2pYOGRNS2JRQ3dqSkV3MktEVHFQaHc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-15T09:58:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "ANAインターコンチネンタル石垣リゾート従来の3倍超へ拡張、石垣島の海を遊び尽くす海上アスレチック『マエサトオーシャンパーク』リニューアルオープン",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBTS2pnSFZHUC1MQjY2S3lXQWlBcFVSemxhcDdRT3QwWlEzcFc1bnd6bU1IMjY1SDBzTE9XSnhxY3ZZVFFJWEJwZEVIUzNOUGRDSnlZMVZ1UzNiWnNIWUE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-15T04:06:42+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "名護市内の移動手段不足と地域課題の解消へ Limeなど5者が観光モビリティに関する包括連携協定を締結",
+   "u": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5wX1ptbDFYaWY0TzlXS2ZEcWE0bW90b25hbDY2d2NoUGMwbktxVjdVdE9MUEhwRVR1c3lFc2dGTlRGQU0yR19oamY5azB2NnlaYS1iV1BLZURZSi00TWZxbUh0Tm84VkI4OUFOT3VScVhIcWc?oc=5",
+   "s": "訪日ラボ",
+   "d": "2026-10-14T22:01:53+00:00"
+  },
+  {
+   "c": "event",
+   "t": "西原町で17日イベント アウレアコーヒー1周年記念 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE16MTR0R2MxS1JjUnZwd0ZDTkRRVEpWRWJTdFZYa09mYW9yZmo0RmZKNml5blpFNzMydzdITFNOeWxmc0tncUh5b2VWOUo4UlFYdlp0Y1pVVTN0N2NIaUE?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-14T20:00:00+00:00"
+  }
+ ]
+}
