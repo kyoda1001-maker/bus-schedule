@@ -1,0 +1,135 @@
+{
+ "updatedAt": "2026-10-24 11:29",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "kanko",
+   "t": "大型で強い台風30号、与那国北方で停滞 宮古・八重山で暴風警報続く 台風31号も発生",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1zUEtseWE2VDN4QnBYNTloV3BFaTFjd3h0QTlQOGo0ZEI3ZGU3UjVVRDJVOWNQQS12RUlpVmE5MW8yY1BneFVIRXAtcll5eXl0eTl2RWwzNEJicnNzOHc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-23T23:08:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "沖縄発「コーヒーとチョコレート」をテーマに、「TIMELESS CHOCOLATE」と「rokkan COFFEE CREATORS」が東京・表参道のスパイラルにてPOP UPイベントを開催。",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1YY0d4UFpMeHRPS3Z3Y0J5ZXhRak1RVnVFN3VmZlRDWUtLQmMtQUJ0aUF5THlvOWZvZXBqOF94YXRQbjJSYXI3Y2E3NjZQNWYwZWJOYlMtQ1JvVGhkVXc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-23T03:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "プレミアムヴィーガンビューティー「d’Alba」とザ・リッツ・カールトン沖縄がコラボレーション。スキンケアと美食を楽しむ、上質なリゾートステイへ",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5iQTJnaHR2MHN6VHBGMVFmRmlFbHhqeUNfY1Nhbldya0QtSXFDMlg4X3hjeG54N2NlY1FUTjYzaWs2Z1lXQzlYMm9Mc1c0VDNtTjhPWDdaaHhINTV6b0ln?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-23T02:05:32+00:00"
+  },
+  {
+   "c": "tw",
+   "t": "2026年7-9月のインバウンド消費額2.2兆円、台湾が首位に。中国4割減も1人当たり支出は6％増",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB5QllySHQwZE9OWmZRcUZwaWw0ZFhuV1dsc0FDSTRXOFNZVndiY1FYbUV5ZUp2WHhueVpBbFZVYnNnS2FiWGF0eVFGZ01KaGRlenhmcUFB?oc=5",
+   "s": "やまとごころ.jp",
+   "d": "2026-10-22T23:00:27+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "美ら海水族館経済効果 ２５年度は１２８２億円",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE13VnJ1WkVkRUFvOE84cVhqNDcwSUptVFJCcHMxVDNkSC1lTHQtZmxiQUFkQmJNQXhmZGhrblFhQ2ZFblo0anVaNGJUb0JYQjVOYl9tSUFyT2Frc0dsVEhvbzlR?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-22T20:00:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "那覇空港で不審者対策 侵入を想定 50人訓練",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBYQk5tYVVxM0ZHME83VVFhSVN4VXJHM3hUeG9CeWlETDh5aEN2eFYyTHNZZDFHcmRkUWJhSWo4VHBlR3Q0VS1vZ2JneEZmVjYyOXBmY3JEaFgxaFVqaXc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-22T19:00:00+00:00"
+  },
+  {
+   "c": "kr",
+   "t": "成田空港、2026年冬期の国際線旅客便は週3382回、中国線減少も韓国・台湾・欧州線などが増加、乗り入れ航空会社は99社",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE03X0dRRVRjS0g4WDF0MmJES0xtakgtSE1HdENJRTVJVkZIZGNTZUxQcGxpZ1dMUEI2Z2RvLU8wSnllbWREZy1Oa3Y5UXpueERzVDBCRQ?oc=5",
+   "s": "トラベルボイス",
+   "d": "2026-10-22T12:38:09+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "JTA、松本〜沖縄/那覇線のチャーター便運航 11月に計4便",
+   "u": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE4xN1A5VVllOU9Ld29qY1FscnpuUkdNem03RnEzSUNRSkZDRkhKNjZ2bzdHZ1JjckVxdmtBQl9DTlQ5RWFNODdN?oc=5",
+   "s": "TRAICY（トライシー）",
+   "d": "2026-10-22T02:54:42+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "【おうちクリスマス】ホテルメイドの本格ケーキやローストチキン、オードブルで彩る。「インフィニシス 那覇 首里城」が11月1日(日)より予約開始。レストランではクリスマス限定ランチ＆ディナーも。",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5pRWk0a21VSUk1VDZMSVJhY2xmMTVPUHN0SkYwa01jbEhYVllUMklybnhvSEZfaHBPXzZxV2F2NXlMVlgza1JnMWl6S3l1WThNMkZCa2V4bXFFYkNuTEE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-22T01:10:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "修学旅行の安全管理強化へ 沖縄県とOCVB、受け入れ事業者向け勉強会 「命を守る重要性を再確認」",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9BRDd6ci1LcG5TRGpURmFicExPT2FJNWhaT0h5RWY5X2tFeFo1SnFlZVpGcmladlFncTB2MkpxcVRiNlNGc0dYWDJKdjRqRTVLWUpmRElYUXN1UWw3N0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-22T00:41:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "首里城復興の喜びを世界へ発信 JO1・與那城奨さんがメッセージ 沖縄が地元で誇らしい",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE53R2MyaUVXTnlwdHJrb1J3TlpJeks0WnU4bVp3UkNzbm1acDE1WXphSzFtb0VrU2c5b1Z0LXEzRUZZdERUNFo1bGpyLUpoQW9VOFNoVUQyc3F5aUFqTHc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-21T23:02:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "■那覇空港で不法侵入想定訓練",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9zeWl0QUM2b1NEMXQzclRXQXh6NUM1bkNUMGNvdmlDRXVvUlZjTURKSFJFa1FPQTlibk1PZ1d6cjd1eDV3T1dnbVNnUURmTGF5SndrU0I2YUJNT2ZsSXAyRQ?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-21T20:00:00+00:00"
+  }
+ ]
+}
