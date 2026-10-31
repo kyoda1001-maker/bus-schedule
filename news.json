@@ -1,0 +1,149 @@
+{
+ "updatedAt": "2026-10-31 12:14",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "hotel",
+   "t": "【建設業完工高】成功沖縄が増収率1位 ホテル受注が寄与 25年度県内",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1xeTh0dzd5aFZSb3AyRUpUb05kYmxQZnJiSmpRa3dOa2hYVVdLR2RSY21vb3VPNldHY3JjZXhjX0hBcWsxdlFRemw5R0FpYUFSN3lSdXRNdWZVcWE0ZzFGdV9R?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-30T20:00:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "宿泊施設が人手不足を乗り越えるヒントを2日間で！ 沖縄観光DX推進機構、「第1回 HOTEL ENGINEERING EXPO」を11月17・18日に開催 参加無料",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBZanRLRklPME1BWW1FX2tEV2lSc090ZTlyZEFSb1B3RWgzZDZEMi0wV01SeXRJSENPbWdvWUVrV3FWYlBZY2VwZ2RiYnBzLUdkMHE0LUJBWk81dw?oc=5",
+   "s": "観光経済新聞",
+   "d": "2026-10-30T02:32:15+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "首里城正殿復元、沖縄の観光客増加に弾み 小倉城は二重価格導入",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9MUjJUZmxTQTN0dHc2N2RFN3VNcUppUC1KNUlLUGRrdW5IbkNxYnVpZzJ3ejhyb2NvQVdEa2hMUGIwSG1wLVZpMXBiWTlnaFJYbFVtdDhmZ0d0SFRNS19tdWZad3BqbDUyVlJLYw?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-10-30T02:00:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "「ジャングリア沖縄」運営会社 株主総会継続会が始まる 経営改善策や新スポンサーが焦点",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1UaDVCNHhxa2s2VV9VV3BDQlhqN1NqWWliVUd4OEZvTXY5UXVrTzVaQW0wRE95UFg2bEpFRzFuLUpRcGZJQ1Rhb3ZIYm94SkJERllZRkc0V1hBRGdNLUE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-30T01:05:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "沖縄県への観光客数 過去最多1081万人に OCVBの2026年予測",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9mLWIyVTR5OEw4QnBwN1l5QVpVLUJ2ZlNNOC1uQjhsN0c4bXhRSzE4cHotaFBUNTZEajNFeFQtaVNDamo1aF9OdkVNc0c4T29zZUFVSHVRNXRQa19md1E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-29T20:45:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "沖縄3空港の国際線便数、コロナ前比2割増 2027年3月見通し",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9yMTZwM2IycldjeXktUjV2SHdVNDNlSFpJNjdtSUhNc1FibDNLNUlIVGFNQ0Nyd3VpRERrdTlLcV9OSmxiaDIzRlVjeUFSR0x0TFA5c2hQTExvVmlKLTVlb01TR01lUEctdldLSQ?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-10-29T07:39:49+00:00"
+  },
+  {
+   "c": "event",
+   "t": "沖縄本島南部のリゾートホテル「琉球ホテル＆リゾート 名城ビーチ」にて30万球の光が煌めく「月夜のワンダーイルミネーション」を11月1日(日)から開催！",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1hdUctQ0txQjQ4UWZWcUt5cjZ0TXF5RXNJVXQybm5HU2VXTTVEREphUjB4MGtMM3A4UjlFY0NCc0Q0bUNfRF9VdndMdEx2LVlMZVFMNXZBQTI3MWF2MGc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-29T04:00:00+00:00"
+  },
+  {
+   "c": "tw",
+   "t": "羽田空港を利用した韓国・台湾インバウンドは、再訪の割合が成田の約1.5倍 Paykeユーザーの位置データで比較（PR TIMES）",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5RLW95X0Fwb1R4R0h6Y0FrZk9Cbll5c3UzeHNtRERNTU9XdWs1VDdZazAwTkdTTFdUejR1UDhoOVBoNllObE5oVVdPNWU1b1A0NWk0dkVneTVxT2FhdlFzZ3VjMlpXWk5t?oc=5",
+   "s": "毎日新聞",
+   "d": "2026-10-29T03:23:31+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "朱色に宿る沖縄の象徴、ポップに表現 絵本作家の野原瑞希さん、首里城描いた作品に復元への強い思い実感",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5zNHZYMXR0RVNQclJfWEZxTmxfWXpPRndHN3lZMWY1NFRvYUo2Mkh0T2Nqam9JNktTTWhNQVN2ZXZqS2VzRXQxMHZVR0p3bE41UjhYWENUalVZVVhGU3c?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-29T00:40:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "観光客制限撤廃 原告の訴え却下 那覇地裁 竹富町施策で",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE52a3VOZDc4dzZZMlQtVmxNakp2SmplMURkUWxPaG50ZkFLNHJMUHlScXpQWlZlX3EzbndfZDlvNzVaXzFoUnY2bHBhNFNwbXJwUXJQSUtQV05ydlowaEE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-29T00:38:18+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "羽田・成田・那覇空港で消費税セルフ還付サービス「Self Tax",
+   "u": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBIWlJTTjlyWmRDTVFVSnZnZkhPWkRtVm9wLWFaVTlfQU1zOWd6eFU0X2cyRkRSUFBEalpRRzdpNnhUU1Z4UWZHa3VYMWNOWEl5ZjZrOGtYVl9EOUtHRG5aLWdFcjNqQTJOSW0wUEdn?oc=5",
+   "s": "訪日ラボ",
+   "d": "2026-10-28T23:01:05+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "リゾートホテル「THE NEST 石垣」が11月1日に開業 ファミリー層向けに改装 収穫体験できる農園も",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9TNjFTS3JXMnpOY3lXY2o2UV85bXNXVGlWWExaVi1BZm9DelY2N2xITWVudDRLN2pCWXdoaGNDeDVPVVMxTUkyWm90d2ZBNy1KVUFWWi1BUF9BenhGb1E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-10-28T21:36:00+00:00"
+  },
+  {
+   "c": "bus",
+   "t": "ジャングリアバス減便 那覇発、1日2往復に ダイトウ運休 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFA3VGtUakNZTld0dnBpM3JKaXhuMUhOX1Q1RlZHdEw2VWVfUjFZN0dnNTR0ZFlKdlBiZFFNNkVDSXI3XzJ3MnpfU2dlU2ZwS1FUYlBtWkZxME5xN3VfSUxoUTJB?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-28T20:00:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "“琉球の風”感じる物産フェア、王朝祭りに合わせ3日に開催 首里公民館の駐車場で",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB3VWtyRUFPa2I1S0lqdnVwaXJRdk5BNHV3dnZleEtMek5KMTNHN2xXbkF3QWhlOWtJNHNOUnlib3NJcHdFekFadG4wRlQ3NU11Yi1kUHZXeVJGUFlrNk93YVN3?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-10-28T20:00:00+00:00"
+  }
+ ]
+}
