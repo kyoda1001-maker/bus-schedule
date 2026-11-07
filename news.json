@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-07 12:43",
+ "updatedAt": "2026-11-07 23:30",
  "cats": [
   {
    "key": "kanko",
@@ -47,6 +47,34 @@
   }
  ],
  "items": [
+  {
+   "c": "kanko",
+   "t": "長野から沖縄へようこそ！ JTA松本―那覇チャーター便の搭乗客64人をお出迎え OCVBが那覇空港で歓迎式",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE8yWlUyZDdJbTBxTjlSNGJMQ0ozSThwOHo5UDlMZC1sX0pZVkR0WnJRanJ1bnFNRnVaVENUdHRCM1YzVzgxSFp2SXhGQkZvcUpGX2VQUVV6M0hhajBmUEE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-07T10:06:00+00:00"
+  },
+  {
+   "c": "gourmet",
+   "t": "雪塩入りのプリンで最高賞 ホテルの若手シェフ料理コンペ 「技術を仕事に生かしたい」 沖縄・恩納村",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1XQnNRS3liR1pRanpXczNabzNMZ2lPRHhiZHF0UlhsMkIxRHZpbVlBQ0Z1YXZtc29VX3NGSlRKa0JhcV8zYUpTaXYtZUg1bGVaOENQUFhfNHNZUE1yMWc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-07T02:37:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "北海道から家族旅行の6歳も「ラッキーな日」 2万5000球の光 読谷のホテルでイルミネーション点灯式 沖縄",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8wQmFKRnpBZXNRTTVOR1JrS0pTN2VaMkJDQ25FNkh4N29jMnN0RXIwX2dGblF2c2s5cV9fcEFfRDFPZzh1ZmNiRFR5aDlkeXMtZko5NXhndG5WUmh1eGJobTlR?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-11-06T20:00:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "那覇空港の「裏側」を探検しよう！ JALが21日に沖縄初開催 小4～中学生対象",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBsMUxfbWtpbVdyUlZ2WnhsQktiLW1oU3BVdTJlS3lpVE43dlFubVVtV2pxd1Z5SV9lZ1ZoQk5ZbzQ0WlRMYkVJTFlsTHlJaUc2aDdRVVBEMzR0MWZUVHFEUmRB?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-11-06T20:00:00+00:00"
+  },
   {
    "c": "bus",
    "t": "夜間バス きょうから運行 片道一律千円 那覇からの復路便も 沖縄市と周辺市町村結ぶ",
