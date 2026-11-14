@@ -1,0 +1,135 @@
+{
+ "updatedAt": "2026-11-14 13:01",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "ryoko",
+   "t": "修学旅行の安全管理ガイドライン策定へ 遺族の要望受け、古謝知事 沖縄県",
+   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE96SGZEUkFaMEc0UXZHVmxrR0VnaU01cGFOS2U1R0tHYUotMkNlU29XQTVDQkdnOGY5MUNHRHZuT24wRnRhRDZLenpBcU9LNS1HM3VSbUZFcTA?oc=5",
+   "s": "沖縄八重山日報",
+   "d": "2026-11-13T05:20:02+00:00"
+  },
+  {
+   "c": "tw",
+   "t": "【台湾インバウンド考～ミニツアーで伝える地方の魅力～１】コラムを始めるにあたって—台湾と日本の地方に“樋”を架ける 大塚順彦",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9WQUJScjFIM25NLXhENmpoZ3pIcmI3eE1rMXZsRmpQWFByeWxjaVNHUHgxTVJiUllBYzJGOG1EQ3RBLU9Na21SOTFsMVJmeE5aaklSNQ?oc=5",
+   "s": "観光経済新聞",
+   "d": "2026-11-13T03:35:32+00:00"
+  },
+  {
+   "c": "kr",
+   "t": "JCBと西鉄 カード利用で公共交通機関や商業施設などで還元 韓国訪日客の回遊促進へ",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE45T1R3WS1FcVVSTWxiT3IzeE1ldFI2aFVhNElqMlcxN2t1Rk9wcjlaZFkzNmRTUWhpbGFZWUM4bWZNYi1fanJjZml0NXZCOTVucG9TVA?oc=5",
+   "s": "観光経済新聞",
+   "d": "2026-11-12T23:04:24+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "観光客の避難誘導、航空会社や協会が災害訓練 役割学ぶ 沖縄県・OCVB",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE11Qm1JcXJlLUJuSjlsd2JheWFpVVBjc2tPRFlySWpMV0RtSWhxeTFzZUtRQkI1bnpvNjhUNGxua2hhV0hrNjNBODJTTkNzYkhpMUlnV09YcF83Y3hTaU9ya3J3?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-11-12T20:00:00+00:00"
+  },
+  {
+   "c": "gourmet",
+   "t": "シークヮーサーの魅力、収穫で学び 体験・料理教室も 名護 沖縄物産企業連合",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1OVzllSVJ0bnhIc2hQaEs3OTNGMVY4aTVVT3BKMDU1UWx2ZC1jUC1MV0ZTcmVYU1R3TVE3dXFSU00td0FObk5FeHdSMWVqeUFGbVVZd1VYUjB1NUxaODMybnp3?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-11-12T20:00:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "首里城正殿完成シンポジウムを開催 11月17日午後6時半から、タイムスホールで【入場無料・予約不要】",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5teldkUDlvTm5oUG1nXzBlY3RXMFQ2ekszamtoSWxqbVFhNTRaNVM5U1U5eGdiVmxiQmM2R0NPQmpEa3kxZ0h6Y01nVjd1MXc5OTlJaU1SRWd3V0xDQWc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-12T12:57:00+00:00"
+  },
+  {
+   "c": "kr",
+   "t": "韓国で大規模旅行博覧会 日本から各地の自治体も参加 魅力をPR",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1PRFFDMEdyeFdwOUZyNnl5dW8tZTRMUnFxN1NRWmIzRUd0OW94VjFnampjRTB4aVlSaGQzclFsZmJXM2NXZW0wZzMtSmJ5OVNyanVDLTRTQW1pNFNxVjk4?oc=5",
+   "s": "NHKニュース",
+   "d": "2026-11-12T11:33:14+00:00"
+  },
+  {
+   "c": "event",
+   "t": "宮古島の音楽イベントでのトラブル受け 市民総決起大会を11月30日開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBMMElULWdFQ0ROZzVIYlFvcVVQODJvLWh0a3FCS1NkQXZDNG9DbUJaX2pMUEtKUVo3ZnFETHh0bEJyVE5zcHhRMFB6Nk5saV9qODU1ZVd6dFlIcjBhb1E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-12T09:59:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "ジャングリア株、「価値ゼロ」に 沖縄の全保連、出資全額を減損処理 [沖縄県]",
+   "u": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5wZWhzYktHRnZxQUdObzd0eEtwVHJFbFo4OEExVWwxbVFkdjBOWkRBSmQyYkpzX2hrbTV0MXRJZEZsYkhiZUUzLWtJZUMyR0ZuaDBZNGtxUm5QcjdoNkFJTkpDSW1iT2JueWNURVVB?oc=5",
+   "s": "朝日新聞",
+   "d": "2026-11-12T09:15:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "中３生が沖縄研修旅行、４泊５日で伊江島や美ら海水族館・首里城へ…高輪",
+   "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxORF9VdHBxZzVrWDZYU1RrbllxS2FQUmJHcFFXQURIaUgxR1BfLXJmeGJTTC1WUEVpTWhEWkVXRnMzb1R6UW5OU210MThfb3hidlRJUWlDeUdhSFB5VVJEZGY0aXBjX3ZWX1dEbTk3dXU3N2FNZ1c4RWYwbk1lNGtnTjZ0U2dNT3BBUkE?oc=5",
+   "s": "読売新聞",
+   "d": "2026-11-12T07:00:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "首里城復興、泡盛で祝う 希少な49年ものも用意 13日に那覇でイベント開催",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBNSEFLNVVvZXpTZ0ZiMHRmNnRPNlFDb2lhdUctR3BhcE5TcjZKVWFiZW5rTlRfbVBHZTh4UGtnU0RRZ0dGbEw2ZXlyZ0dZd0kxRE0xOU1tV0h2V1RKb0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-11T21:58:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "観光バスのガイドはAI 沖縄トヨタが宮古島で実証走行 多言語対応で人手不足解消へ",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1BaG1ld05SSG1uSExpb3RVZ0lFNXZkamJxaW52QmRmdTVtOGdQdHNVMHZFVTZ0djFBS1hjM3Njc29SNWpwVjN1YVkxeGltQ05qVUllUThuNDRMWE1IVWc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-11T21:46:00+00:00"
+  }
+ ]
+}
