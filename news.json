@@ -1,0 +1,163 @@
+{
+ "updatedAt": "2026-11-28 14:29",
+ "cats": [
+  {
+   "key": "kanko",
+   "label": "沖縄観光"
+  },
+  {
+   "key": "ryoko",
+   "label": "沖縄旅行"
+  },
+  {
+   "key": "spot",
+   "label": "観光地"
+  },
+  {
+   "key": "hotel",
+   "label": "ホテル"
+  },
+  {
+   "key": "gourmet",
+   "label": "グルメ"
+  },
+  {
+   "key": "airport",
+   "label": "空港"
+  },
+  {
+   "key": "bus",
+   "label": "バス会社"
+  },
+  {
+   "key": "park",
+   "label": "バス駐車場"
+  },
+  {
+   "key": "event",
+   "label": "イベント"
+  },
+  {
+   "key": "tw",
+   "label": "日台"
+  },
+  {
+   "key": "kr",
+   "label": "日韓"
+  }
+ ],
+ "items": [
+  {
+   "c": "tw",
+   "t": "大阪・泉州で訪日ミニツアー 台湾の旅行会社ファム契機に実現",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9icnFVcEg1MlhkZldOWkdMMTRaZlpHaThQUXVuRl9KLVdINGNFcVlWd2xnYldCRklncndYY0ZOS2FPMUxJZWk0MmFOSTU5M2t5ZXMxNA?oc=5",
+   "s": "観光経済新聞",
+   "d": "2026-11-28T00:01:01+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "那覇空港での落とし物は「チャットで検索」",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5uVnBRTFhpU2I0WlJEdjNhY0xfV1BqbWV2WlFjYjgteGRtLXBPem95d0lmRWdZQ2dzUEpPVUxBcDJsM0hwUG5mdFIwYldJVkJ1SHBnZ250ejRtQQ?oc=5",
+   "s": "QAB 琉球朝日放送",
+   "d": "2026-11-27T15:22:30+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "沖縄のビーチフロントに、アジア最大級のマリオットホテルが誕生「沖縄マリオット・リザン・リゾート＆スパ」2026年12月1日 開業",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1JOE9SZDlFUHJTWk9PNW0xdkRoeVQ5SVVSQURDOVBqSS1tVzhFR09vZzVBTmhJT1hucXh5YVQ2QTdMWGZ3ZEM0dVdLUFRRUXBBeWdkd0wwNHRWNEs4TUE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-27T06:00:00+00:00"
+  },
+  {
+   "c": "event",
+   "t": "沖縄開催！内川幸太郎（EX風林火山）来場！大学生・第二新卒向け麻雀イベント|いえらぶ琉球",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1fWkpOTUF6LWRfb2pvOE4yRm16OW9UVmVFMU91TlVJUFFFaDdjVTFBZ1dUM1FEX0VWSzFzSjVuRl9iQkRpVEZldWwxWW5ZNzZuU25zemE5ZEVPMjA?oc=5",
+   "s": "共同通信PRワイヤー",
+   "d": "2026-11-27T01:40:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "【ロワジールホテル 那覇】新年を彩る贅沢な特選おせち2027予約受付中！沖縄県産食材や世界各国の美食を取り入れた和洋中重をご用意",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5QMkh4Z2lSVDE5MDNobUV5WFNkMHdHRHc0bkdiYWo3RmtKbzFnaXRuNFg2VGdCNFFwMTB0UDJQdDFFMjNYLWZ0UHRQRlRFaEthcmJBX1NrM3AxWV9qUUE?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-27T01:00:00+00:00"
+  },
+  {
+   "c": "hotel",
+   "t": "石垣島のホテル、AIの根拠は8割が予約サイト。地域のAI検索を毎週観測し、ホテルと改善を検証",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE51QTVWeExWaVpzQ1hsMFVUTl9hQjhxSGlkUk1CNVFfdzFNOVljSjE0SkRfVlgyNGs0MXdpRGI1LUZ2R2h5d0NYLWd5dHVDXy16TXN0SEMxVFd5SGRRd0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-26T23:26:04+00:00"
+  },
+  {
+   "c": "gourmet",
+   "t": "アメ横近くの歩道に客席、沖縄料理店に営業停止処分…「利益上がるのでやってしまった」",
+   "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBpcXlWQVhZS0Uya25RWTZhb2dxSUxvcTI0d1lpVFhjazVaTkZZTnNzUGRSaC1CTllvZjhNUlB6X29zeTRzVmJ5ZzgtOGhYQ2Fadm5ucVE3RS1XRFMyQ2xuQ2tXVFFpUQ?oc=5",
+   "s": "読売新聞",
+   "d": "2026-11-26T20:00:00+00:00"
+  },
+  {
+   "c": "airport",
+   "t": "首里城が京都の銘菓とコラボ、沖縄限定パッケージ生八つ橋「こたべ」 那覇空港店",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBGMXRVRkQ1aTUwSEdfeTRWcEhoS2VfNjZoNlVXLUJlenNsVHJqSG01U1NDNUlUM3NISmNXbnlsbG9Kc0VZRGdUalRvUlBvU3ZLNk82aktsRHZzRlhXUUQ4bnhB?oc=5",
+   "s": "琉球新報デジタル",
+   "d": "2026-11-26T20:00:00+00:00"
+  },
+  {
+   "c": "kr",
+   "t": "内需不振の中国、インバウンドに活路 ロシアや韓国などから誘致",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5pczV0SEFUMEZod3pYT3lmb25kNlQtbkx3RzJGVmtFd05UZG05OF93aXZZWW5iMnFPV00zUnY2Y1drRUp2OHRzR1R4WlZveWhVZF9aeFBnZ0dmUWhkWE5oTWN0bFVBeGJvYnhiTQ?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-11-26T20:00:00+00:00"
+  },
+  {
+   "c": "ryoko",
+   "t": "琉球芸能の魅力学ぶ 長野市の長野南高校で修学旅行の事前学習",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5DUm84UkNwOUFNZjNNQWtnTlpubEdSMDk1bklQeG5zVHlSVFBDVXg1T1ZoVFVMMnpkekZ0WHFyZV90ajdEZXQ2dUtRZzdZOWxSWWxMNXFraXZrWkdMWW5LYkJCNG1iblM0aHlmdnBRWXY?oc=5",
+   "s": "信濃毎日新聞デジタル",
+   "d": "2026-11-26T11:14:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "沖縄 ザトウクジラの保全と観光両立のための条例制定も 議論",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9Lc2Q1T1NDa1FGRVRMT2pERF92NlVCWUVmaFhQYnRISDZUWURENGRYVGNHNDJ0a0xhQmFZUjRoeVJTTVI4RGpiOUpSLW9GWTFtblpOcGwycUlVR0tvWERr?oc=5",
+   "s": "NHKニュース",
+   "d": "2026-11-26T09:41:07+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "首里城正殿の沖縄県主催式典に中国欠席、台湾招待に反発か 古謝知事「交流ある地域招待」",
+   "u": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQN2pfQnZfZzFyNVRvM05xZU5OTl9lS3JkbmtuVFJuNmd3THo0ajdFN1dQSDNOUm1SWEpFLTlXVzFVelRsb0NDMEZXdjJyV3FhMDhoLTNtVDZrdTlvYU1TSXRhdlFYWThic2xYM01sQlZhVkc1eGNGVlEyUXZ5REo0WGdVVzZQUTZoX0Rmdw?oc=5",
+   "s": "産経ニュース",
+   "d": "2026-11-26T07:56:28+00:00"
+  },
+  {
+   "c": "gourmet",
+   "t": "沖縄そばやモズク料理など50事業者が出店 うるま市産業まつり、28・29日開催 巨大ガラポン抽選会も",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE42SFhSUnpXakRPcUV6T0NDUVFZaUtXOE1FVW5aZHhrY3BKOF9CRFRpYUZJVkFhRTZBVWE1X0lKSWZBTkUwUUpHUk5yYjE5eUxvSmRra1JzN19PMjk3M0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-26T05:56:00+00:00"
+  },
+  {
+   "c": "kr",
+   "t": "「江蘇の魅力」が韓国で文化と観光を披露",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBpbWN1M3BhQU5vOHVYUEJBQUlwc1ZNUmpFQUhtaGE0M0ctVzBjTWRJVVdZYXdNVkRDcVlRVGlGN3kyRzVDTnB0VTI1WjlIZkZsamZhYkQ3bmVCMDA?oc=5",
+   "s": "共同通信PRワイヤー",
+   "d": "2026-11-26T05:14:00+00:00"
+  },
+  {
+   "c": "spot",
+   "t": "沖縄県主催の首里城式典 欠席した中国側が示した「遺憾の意」 国主催の式典は？",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBkLXhydFF5S0xMQjkyVWhIdjByZEtwZWlrZTdMUVFhSUMzYkJUM1YtVzl3aUR4Ykc5WHg3Y3FKcF8wa2RMa3VlbVdwOS1WeERQaGNOLTd4ZmRKU3lvb0E?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-26T01:30:00+00:00"
+  },
+  {
+   "c": "kanko",
+   "t": "米兵事件や県知事選 沖縄タイムス報道に提言 読者委員会",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9ZVXdUS0ZmME81WDRhWk9qY3lWczd5UkdySVZGblNaSEZybnVneWM3NEdFRUZwcWxrd2RpTWtOWG5Gb01vMGVNSUNEV3l0ZjBPV2RGaHBJZjVUQmE0Zmc?oc=5",
+   "s": "沖縄タイムス社",
+   "d": "2026-11-25T20:45:00+00:00"
+  }
+ ]
+}
